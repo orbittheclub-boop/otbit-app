@@ -23,20 +23,33 @@ Future<bool> registerFcmToken(NotificationRepository repo) async {
     if (!granted) return false;
 
     final platform = Platform.isIOS ? 'ios' : 'android';
-    final token = await messaging.getToken();
-    if (token != null) {
-      await repo.registerDevice(token, platform: platform);
-    }
 
+    // Hook refresh FIRST so a late-arriving token still registers even if the
+    // getToken() below races the APNs token and throws.
     if (!_refreshHooked) {
       _refreshHooked = true;
       messaging.onTokenRefresh.listen((t) {
         repo.registerDevice(t, platform: platform);
       });
     }
+
+    // On iOS the FCM token can't be minted until the APNs token has arrived;
+    // calling getToken() too early throws "apns-token-not-set". Wait for it
+    // (up to ~6s) so the very first launch after permission registers cleanly.
+    if (Platform.isIOS) {
+      for (var i = 0; i < 12; i++) {
+        if (await messaging.getAPNSToken() != null) break;
+        await Future<void>.delayed(const Duration(milliseconds: 500));
+      }
+    }
+
+    final token = await messaging.getToken();
+    if (token != null) {
+      await repo.registerDevice(token, platform: platform);
+    }
     return true;
   } catch (_) {
-    // iOS without an APNs key yet ("apns-token-not-set"), or transient.
+    // Transient — onTokenRefresh will still fire when the token resolves.
     return false;
   }
 }
