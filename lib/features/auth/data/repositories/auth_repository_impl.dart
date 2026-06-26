@@ -60,6 +60,24 @@ class AuthRepositoryImpl implements AuthRepository {
         .join();
   }
 
+  /// Whether a JWT carries a non-empty `nonce` claim. GoTrue rejects an
+  /// id-token grant when exactly one of (passed nonce, token nonce) is present
+  /// ("...should either both exist or not"), so we only forward the nonce when
+  /// the token actually contains one.
+  static bool _idTokenHasNonce(String idToken) {
+    try {
+      final parts = idToken.split('.');
+      if (parts.length < 2) return false;
+      final payload = jsonDecode(
+        utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))),
+      ) as Map<String, dynamic>;
+      final n = payload['nonce'];
+      return n is String && n.isNotEmpty;
+    } catch (_) {
+      return false;
+    }
+  }
+
   @override
   Future<Result<void>> signInWithApple() => guard(() async {
         final rawNonce = _nonce();
@@ -78,7 +96,7 @@ class AuthRepositoryImpl implements AuthRepository {
         await _client.auth.signInWithIdToken(
           provider: OAuthProvider.apple,
           idToken: idToken,
-          nonce: rawNonce,
+          nonce: _idTokenHasNonce(idToken) ? rawNonce : null,
         );
       });
 

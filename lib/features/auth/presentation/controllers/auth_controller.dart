@@ -70,7 +70,7 @@ class AuthController extends _$AuthController {
         ref.invalidateSelf();
         return null;
       },
-      err: (f) => f.message,
+      err: (f) => 'Apple: ${f.message}',
     );
   }
 
@@ -81,7 +81,7 @@ class AuthController extends _$AuthController {
         ref.invalidateSelf();
         return null;
       },
-      err: (f) => f.message,
+      err: (f) => 'Google: ${f.message}',
     );
   }
 
