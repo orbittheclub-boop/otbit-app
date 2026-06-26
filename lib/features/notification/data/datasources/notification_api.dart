@@ -15,4 +15,7 @@ abstract class NotificationApi {
 
   @POST('notifications/register-device')
   Future<dynamic> registerDevice(@Body() Map<String, dynamic> body);
+
+  @POST('notifications/unregister-device')
+  Future<dynamic> unregisterDevice(@Body() Map<String, dynamic> body);
 }

@@ -30,4 +30,8 @@ class NotificationRepositoryImpl implements NotificationRepository {
             'fcm_token': fcmToken,
             'platform': ?platform,
           }));
+
+  @override
+  Future<Result<void>> unregisterDevice(String fcmToken) =>
+      guard(() => _api.unregisterDevice({'fcm_token': fcmToken}));
 }

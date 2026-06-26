@@ -7,4 +7,5 @@ abstract interface class NotificationRepository {
   Future<Result<NotificationFeed>> list();
   Future<Result<void>> markRead({String? id});
   Future<Result<void>> registerDevice(String fcmToken, {String? platform});
+  Future<Result<void>> unregisterDevice(String fcmToken);
 }

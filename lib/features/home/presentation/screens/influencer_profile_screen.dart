@@ -8,6 +8,7 @@ import 'package:orbit/features/auth/presentation/controllers/auth_controller.dar
 import 'package:orbit/features/home/presentation/widgets/dark_mode_tile.dart';
 import 'package:orbit/features/home/presentation/widgets/language_tile.dart';
 import 'package:orbit/features/home/presentation/widgets/profile_header.dart';
+import 'package:orbit/features/home/presentation/widgets/push_notification_tile.dart';
 
 class InfluencerProfileScreen extends ConsumerWidget {
   const InfluencerProfileScreen({super.key});
@@ -49,6 +50,8 @@ class InfluencerProfileScreen extends ConsumerWidget {
           const LanguageTile(),
           const Divider(height: 1),
           const DarkModeTile(),
+          const Divider(height: 1),
+          const PushNotificationTile(),
           const Divider(height: 1),
           ListTile(
             leading: const Icon(Icons.logout_rounded, color: AppColors.danger),

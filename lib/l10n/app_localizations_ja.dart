@@ -183,6 +183,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get darkMode => 'ダークモード';
 
   @override
+  String get pushNotifications => 'プッシュ通知';
+
+  @override
   String get logout => 'ログアウト';
 
   @override

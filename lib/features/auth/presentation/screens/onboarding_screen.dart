@@ -51,22 +51,47 @@ class OnboardingScreen extends HookConsumerWidget {
     }
 
     return Scaffold(
-      // Keep the body full-height; the ListView's dynamic bottom padding (the
-      // keyboard height) gives the focused field room to scroll ABOVE the
-      // keyboard, then settles back when it unfocuses.
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('프로필 설정')),
+      // resizeToAvoidBottomInset stays true (default): the body shrinks to the
+      // area above the keyboard so Flutter auto-scrolls the focused field (e.g.
+      // the bottom 연락처 field) into view instead of leaving it covered.
+      appBar: AppBar(
+        title: const Text('프로필 설정'),
+        // No role yet → the only way "back" is to abandon signup (sign out),
+        // which returns to the welcome screen.
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(Icons.close_rounded),
+          tooltip: '취소',
+          onPressed: () async {
+            final ok = await showDialog<bool>(
+              context: context,
+              builder: (ctx) => AlertDialog(
+                title: const Text('가입을 취소할까요?'),
+                content: const Text('지금 나가면 로그아웃되고 처음 화면으로 돌아갑니다.'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(ctx, false),
+                    child: const Text('계속하기'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(ctx, true),
+                    child: const Text('나가기'),
+                  ),
+                ],
+              ),
+            );
+            if (ok == true) {
+              await ref.read(authControllerProvider.notifier).signOut();
+            }
+          },
+        ),
+      ),
       body: SafeArea(
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () => FocusScope.of(context).unfocus(),
           child: ListView(
-            padding: EdgeInsets.fromLTRB(
-              24,
-              8,
-              24,
-              MediaQuery.viewInsetsOf(context).bottom + 28,
-            ),
+            padding: const EdgeInsets.fromLTRB(24, 8, 24, 28),
             keyboardDismissBehavior:
                 ScrollViewKeyboardDismissBehavior.onDrag,
             children: [

@@ -104,7 +104,7 @@ class SignupScreen extends HookConsumerWidget {
               ),
               const SizedBox(height: 8),
               TextButton(
-                onPressed: () => context.go('/login'),
+                onPressed: () => context.pushReplacement('/login'),
                 child: const Text('이미 계정이 있어요'),
               ),
             ],

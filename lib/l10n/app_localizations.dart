@@ -450,6 +450,12 @@ abstract class AppLocalizations {
   /// **'다크 모드'**
   String get darkMode;
 
+  /// No description provided for @pushNotifications.
+  ///
+  /// In ko, this message translates to:
+  /// **'푸시 알림'**
+  String get pushNotifications;
+
   /// No description provided for @logout.
   ///
   /// In ko, this message translates to:

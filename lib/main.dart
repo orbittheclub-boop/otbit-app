@@ -10,9 +10,8 @@ import 'package:toastification/toastification.dart';
 
 import 'package:orbit/core/cache/board_cache.dart';
 import 'package:orbit/core/config/env.dart';
-import 'package:orbit/core/notifications/fcm.dart';
 import 'package:orbit/features/auth/presentation/controllers/auth_controller.dart';
-import 'package:orbit/features/notification/presentation/providers/notification_providers.dart';
+import 'package:orbit/features/notification/presentation/providers/push_pref_controller.dart';
 import 'package:orbit/firebase_options.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/l10n/locale_controller.dart';
@@ -52,11 +51,14 @@ class OrbitApp extends ConsumerWidget {
     final initIsDark =
         ref.read(themeModeControllerProvider) == ThemeMode.dark;
 
-    // Register the device's FCM token whenever a user signs in (onboarded).
+    // When a user lands in the app (right after onboarding, or on later
+    // launches), ensure push permission + token registration and persist the
+    // on/off state. iOS only shows the prompt the first time — so this reads as
+    // a natural "allow notifications?" right after finishing onboarding.
     ref.listen(authControllerProvider, (prev, next) {
       final user = next.value;
       if (user != null && user.role != null) {
-        registerFcmToken(ref.read(notificationRepositoryProvider));
+        ref.read(pushPrefControllerProvider.notifier).ensureRegistered();
       }
     });
 

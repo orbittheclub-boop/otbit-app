@@ -79,7 +79,7 @@ class WelcomeScreen extends ConsumerWidget {
                   const Spacer(flex: 4),
                   PrimaryButton(
                     label: context.l10n.login,
-                    onPressed: () => context.go('/login'),
+                    onPressed: () => context.push('/login'),
                   ).animate(delay: 320.ms).fadeIn(duration: 400.ms).moveY(
                         begin: 16,
                         end: 0,
@@ -88,7 +88,7 @@ class WelcomeScreen extends ConsumerWidget {
                   const SizedBox(height: 12),
                   SecondaryButton(
                     label: context.l10n.signup,
-                    onPressed: () => context.go('/signup'),
+                    onPressed: () => context.push('/signup'),
                   ).animate(delay: 400.ms).fadeIn(duration: 400.ms).moveY(
                         begin: 16,
                         end: 0,

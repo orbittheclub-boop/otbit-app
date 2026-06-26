@@ -185,6 +185,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get darkMode => 'Modo oscuro';
 
   @override
+  String get pushNotifications => 'Notificaciones push';
+
+  @override
   String get logout => 'Cerrar sesión';
 
   @override

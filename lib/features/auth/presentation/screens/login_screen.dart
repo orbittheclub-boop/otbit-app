@@ -63,7 +63,9 @@ class LoginScreen extends HookConsumerWidget {
       final err = await run();
       if (!context.mounted) return;
       loading.value = false;
-      error.value = err == null ? null : localizeAuthError(context.l10n, err);
+      // Social errors are usually native/config issues — surface them verbatim
+      // (cancellations come back as a friendly message already).
+      error.value = err;
     }
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -234,10 +236,19 @@ class LoginScreen extends HookConsumerWidget {
                   ),
                   const SizedBox(height: 8),
                   TextButton(
-                    onPressed: () => context.go('/signup'),
+                    onPressed: () => context.pushReplacement('/signup'),
                     child: Text(context.l10n.signupWithEmail),
                   ),
                 ],
+              ),
+            ),
+            Positioned(
+              top: 0,
+              left: 4,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back_rounded),
+                onPressed: () =>
+                    context.canPop() ? context.pop() : context.go('/welcome'),
               ),
             ),
             const Positioned(

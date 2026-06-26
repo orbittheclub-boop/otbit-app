@@ -183,6 +183,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get darkMode => '다크 모드';
 
   @override
+  String get pushNotifications => '푸시 알림';
+
+  @override
   String get logout => '로그아웃';
 
   @override
