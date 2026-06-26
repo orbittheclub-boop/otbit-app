@@ -63,6 +63,28 @@ class AuthController extends _$AuthController {
     );
   }
 
+  Future<String?> signInWithApple() async {
+    final res = await ref.read(authRepositoryProvider).signInWithApple();
+    return res.when(
+      ok: (_) {
+        ref.invalidateSelf();
+        return null;
+      },
+      err: (f) => f.message,
+    );
+  }
+
+  Future<String?> signInWithGoogle() async {
+    final res = await ref.read(authRepositoryProvider).signInWithGoogle();
+    return res.when(
+      ok: (_) {
+        ref.invalidateSelf();
+        return null;
+      },
+      err: (f) => f.message,
+    );
+  }
+
   Future<String?> completeOnboarding(OnboardingInput input) async {
     final res =
         await ref.read(authRepositoryProvider).completeOnboarding(input);

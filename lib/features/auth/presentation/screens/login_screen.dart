@@ -12,6 +12,7 @@ import 'package:orbit/core/widgets/primary_button.dart';
 import 'package:orbit/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:orbit/features/auth/presentation/providers/recent_emails.dart';
 import 'package:orbit/features/auth/presentation/widgets/password_field.dart';
+import 'package:orbit/features/auth/presentation/widgets/social_button.dart';
 import 'package:orbit/features/home/presentation/widgets/language_tile.dart';
 
 class LoginScreen extends HookConsumerWidget {
@@ -50,6 +51,22 @@ class LoginScreen extends HookConsumerWidget {
       // Localize Supabase/network errors to the selected language.
       error.value = err == null ? null : localizeAuthError(context.l10n, err);
     }
+
+    // Shared runner for the native Apple/Google flows (each returns an error
+    // string or null). On success the auth state changes and the router
+    // redirects away from this screen.
+    Future<void> social(Future<String?> Function() run) async {
+      if (loading.value) return;
+      FocusScope.of(context).unfocus();
+      loading.value = true;
+      error.value = null;
+      final err = await run();
+      if (!context.mounted) return;
+      loading.value = false;
+      error.value = err == null ? null : localizeAuthError(context.l10n, err);
+    }
+
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       body: SafeArea(
@@ -169,6 +186,51 @@ class LoginScreen extends HookConsumerWidget {
                     label: context.l10n.login,
                     loading: loading.value,
                     onPressed: submit,
+                  ),
+                  const SizedBox(height: 20),
+                  // "또는" divider between email and social sign-in.
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Divider(color: context.palette.border),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          context.l10n.orDivider,
+                          style: TextStyle(
+                            color: context.palette.textTertiary,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(color: context.palette.border),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  SocialButton.apple(
+                    label: context.l10n.continueWithApple,
+                    isDark: isDark,
+                    onPressed: loading.value
+                        ? null
+                        : () => social(() => ref
+                            .read(authControllerProvider.notifier)
+                            .signInWithApple()),
+                  ),
+                  const SizedBox(height: 12),
+                  SocialButton.google(
+                    label: context.l10n.continueWithGoogle,
+                    isDark: isDark,
+                    surface: context.palette.surface,
+                    border: context.palette.border,
+                    foreground: context.palette.ink,
+                    onPressed: loading.value
+                        ? null
+                        : () => social(() => ref
+                            .read(authControllerProvider.notifier)
+                            .signInWithGoogle()),
                   ),
                   const SizedBox(height: 8),
                   TextButton(

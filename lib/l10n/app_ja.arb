@@ -1,6 +1,10 @@
 {
   "@@locale": "ja",
   "appTagline": "インフルエンサーキャンペーンの軌道",
+  "continueWithApple": "Appleで続ける",
+  "continueWithGoogle": "Googleで続ける",
+  "orDivider": "または",
+  "welcomeSubtitle": "キャンペーンとクリエイターをつなぐ最短ルート",
   "login": "ログイン",
   "signupWithEmail": "メールで新規登録",
   "email": "メールアドレス",

@@ -11,6 +11,13 @@ abstract interface class AuthRepository {
 
   Future<Result<void>> signUp({required String email, required String password});
   Future<Result<void>> signIn({required String email, required String password});
+
+  /// Native "Sign in with Apple" → Supabase signInWithIdToken.
+  Future<Result<void>> signInWithApple();
+
+  /// Native Google sign-in → Supabase signInWithIdToken.
+  Future<Result<void>> signInWithGoogle();
+
   Future<Result<void>> signOut();
 
   /// Loads the current profile via the `profile` Edge Function. Returns null

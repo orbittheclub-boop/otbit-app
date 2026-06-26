@@ -10,6 +10,7 @@ import 'package:orbit/features/auth/presentation/screens/login_screen.dart';
 import 'package:orbit/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:orbit/features/auth/presentation/screens/signup_screen.dart';
 import 'package:orbit/features/auth/presentation/screens/splash_screen.dart';
+import 'package:orbit/features/auth/presentation/screens/welcome_screen.dart';
 import 'package:orbit/features/campaign/domain/entities/campaign.dart';
 import 'package:orbit/features/board/presentation/screens/board_compose_screen.dart';
 import 'package:orbit/features/board/presentation/screens/board_detail_screen.dart';
@@ -30,7 +31,7 @@ import 'package:orbit/features/tiktok/presentation/screens/tiktok_link_screen.da
 
 part 'app_router.g.dart';
 
-const _authPages = {'/login', '/signup'};
+const _authPages = {'/welcome', '/login', '/signup'};
 
 /// Root navigator — full-screen routes use this so they cover the bottom nav.
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -61,7 +62,7 @@ GoRouter goRouter(Ref ref) {
       }
 
       final user = auth.value;
-      if (user == null) return _authPages.contains(loc) ? null : '/login';
+      if (user == null) return _authPages.contains(loc) ? null : '/welcome';
       if (user.role == null) return loc == '/onboarding' ? null : '/onboarding';
 
       final home = user.role == Role.company ? '/company' : '/influencer';
@@ -80,6 +81,7 @@ GoRouter goRouter(Ref ref) {
     },
     routes: [
       GoRoute(path: '/splash', builder: (_, _) => const SplashScreen()),
+      GoRoute(path: '/welcome', builder: (_, _) => const WelcomeScreen()),
       GoRoute(path: '/login', builder: (_, _) => const LoginScreen()),
       GoRoute(path: '/signup', builder: (_, _) => const SignupScreen()),
       GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),

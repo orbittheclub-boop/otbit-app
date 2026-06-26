@@ -1,6 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_quill/flutter_quill.dart' show FlutterQuillLocalizations;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -10,6 +10,10 @@ import 'package:toastification/toastification.dart';
 
 import 'package:orbit/core/cache/board_cache.dart';
 import 'package:orbit/core/config/env.dart';
+import 'package:orbit/core/notifications/fcm.dart';
+import 'package:orbit/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:orbit/features/notification/presentation/providers/notification_providers.dart';
+import 'package:orbit/firebase_options.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/l10n/locale_controller.dart';
 import 'package:orbit/core/router/app_router.dart';
@@ -18,10 +22,12 @@ import 'package:orbit/core/theme/theme_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: '.env');
   await Supabase.initialize(
     url: Env.supabaseUrl,
     publishableKey: Env.supabasePublishableKey,
+  );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
   final prefs = await SharedPreferences.getInstance();
   await Hive.initFlutter();
@@ -45,6 +51,14 @@ class OrbitApp extends ConsumerWidget {
     // via ThemeSwitcher (animated_theme_switcher).
     final initIsDark =
         ref.read(themeModeControllerProvider) == ThemeMode.dark;
+
+    // Register the device's FCM token whenever a user signs in (onboarded).
+    ref.listen(authControllerProvider, (prev, next) {
+      final user = next.value;
+      if (user != null && user.role != null) {
+        registerFcmToken(ref.read(notificationRepositoryProvider));
+      }
+    });
 
     return ToastificationWrapper(
       child: ThemeProvider(

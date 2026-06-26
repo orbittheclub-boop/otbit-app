@@ -108,6 +108,30 @@ abstract class AppLocalizations {
   /// **'인플루언서 캠페인의 궤도'**
   String get appTagline;
 
+  /// No description provided for @continueWithApple.
+  ///
+  /// In ko, this message translates to:
+  /// **'Apple로 계속하기'**
+  String get continueWithApple;
+
+  /// No description provided for @continueWithGoogle.
+  ///
+  /// In ko, this message translates to:
+  /// **'Google로 계속하기'**
+  String get continueWithGoogle;
+
+  /// No description provided for @orDivider.
+  ///
+  /// In ko, this message translates to:
+  /// **'또는'**
+  String get orDivider;
+
+  /// No description provided for @welcomeSubtitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인과 인플루언서를 잇는 가장 빠른 길'**
+  String get welcomeSubtitle;
+
   /// No description provided for @login.
   ///
   /// In ko, this message translates to:

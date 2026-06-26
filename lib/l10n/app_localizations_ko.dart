@@ -12,6 +12,18 @@ class AppLocalizationsKo extends AppLocalizations {
   String get appTagline => '인플루언서 캠페인의 궤도';
 
   @override
+  String get continueWithApple => 'Apple로 계속하기';
+
+  @override
+  String get continueWithGoogle => 'Google로 계속하기';
+
+  @override
+  String get orDivider => '또는';
+
+  @override
+  String get welcomeSubtitle => '캠페인과 인플루언서를 잇는 가장 빠른 길';
+
+  @override
   String get login => '로그인';
 
   @override

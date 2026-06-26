@@ -1,9 +1,15 @@
+import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 // Hide postgrest's `Headers` so dio's `Headers` constants resolve unambiguously.
 import 'package:supabase_flutter/supabase_flutter.dart' hide Headers;
 
+import 'package:orbit/core/config/env.dart';
 import 'package:orbit/core/network/network_guard.dart';
 import 'package:orbit/core/usecase/usecase.dart';
 import 'package:orbit/features/auth/data/datasources/profile_api.dart';
@@ -45,6 +51,58 @@ class AuthRepositoryImpl implements AuthRepository {
   }) =>
       guard(() => _client.auth
           .signInWithPassword(email: email, password: password));
+
+  static String _nonce([int length = 32]) {
+    const charset =
+        '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+    final r = Random.secure();
+    return List.generate(length, (_) => charset[r.nextInt(charset.length)])
+        .join();
+  }
+
+  @override
+  Future<Result<void>> signInWithApple() => guard(() async {
+        final rawNonce = _nonce();
+        final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
+        final credential = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+          nonce: hashedNonce,
+        );
+        final idToken = credential.identityToken;
+        if (idToken == null) {
+          throw const AuthException('애플 로그인에 실패했어요.');
+        }
+        await _client.auth.signInWithIdToken(
+          provider: OAuthProvider.apple,
+          idToken: idToken,
+          nonce: rawNonce,
+        );
+      });
+
+  @override
+  Future<Result<void>> signInWithGoogle() => guard(() async {
+        final googleSignIn = GoogleSignIn(
+          clientId: Env.googleIosClientId,
+          serverClientId: Env.googleWebClientId.isEmpty
+              ? null
+              : Env.googleWebClientId,
+        );
+        final account = await googleSignIn.signIn();
+        if (account == null) throw const AuthException('로그인이 취소되었어요.');
+        final auth = await account.authentication;
+        final idToken = auth.idToken;
+        if (idToken == null) {
+          throw const AuthException('구글 로그인에 실패했어요.');
+        }
+        await _client.auth.signInWithIdToken(
+          provider: OAuthProvider.google,
+          idToken: idToken,
+          accessToken: auth.accessToken,
+        );
+      });
 
   @override
   Future<Result<void>> signOut() => guard(() => _client.auth.signOut());

@@ -1,6 +1,10 @@
 {
   "@@locale": "ko",
   "appTagline": "인플루언서 캠페인의 궤도",
+  "continueWithApple": "Apple로 계속하기",
+  "continueWithGoogle": "Google로 계속하기",
+  "orDivider": "또는",
+  "welcomeSubtitle": "캠페인과 인플루언서를 잇는 가장 빠른 길",
   "login": "로그인",
   "signupWithEmail": "이메일로 회원가입",
   "email": "이메일",

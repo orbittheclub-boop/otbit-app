@@ -12,6 +12,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appTagline => 'La órbita de las campañas de influencers';
 
   @override
+  String get continueWithApple => 'Continuar con Apple';
+
+  @override
+  String get continueWithGoogle => 'Continuar con Google';
+
+  @override
+  String get orDivider => 'o';
+
+  @override
+  String get welcomeSubtitle =>
+      'La forma más rápida de conectar campañas y creadores';
+
+  @override
   String get login => 'Iniciar sesión';
 
   @override

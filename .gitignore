@@ -30,6 +30,8 @@ coverage/
 
 # Local environment (keep .env.example committed)
 .env
+# envied bakes .env into this generated file (regenerate via build_runner)
+lib/core/config/env.g.dart
 
 # Local tooling config
 .mcp.json
@@ -56,3 +58,12 @@ ios/ServiceDefinitions.json
 # Symbolication / obfuscation
 app.*.symbols
 app.*.map.json
+
+# Apple APNs / Sign-in keys (NEVER commit)
+*.p8
+
+# Google / Firebase credential files (NEVER commit)
+client_secret*.json
+client_*.apps.googleusercontent.com.plist
+**/google-services.json
+**/GoogleService-Info.plist

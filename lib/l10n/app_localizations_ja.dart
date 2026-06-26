@@ -12,6 +12,18 @@ class AppLocalizationsJa extends AppLocalizations {
   String get appTagline => 'インフルエンサーキャンペーンの軌道';
 
   @override
+  String get continueWithApple => 'Appleで続ける';
+
+  @override
+  String get continueWithGoogle => 'Googleで続ける';
+
+  @override
+  String get orDivider => 'または';
+
+  @override
+  String get welcomeSubtitle => 'キャンペーンとクリエイターをつなぐ最短ルート';
+
+  @override
   String get login => 'ログイン';
 
   @override

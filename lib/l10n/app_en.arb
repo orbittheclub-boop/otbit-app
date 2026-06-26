@@ -1,6 +1,10 @@
 {
   "@@locale": "en",
   "appTagline": "The orbit of influencer campaigns",
+  "continueWithApple": "Continue with Apple",
+  "continueWithGoogle": "Continue with Google",
+  "orDivider": "or",
+  "welcomeSubtitle": "The fastest way to connect campaigns and creators",
   "login": "Log in",
   "signupWithEmail": "Sign up with email",
   "email": "Email",

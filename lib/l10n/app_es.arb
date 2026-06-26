@@ -1,6 +1,10 @@
 {
   "@@locale": "es",
   "appTagline": "La órbita de las campañas de influencers",
+  "continueWithApple": "Continuar con Apple",
+  "continueWithGoogle": "Continuar con Google",
+  "orDivider": "o",
+  "welcomeSubtitle": "La forma más rápida de conectar campañas y creadores",
   "login": "Iniciar sesión",
   "signupWithEmail": "Registrarse con correo",
   "email": "Correo electrónico",
