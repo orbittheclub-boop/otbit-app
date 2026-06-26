@@ -1,8 +1,9 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_quill/flutter_quill.dart' show FlutterQuillLocalizations;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -41,7 +42,7 @@ Future<void> main() async {
   );
 }
 
-class OrbitApp extends ConsumerWidget {
+class OrbitApp extends HookConsumerWidget {
   const OrbitApp({super.key});
 
   @override
@@ -61,6 +62,16 @@ class OrbitApp extends ConsumerWidget {
       final user = next.value;
       if (user != null && user.role != null) {
         ref.read(pushPrefControllerProvider.notifier).ensureRegistered();
+      }
+    });
+
+    // App-wide: whenever the app returns to the foreground, reconcile the push
+    // toggle with the real OS permission (the user may have changed it in
+    // Settings). Doing it here — not just on the profile screen — keeps the
+    // stored state in sync regardless of which screen is showing.
+    useOnAppLifecycleStateChange((_, state) {
+      if (state == AppLifecycleState.resumed) {
+        ref.read(pushPrefControllerProvider.notifier).syncFromSystem();
       }
     });
 

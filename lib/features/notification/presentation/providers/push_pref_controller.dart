@@ -51,7 +51,8 @@ class PushPrefController extends _$PushPrefController {
   /// permission — call on launch, when the profile appears, and on app resume
   /// (e.g. after the user flips it in Settings). The OS is the source of truth.
   Future<void> syncFromSystem() async {
-    final granted = await Permission.notification.isGranted;
+    final status = await Permission.notification.status;
+    final granted = status.isGranted || status.isProvisional;
     if (granted) {
       await _register();
     } else {

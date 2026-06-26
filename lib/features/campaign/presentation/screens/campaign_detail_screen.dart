@@ -225,6 +225,38 @@ class _ActionBar extends ConsumerWidget {
     }
   }
 
+  Future<void> _delete(BuildContext context, WidgetRef ref) async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('캠페인 삭제'),
+        content: const Text('이 캠페인을 삭제할까요? 지원 내역도 함께 사라지며 되돌릴 수 없어요.'),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('취소')),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            style: TextButton.styleFrom(foregroundColor: AppColors.danger),
+            child: const Text('삭제'),
+          ),
+        ],
+      ),
+    );
+    if (ok != true) return;
+    final res = await ref.read(campaignRepositoryProvider).remove(campaign.id);
+    if (!context.mounted) return;
+    switch (res) {
+      case Ok():
+        ref.invalidate(myCampaignsProvider);
+        ref.invalidate(campaignFeedProvider);
+        showAppToast(context, '캠페인을 삭제했어요.');
+        context.pop();
+      case Err(:final failure):
+        showAppToast(context, failure.message, type: AppToastType.error);
+    }
+  }
+
   /// Apply / cancel / status button for influencers, based on whether they have
   /// already applied and the application's status.
   Widget _influencerAction(BuildContext context, WidgetRef ref) {
@@ -295,6 +327,14 @@ class _ActionBar extends ConsumerWidget {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 2),
+                  TextButton.icon(
+                    onPressed: () => _delete(context, ref),
+                    icon: const Icon(Icons.delete_outline_rounded,
+                        size: 18, color: AppColors.danger),
+                    label: const Text('캠페인 삭제',
+                        style: TextStyle(color: AppColors.danger)),
                   ),
                 ],
               )
