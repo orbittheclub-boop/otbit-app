@@ -275,6 +275,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get editProfile => 'Edit profile';
 
   @override
+  String get loginMethod => 'Sign-in method';
+
+  @override
   String get save => 'Save';
 
   @override

@@ -271,6 +271,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get editProfile => '프로필 편집';
 
   @override
+  String get loginMethod => '로그인 방법';
+
+  @override
   String get save => '저장';
 
   @override

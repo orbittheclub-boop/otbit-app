@@ -276,6 +276,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get editProfile => 'Editar perfil';
 
   @override
+  String get loginMethod => 'Método de acceso';
+
+  @override
   String get save => 'Guardar';
 
   @override

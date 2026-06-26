@@ -271,6 +271,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get editProfile => 'プロフィール編集';
 
   @override
+  String get loginMethod => 'ログイン方法';
+
+  @override
   String get save => '保存';
 
   @override

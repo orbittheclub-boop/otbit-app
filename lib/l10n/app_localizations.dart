@@ -624,6 +624,12 @@ abstract class AppLocalizations {
   /// **'프로필 편집'**
   String get editProfile;
 
+  /// No description provided for @loginMethod.
+  ///
+  /// In ko, this message translates to:
+  /// **'로그인 방법'**
+  String get loginMethod;
+
   /// No description provided for @save.
   ///
   /// In ko, this message translates to:
