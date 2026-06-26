@@ -61,6 +61,8 @@
   "sortPopular": "人気順",
   "darkMode": "ダークモード",
   "pushNotifications": "プッシュ通知",
+  "pushBlockedMessage": "通知がオフです。端末の設定で通知をオンにしてください。",
+  "openSettings": "設定を開く",
   "logout": "ログアウト",
   "deleteAccount": "アカウント削除",
   "deleteAccountWarning": "アカウントとすべてのデータ（キャンペーン・応募・投稿など）が完全に削除され、復元できません。本当に削除しますか？",

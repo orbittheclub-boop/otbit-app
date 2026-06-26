@@ -28,8 +28,30 @@ class PushNotificationTile extends HookConsumerWidget {
       title: Text(context.l10n.pushNotifications),
       value: enabled,
       activeThumbColor: AppColors.primary,
-      onChanged: (v) =>
-          ref.read(pushPrefControllerProvider.notifier).setEnabled(v),
+      onChanged: (v) async {
+        final notifier = ref.read(pushPrefControllerProvider.notifier);
+        final result = await notifier.setEnabled(v);
+        if (result != PushToggleResult.blocked || !context.mounted) return;
+        // iOS permanently denied — explain and offer to open Settings.
+        final go = await showDialog<bool>(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: Text(context.l10n.pushNotifications),
+            content: Text(context.l10n.pushBlockedMessage),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx, false),
+                child: Text(context.l10n.cancel),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(ctx, true),
+                child: Text(context.l10n.openSettings),
+              ),
+            ],
+          ),
+        );
+        if (go == true) await notifier.openSettings();
+      },
     );
   }
 }

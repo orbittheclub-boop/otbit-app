@@ -193,6 +193,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pushNotifications => 'Push notifications';
 
   @override
+  String get pushBlockedMessage =>
+      'Notifications are off. Turn them on in your device Settings.';
+
+  @override
+  String get openSettings => 'Open Settings';
+
+  @override
   String get logout => 'Log out';
 
   @override

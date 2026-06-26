@@ -194,6 +194,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pushNotifications => 'Notificaciones push';
 
   @override
+  String get pushBlockedMessage =>
+      'Las notificaciones están desactivadas. Actívalas en los Ajustes del dispositivo.';
+
+  @override
+  String get openSettings => 'Abrir Ajustes';
+
+  @override
   String get logout => 'Cerrar sesión';
 
   @override

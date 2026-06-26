@@ -192,6 +192,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get pushNotifications => '푸시 알림';
 
   @override
+  String get pushBlockedMessage => '알림이 꺼져 있어요. 기기 설정에서 알림을 켜주세요.';
+
+  @override
+  String get openSettings => '설정 열기';
+
+  @override
   String get logout => '로그아웃';
 
   @override

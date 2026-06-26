@@ -54,7 +54,7 @@ final class PushPrefControllerProvider
 }
 
 String _$pushPrefControllerHash() =>
-    r'a90cfd91f30216ffe276556a398a643330e51d98';
+    r'd4101435de0936149f5a1b8d9083ea8583b98c31';
 
 /// The user's push-notification on/off state, persisted in shared_preferences
 /// so the profile screen renders the toggle instantly (synchronous read — no

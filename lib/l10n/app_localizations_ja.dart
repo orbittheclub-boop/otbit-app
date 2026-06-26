@@ -192,6 +192,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get pushNotifications => 'プッシュ通知';
 
   @override
+  String get pushBlockedMessage => '通知がオフです。端末の設定で通知をオンにしてください。';
+
+  @override
+  String get openSettings => '設定を開く';
+
+  @override
   String get logout => 'ログアウト';
 
   @override

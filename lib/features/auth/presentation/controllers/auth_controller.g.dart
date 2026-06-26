@@ -36,7 +36,7 @@ final class AuthControllerProvider
   AuthController create() => AuthController();
 }
 
-String _$authControllerHash() => r'104b87ad32f7a239c03d68c759d262d1f967dbf3';
+String _$authControllerHash() => r'805456d52a84146e511f847f07412d8ee9309afa';
 
 /// Single source of truth for "who is signed in". Returns null when signed out.
 

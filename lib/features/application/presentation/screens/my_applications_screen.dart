@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/usecase/usecase.dart';
+import 'package:orbit/core/widgets/app_toast.dart';
 import 'package:orbit/core/widgets/zoom_tap.dart';
 import 'package:orbit/features/application/domain/entities/application.dart';
 import 'package:orbit/features/application/presentation/providers/application_providers.dart';
+import 'package:orbit/features/application/presentation/providers/pinned_applications.dart';
 import 'package:orbit/features/application/presentation/widgets/status_chip.dart';
 import 'package:orbit/features/review/presentation/widgets/rating_dialog.dart';
 
@@ -25,15 +28,30 @@ class MyApplicationsScreen extends ConsumerWidget {
           loading: () => const Center(
               child: CircularProgressIndicator(color: AppColors.primary)),
           error: (e, _) => _CenterText('$e'),
-          data: (list) => list.isEmpty
-              ? const _CenterText('아직 지원한 캠페인이 없어요.')
-              : ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
-                  itemCount: list.length,
-                  separatorBuilder: (_, _) => const SizedBox(height: 12),
-                  itemBuilder: (_, i) =>
-                      _ApplicationTile(application: list[i]),
-                ),
+          data: (list) {
+            if (list.isEmpty) {
+              return const _CenterText('아직 지원한 캠페인이 없어요.');
+            }
+            // 즐겨찾기(로컬 핀)한 지원을 위로 분리. 내 찜(캠페인 북마크)과는 별개.
+            final pinnedIds = ref.watch(pinnedApplicationsProvider);
+            final pinned = list.where((a) => pinnedIds.contains(a.id)).toList();
+            final rest = list.where((a) => !pinnedIds.contains(a.id)).toList();
+            return ListView(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
+              children: [
+                if (pinned.isNotEmpty) ...[
+                  const _SectionHeader('⭐ 즐겨찾기'),
+                  for (final a in pinned)
+                    _ApplicationTile(application: a, pinned: true),
+                ],
+                if (rest.isNotEmpty) ...[
+                  if (pinned.isNotEmpty) const _SectionHeader('전체'),
+                  for (final a in rest)
+                    _ApplicationTile(application: a, pinned: false),
+                ],
+              ],
+            );
+          },
         ),
       ),
     );
@@ -41,48 +59,102 @@ class MyApplicationsScreen extends ConsumerWidget {
 }
 
 class _ApplicationTile extends ConsumerWidget {
-  const _ApplicationTile({required this.application});
+  const _ApplicationTile({required this.application, required this.pinned});
 
   final Application application;
+  final bool pinned;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final canSubmit = application.status == ApplicationStatus.accepted ||
         application.status == ApplicationStatus.submitted;
-    return ZoomTap(
-      child: InkWell(
-        onTap: () => context.push('/campaign/${application.campaignId}'),
-        borderRadius: BorderRadius.circular(14),
-        child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: context.palette.background,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: context.palette.border),
+    // Cancellable only while pending (the backend enforces influencer + pending).
+    final canCancel = application.status == ApplicationStatus.pending;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Slidable(
+        key: ValueKey(application.id),
+        // Swipe right → toggle 즐겨찾기 (local pin).
+        startActionPane: ActionPane(
+          motion: const DrawerMotion(),
+          extentRatio: 0.3,
+          children: [
+            SlidableAction(
+              onPressed: (_) => ref
+                  .read(pinnedApplicationsProvider.notifier)
+                  .toggle(application.id),
+              backgroundColor: AppColors.primary,
+              foregroundColor: AppColors.onPrimary,
+              borderRadius: BorderRadius.circular(14),
+              icon: pinned ? Icons.star_rounded : Icons.star_outline_rounded,
+              label: pinned ? '즐겨찾기 해제' : '즐겨찾기',
+            ),
+          ],
         ),
-        child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  application.campaignTitle ?? '캠페인',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 15,
-                      color: context.palette.ink),
+        // Swipe left → 지원취소 (only while pending).
+        endActionPane: canCancel
+            ? ActionPane(
+                motion: const DrawerMotion(),
+                extentRatio: 0.3,
+                children: [
+                  SlidableAction(
+                    onPressed: (ctx) => _confirmCancel(ctx, ref),
+                    backgroundColor: AppColors.danger,
+                    foregroundColor: AppColors.onPrimary,
+                    borderRadius: BorderRadius.circular(14),
+                    icon: Icons.close_rounded,
+                    label: '지원취소',
+                  ),
+                ],
+              )
+            : null,
+        child: ZoomTap(
+          child: InkWell(
+            onTap: () => context.push('/campaign/${application.campaignId}'),
+            borderRadius: BorderRadius.circular(14),
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: pinned
+                    ? context.palette.primarySoft
+                    : context.palette.background,
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(
+                  color: pinned ? AppColors.primary : context.palette.border,
+                  width: pinned ? 1.4 : 1,
                 ),
               ),
-              const SizedBox(width: 8),
-              StatusChip(label: application.status.label, status: application.status),
-              const SizedBox(width: 4),
-              Icon(Icons.chevron_right_rounded,
-                  size: 18, color: context.palette.textTertiary),
-            ],
-          ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      if (pinned) ...[
+                        const Icon(Icons.star_rounded,
+                            size: 16, color: AppColors.primary),
+                        const SizedBox(width: 4),
+                      ],
+                      Expanded(
+                        child: Text(
+                          application.campaignTitle ?? '캠페인',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 15,
+                              color: context.palette.ink),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      StatusChip(
+                          label: application.status.label,
+                          status: application.status),
+                      const SizedBox(width: 4),
+                      Icon(Icons.chevron_right_rounded,
+                          size: 18, color: context.palette.textTertiary),
+                    ],
+                  ),
           const SizedBox(height: 4),
           Text(
             application.companyName ?? '브랜드',
@@ -114,11 +186,43 @@ class _ApplicationTile extends ConsumerWidget {
               ),
             ),
           ],
-        ],
+                ],
+              ),
+            ),
+          ),
         ),
       ),
+    );
+  }
+
+  Future<void> _confirmCancel(BuildContext context, WidgetRef ref) async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('지원 취소'),
+        content: const Text('이 캠페인 지원을 취소할까요? 되돌릴 수 없어요.'),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('아니요')),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            style: TextButton.styleFrom(foregroundColor: AppColors.danger),
+            child: const Text('지원취소'),
+          ),
+        ],
       ),
     );
+    if (ok != true) return;
+    final res =
+        await ref.read(applicationRepositoryProvider).cancel(application.id);
+    if (!context.mounted) return;
+    if (res is Ok) {
+      ref.invalidate(myApplicationsProvider);
+    } else {
+      showAppToast(context, (res as Err).failure.message,
+          type: AppToastType.error);
+    }
   }
 
   Future<void> _submit(BuildContext context, WidgetRef ref) async {
@@ -216,6 +320,23 @@ class _SubmitDialogState extends ConsumerState<_SubmitDialog> {
       ],
     );
   }
+}
+
+class _SectionHeader extends StatelessWidget {
+  const _SectionHeader(this.text);
+  final String text;
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(top: 4, bottom: 10, left: 2),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w800,
+            color: context.palette.textSecondary,
+          ),
+        ),
+      );
 }
 
 class _CenterText extends StatelessWidget {

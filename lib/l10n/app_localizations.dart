@@ -468,6 +468,18 @@ abstract class AppLocalizations {
   /// **'푸시 알림'**
   String get pushNotifications;
 
+  /// No description provided for @pushBlockedMessage.
+  ///
+  /// In ko, this message translates to:
+  /// **'알림이 꺼져 있어요. 기기 설정에서 알림을 켜주세요.'**
+  String get pushBlockedMessage;
+
+  /// No description provided for @openSettings.
+  ///
+  /// In ko, this message translates to:
+  /// **'설정 열기'**
+  String get openSettings;
+
   /// No description provided for @logout.
   ///
   /// In ko, this message translates to:

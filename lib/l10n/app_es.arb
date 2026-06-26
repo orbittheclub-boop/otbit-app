@@ -61,6 +61,8 @@
   "sortPopular": "Populares",
   "darkMode": "Modo oscuro",
   "pushNotifications": "Notificaciones push",
+  "pushBlockedMessage": "Las notificaciones están desactivadas. Actívalas en los Ajustes del dispositivo.",
+  "openSettings": "Abrir Ajustes",
   "logout": "Cerrar sesión",
   "deleteAccount": "Eliminar cuenta",
   "deleteAccountWarning": "Tu cuenta y todos los datos (campañas, solicitudes, publicaciones…) se eliminarán permanentemente y no se podrán recuperar. ¿Eliminar tu cuenta?",

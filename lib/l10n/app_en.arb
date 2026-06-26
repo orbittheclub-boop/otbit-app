@@ -61,6 +61,8 @@
   "sortPopular": "Popular",
   "darkMode": "Dark mode",
   "pushNotifications": "Push notifications",
+  "pushBlockedMessage": "Notifications are off. Turn them on in your device Settings.",
+  "openSettings": "Open Settings",
   "logout": "Log out",
   "deleteAccount": "Delete account",
   "deleteAccountWarning": "Your account and all data (campaigns, applications, posts…) will be permanently deleted and cannot be recovered. Delete your account?",
