@@ -1,0 +1,58 @@
+# Miscellaneous
+*.class
+*.log
+*.swp
+.DS_Store
+.atom/
+.history
+migrate_working_dir/
+
+# IntelliJ / Android Studio
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# VS Code
+.vscode/
+
+# Flutter / Dart / Pub
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.fvm/
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+
+# Local environment (keep .env.example committed)
+.env
+
+# Local tooling config
+.mcp.json
+
+# Android
+android/.gradle/
+android/captures/
+android/local.properties
+android/key.properties
+**/android/**/GeneratedPluginRegistrant.java
+*.jks
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/ServiceDefinitions.json
+**/ios/**/GeneratedPluginRegistrant.*
+**/Flutter/ephemeral/
+
+# Symbolication / obfuscation
+app.*.symbols
+app.*.map.json
