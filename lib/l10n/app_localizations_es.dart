@@ -55,6 +55,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get signup => 'Registrarse';
 
   @override
+  String get profileStepTitle => 'Cuéntanos sobre ti';
+
+  @override
+  String get signupMethodTitle => 'Elige cómo registrarte';
+
+  @override
   String get signupTitle => 'Crea una cuenta con\ntu correo y contraseña';
 
   @override

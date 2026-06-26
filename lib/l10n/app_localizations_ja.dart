@@ -54,6 +54,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get signup => '新規登録';
 
   @override
+  String get profileStepTitle => 'プロフィールを教えてください';
+
+  @override
+  String get signupMethodTitle => '登録方法を選んでください';
+
+  @override
   String get signupTitle => 'メールとパスワードで\nアカウントを作成してください';
 
   @override

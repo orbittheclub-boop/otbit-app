@@ -15,6 +15,8 @@
   "haveAccount": "Ya tengo una cuenta",
   "continueLabel": "Continuar",
   "signup": "Registrarse",
+  "profileStepTitle": "Cuéntanos sobre ti",
+  "signupMethodTitle": "Elige cómo registrarte",
   "signupTitle": "Crea una cuenta con\ntu correo y contraseña",
   "profileSetup": "Configurar perfil",
   "onboardingTitle": "¿Cómo vas a\nusar Orbit?",

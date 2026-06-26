@@ -60,21 +60,21 @@ class AuthRepositoryImpl implements AuthRepository {
         .join();
   }
 
-  /// Whether a JWT carries a non-empty `nonce` claim. GoTrue rejects an
-  /// id-token grant when exactly one of (passed nonce, token nonce) is present
-  /// ("...should either both exist or not"), so we only forward the nonce when
-  /// the token actually contains one.
-  static bool _idTokenHasNonce(String idToken) {
+  /// The `nonce` claim inside a JWT, or null. GoTrue rejects an id-token grant
+  /// when exactly one of (passed nonce, token nonce) is present ("...should
+  /// either both exist or not"), so we use this to forward the nonce only when
+  /// the token actually carries one.
+  static String? _idTokenNonce(String idToken) {
     try {
       final parts = idToken.split('.');
-      if (parts.length < 2) return false;
+      if (parts.length < 2) return null;
       final payload = jsonDecode(
         utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))),
       ) as Map<String, dynamic>;
       final n = payload['nonce'];
-      return n is String && n.isNotEmpty;
+      return (n is String && n.isNotEmpty) ? n : null;
     } catch (_) {
-      return false;
+      return null;
     }
   }
 
@@ -96,7 +96,9 @@ class AuthRepositoryImpl implements AuthRepository {
         await _client.auth.signInWithIdToken(
           provider: OAuthProvider.apple,
           idToken: idToken,
-          nonce: _idTokenHasNonce(idToken) ? rawNonce : null,
+          // Apple hashes our nonce into the token; pass the raw nonce back (only
+          // if the token actually carries a nonce claim).
+          nonce: _idTokenNonce(idToken) != null ? rawNonce : null,
         );
       });
 
@@ -119,6 +121,10 @@ class AuthRepositoryImpl implements AuthRepository {
           provider: OAuthProvider.google,
           idToken: idToken,
           accessToken: auth.accessToken,
+          // The GoogleSignIn iOS SDK embeds a nonce in the id_token but doesn't
+          // expose the raw value; echo the token's nonce back so GoTrue's
+          // both-or-neither check passes (Google compares it directly).
+          nonce: _idTokenNonce(idToken),
         );
       });
 

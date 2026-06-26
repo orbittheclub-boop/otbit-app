@@ -54,6 +54,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get signup => '회원가입';
 
   @override
+  String get profileStepTitle => '프로필을 알려주세요';
+
+  @override
+  String get signupMethodTitle => '가입 방법을 선택하세요';
+
+  @override
   String get signupTitle => '이메일과 비밀번호로\n계정을 만들어주세요';
 
   @override

@@ -85,6 +85,51 @@ class AuthController extends _$AuthController {
     );
   }
 
+  // ── Signup wizard: account is created LAST (email or social), then the
+  // info collected up-front is submitted — so the role is set before the router
+  // can bounce to the standalone /onboarding. Existing accounts just sign in.
+
+  Future<String?> signUpWithEmailAndOnboard({
+    required String email,
+    required String password,
+    required OnboardingInput input,
+  }) async {
+    final res = await ref
+        .read(authRepositoryProvider)
+        .signUp(email: email, password: password);
+    final err = res.when(ok: (_) => null, err: (f) => f.message);
+    if (err != null) return err;
+    return _finishOnboarding(input);
+  }
+
+  Future<String?> signUpWithAppleAndOnboard(OnboardingInput input) async {
+    final res = await ref.read(authRepositoryProvider).signInWithApple();
+    final err = res.when(ok: (_) => null, err: (f) => 'Apple: ${f.message}');
+    if (err != null) return err;
+    return _finishOnboarding(input);
+  }
+
+  Future<String?> signUpWithGoogleAndOnboard(OnboardingInput input) async {
+    final res = await ref.read(authRepositoryProvider).signInWithGoogle();
+    final err = res.when(ok: (_) => null, err: (f) => 'Google: ${f.message}');
+    if (err != null) return err;
+    return _finishOnboarding(input);
+  }
+
+  Future<String?> _finishOnboarding(OnboardingInput input) async {
+    final repo = ref.read(authRepositoryProvider);
+    // Already onboarded (existing user signing in via the signup screen)? Skip.
+    final existing = await repo.fetchProfile();
+    final hasRole = existing.when(ok: (u) => u?.role != null, err: (_) => false);
+    if (!hasRole) {
+      final res = await repo.completeOnboarding(input);
+      final err = res.when(ok: (_) => null, err: (f) => f.message);
+      if (err != null) return err;
+    }
+    ref.invalidateSelf();
+    return null;
+  }
+
   Future<String?> completeOnboarding(OnboardingInput input) async {
     final res =
         await ref.read(authRepositoryProvider).completeOnboarding(input);

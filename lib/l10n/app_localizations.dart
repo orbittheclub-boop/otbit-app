@@ -192,6 +192,18 @@ abstract class AppLocalizations {
   /// **'회원가입'**
   String get signup;
 
+  /// No description provided for @profileStepTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'프로필을 알려주세요'**
+  String get profileStepTitle;
+
+  /// No description provided for @signupMethodTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'가입 방법을 선택하세요'**
+  String get signupMethodTitle;
+
   /// No description provided for @signupTitle.
   ///
   /// In ko, this message translates to:

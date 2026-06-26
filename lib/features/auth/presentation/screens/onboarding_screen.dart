@@ -7,6 +7,7 @@ import 'package:orbit/core/widgets/primary_button.dart';
 import 'package:orbit/features/auth/domain/entities/app_user.dart';
 import 'package:orbit/features/auth/domain/entities/onboarding_input.dart';
 import 'package:orbit/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:orbit/features/auth/presentation/widgets/role_card.dart';
 
 class OnboardingScreen extends HookConsumerWidget {
   const OnboardingScreen({super.key});
@@ -106,7 +107,7 @@ class OnboardingScreen extends HookConsumerWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              _RoleCard(
+              RoleCard(
                 title: '회사 · 브랜드',
                 subtitle: '캠페인을 등록하고 인플루언서를 모집해요',
                 icon: Icons.business_rounded,
@@ -114,7 +115,7 @@ class OnboardingScreen extends HookConsumerWidget {
                 onTap: () => role.value = Role.company,
               ),
               const SizedBox(height: 12),
-              _RoleCard(
+              RoleCard(
                 title: '인플루언서',
                 subtitle: 'TikTok을 연동하고 캠페인에 지원해요',
                 icon: Icons.auto_awesome_rounded,
@@ -167,76 +168,6 @@ class OnboardingScreen extends HookConsumerWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _RoleCard extends StatelessWidget {
-  const _RoleCard({
-    required this.title,
-    required this.subtitle,
-    required this.icon,
-    required this.selected,
-    required this.onTap,
-  });
-
-  final String title;
-  final String subtitle;
-  final IconData icon;
-  final bool selected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        padding: const EdgeInsets.all(18),
-        decoration: BoxDecoration(
-          color: selected ? context.palette.primarySoft : context.palette.surface,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: selected ? AppColors.primary : context.palette.border,
-            width: selected ? 1.5 : 1,
-          ),
-        ),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              color: selected ? AppColors.primary : context.palette.textSecondary,
-              size: 28,
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: context.palette.ink,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: context.palette.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            if (selected)
-              const Icon(Icons.check_circle, color: AppColors.primary),
-          ],
         ),
       ),
     );
