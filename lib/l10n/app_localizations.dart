@@ -474,6 +474,30 @@ abstract class AppLocalizations {
   /// **'로그아웃'**
   String get logout;
 
+  /// No description provided for @deleteAccount.
+  ///
+  /// In ko, this message translates to:
+  /// **'회원탈퇴'**
+  String get deleteAccount;
+
+  /// No description provided for @deleteAccountWarning.
+  ///
+  /// In ko, this message translates to:
+  /// **'계정과 모든 데이터(캠페인·지원·게시글 등)가 영구 삭제되며 복구할 수 없어요. 정말 탈퇴하시겠어요?'**
+  String get deleteAccountWarning;
+
+  /// No description provided for @withdraw.
+  ///
+  /// In ko, this message translates to:
+  /// **'탈퇴'**
+  String get withdraw;
+
+  /// No description provided for @cancel.
+  ///
+  /// In ko, this message translates to:
+  /// **'취소'**
+  String get cancel;
+
   /// No description provided for @language.
   ///
   /// In ko, this message translates to:
@@ -491,6 +515,84 @@ abstract class AppLocalizations {
   /// In ko, this message translates to:
   /// **'팔로워 통계 연동 / 관리'**
   String get tiktokConnectDesc;
+
+  /// No description provided for @tiktokLinkTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'TikTok 계정을 연동하세요'**
+  String get tiktokLinkTitle;
+
+  /// No description provided for @tiktokLinkDesc.
+  ///
+  /// In ko, this message translates to:
+  /// **'본인 인증과 팔로워 통계를 가져와\n캠페인 지원 시 포트폴리오로 보여줘요.'**
+  String get tiktokLinkDesc;
+
+  /// No description provided for @tiktokLinkCta.
+  ///
+  /// In ko, this message translates to:
+  /// **'TikTok 연동하기'**
+  String get tiktokLinkCta;
+
+  /// No description provided for @tiktokNotConfigured.
+  ///
+  /// In ko, this message translates to:
+  /// **'TikTok 앱 설정이 아직 안 됐어요 (관리자 설정 필요).'**
+  String get tiktokNotConfigured;
+
+  /// No description provided for @tiktokNoCode.
+  ///
+  /// In ko, this message translates to:
+  /// **'인증 코드를 받지 못했어요.'**
+  String get tiktokNoCode;
+
+  /// No description provided for @tiktokLinked.
+  ///
+  /// In ko, this message translates to:
+  /// **'TikTok 연동 완료!'**
+  String get tiktokLinked;
+
+  /// No description provided for @tiktokCanceled.
+  ///
+  /// In ko, this message translates to:
+  /// **'연동이 취소됐어요.'**
+  String get tiktokCanceled;
+
+  /// No description provided for @statFollowers.
+  ///
+  /// In ko, this message translates to:
+  /// **'팔로워'**
+  String get statFollowers;
+
+  /// No description provided for @statFollowing.
+  ///
+  /// In ko, this message translates to:
+  /// **'팔로잉'**
+  String get statFollowing;
+
+  /// No description provided for @statLikes.
+  ///
+  /// In ko, this message translates to:
+  /// **'좋아요'**
+  String get statLikes;
+
+  /// No description provided for @statVideos.
+  ///
+  /// In ko, this message translates to:
+  /// **'영상'**
+  String get statVideos;
+
+  /// No description provided for @refreshStats.
+  ///
+  /// In ko, this message translates to:
+  /// **'통계 새로고침'**
+  String get refreshStats;
+
+  /// No description provided for @tiktokUnlink.
+  ///
+  /// In ko, this message translates to:
+  /// **'연동 해제'**
+  String get tiktokUnlink;
 
   /// No description provided for @accountTypeCompany.
   ///

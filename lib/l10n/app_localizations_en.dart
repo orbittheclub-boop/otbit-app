@@ -196,6 +196,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logout => 'Log out';
 
   @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get deleteAccountWarning =>
+      'Your account and all data (campaigns, applications, posts…) will be permanently deleted and cannot be recovered. Delete your account?';
+
+  @override
+  String get withdraw => 'Delete';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
   String get language => 'Language';
 
   @override
@@ -203,6 +216,47 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tiktokConnectDesc => 'Sync & manage follower stats';
+
+  @override
+  String get tiktokLinkTitle => 'Link your TikTok account';
+
+  @override
+  String get tiktokLinkDesc =>
+      'Verify yourself and import follower stats to\nshow as a portfolio when you apply.';
+
+  @override
+  String get tiktokLinkCta => 'Link TikTok';
+
+  @override
+  String get tiktokNotConfigured =>
+      'TikTok isn\'t set up yet (admin configuration needed).';
+
+  @override
+  String get tiktokNoCode => 'Couldn\'t get an authorization code.';
+
+  @override
+  String get tiktokLinked => 'TikTok linked!';
+
+  @override
+  String get tiktokCanceled => 'Linking was canceled.';
+
+  @override
+  String get statFollowers => 'Followers';
+
+  @override
+  String get statFollowing => 'Following';
+
+  @override
+  String get statLikes => 'Likes';
+
+  @override
+  String get statVideos => 'Videos';
+
+  @override
+  String get refreshStats => 'Refresh stats';
+
+  @override
+  String get tiktokUnlink => 'Unlink';
 
   @override
   String get accountTypeCompany => 'Company';

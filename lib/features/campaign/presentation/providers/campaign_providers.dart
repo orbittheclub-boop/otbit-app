@@ -77,9 +77,32 @@ Future<List<Campaign>> campaignFeed(Ref ref) async {
   );
 }
 
+/// Bookmarked campaigns with stale-while-revalidate: shows the Hive-cached list
+/// instantly, then refreshes from the network in the background — so opening
+/// "내 찜" never flashes a spinner once it's been loaded.
 @riverpod
-Future<List<Campaign>> bookmarkedCampaigns(Ref ref) async =>
-    unwrap(await ref.watch(campaignRepositoryProvider).bookmarked());
+class BookmarkedCampaigns extends _$BookmarkedCampaigns {
+  @override
+  Future<List<Campaign>> build() async {
+    final repo = ref.read(campaignRepositoryProvider);
+    final cached = repo.cachedBookmarked();
+    if (cached.isNotEmpty) {
+      Future.microtask(() async {
+        try {
+          final res = await repo.bookmarked();
+          switch (res) {
+            case Ok(:final value):
+              state = AsyncData(value);
+            case Err():
+              break; // keep the cached list on failure
+          }
+        } catch (_) {/* disposed — ignore */}
+      });
+      return cached;
+    }
+    return unwrap(await repo.bookmarked());
+  }
+}
 
 /// Optimistic bookmark state (campaignId -> bookmarked) so the heart flips
 /// instantly, without refetching the whole feed.

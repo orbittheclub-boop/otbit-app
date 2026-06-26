@@ -20,4 +20,7 @@ abstract class ProfileApi {
 
   @PATCH('profile')
   Future<dynamic> update(@Body() Map<String, dynamic> body);
+
+  @DELETE('profile')
+  Future<dynamic> deleteAccount();
 }

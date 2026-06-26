@@ -189,17 +189,21 @@ final class CampaignFeedProvider
 
 String _$campaignFeedHash() => r'183f7fec260e8e09b41e47ddd064fad3eba898a2';
 
-@ProviderFor(bookmarkedCampaigns)
+/// Bookmarked campaigns with stale-while-revalidate: shows the Hive-cached list
+/// instantly, then refreshes from the network in the background — so opening
+/// "내 찜" never flashes a spinner once it's been loaded.
+
+@ProviderFor(BookmarkedCampaigns)
 final bookmarkedCampaignsProvider = BookmarkedCampaignsProvider._();
 
+/// Bookmarked campaigns with stale-while-revalidate: shows the Hive-cached list
+/// instantly, then refreshes from the network in the background — so opening
+/// "내 찜" never flashes a spinner once it's been loaded.
 final class BookmarkedCampaignsProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<Campaign>>,
-          List<Campaign>,
-          FutureOr<List<Campaign>>
-        >
-    with $FutureModifier<List<Campaign>>, $FutureProvider<List<Campaign>> {
+    extends $AsyncNotifierProvider<BookmarkedCampaigns, List<Campaign>> {
+  /// Bookmarked campaigns with stale-while-revalidate: shows the Hive-cached list
+  /// instantly, then refreshes from the network in the background — so opening
+  /// "내 찜" never flashes a spinner once it's been loaded.
   BookmarkedCampaignsProvider._()
     : super(
         from: null,
@@ -216,18 +220,33 @@ final class BookmarkedCampaignsProvider
 
   @$internal
   @override
-  $FutureProviderElement<List<Campaign>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<List<Campaign>> create(Ref ref) {
-    return bookmarkedCampaigns(ref);
-  }
+  BookmarkedCampaigns create() => BookmarkedCampaigns();
 }
 
 String _$bookmarkedCampaignsHash() =>
-    r'9f4d55a20368259dd04d3e59f25543d08d021c13';
+    r'c8a17da6e91bce0e99ab040c5a80b0f7b6325037';
+
+/// Bookmarked campaigns with stale-while-revalidate: shows the Hive-cached list
+/// instantly, then refreshes from the network in the background — so opening
+/// "내 찜" never flashes a spinner once it's been loaded.
+
+abstract class _$BookmarkedCampaigns extends $AsyncNotifier<List<Campaign>> {
+  FutureOr<List<Campaign>> build();
+  @$mustCallSuper
+  @override
+  WhenComplete runBuild() {
+    final ref = this.ref as $Ref<AsyncValue<List<Campaign>>, List<Campaign>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<List<Campaign>>, List<Campaign>>,
+              AsyncValue<List<Campaign>>,
+              Object?,
+              Object?
+            >;
+    return element.handleCreate(ref, build);
+  }
+}
 
 /// Optimistic bookmark state (campaignId -> bookmarked) so the heart flips
 /// instantly, without refetching the whole feed.

@@ -173,4 +173,17 @@ class AuthController extends _$AuthController {
     state = const AsyncData(null);
     await ref.read(authRepositoryProvider).signOut();
   }
+
+  /// Permanently deletes the account. Returns null on success (state becomes
+  /// signed-out and the router redirects to /welcome), or an error message.
+  Future<String?> deleteAccount() async {
+    final res = await ref.read(authRepositoryProvider).deleteAccount();
+    return res.when(
+      ok: (_) {
+        state = const AsyncData(null);
+        return null;
+      },
+      err: (f) => f.message,
+    );
+  }
 }

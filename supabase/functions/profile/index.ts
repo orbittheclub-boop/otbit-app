@@ -108,6 +108,16 @@ Deno.serve(async (req) => {
       return ok({ profile });
     }
 
+    // DELETE account (App Store 5.1.1(v)): remove the auth user. Every related
+    // row (profile, company/influencer, campaigns, applications, board posts,
+    // bookmarks, device tokens, notifications…) is FK ON DELETE CASCADE, so
+    // this wipes the user's data in one shot.
+    if (req.method === "DELETE") {
+      const { error } = await ctx.admin.auth.admin.deleteUser(ctx.userId);
+      if (error) throw new HttpError(400, error.message);
+      return ok({ deleted: true });
+    }
+
     throw new HttpError(404, "not_found");
   } catch (err) {
     return fail(err);

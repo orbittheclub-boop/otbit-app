@@ -20,6 +20,10 @@ abstract interface class AuthRepository {
 
   Future<Result<void>> signOut();
 
+  /// Permanently deletes the account (auth user + all cascaded data) via
+  /// DELETE /profile, then signs out locally.
+  Future<Result<void>> deleteAccount();
+
   /// Loads the current profile via the `profile` Edge Function. Returns null
   /// when the account has not been onboarded yet.
   Future<Result<AppUser?>> fetchProfile();

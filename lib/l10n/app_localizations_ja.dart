@@ -195,6 +195,19 @@ class AppLocalizationsJa extends AppLocalizations {
   String get logout => 'ログアウト';
 
   @override
+  String get deleteAccount => 'アカウント削除';
+
+  @override
+  String get deleteAccountWarning =>
+      'アカウントとすべてのデータ（キャンペーン・応募・投稿など）が完全に削除され、復元できません。本当に削除しますか？';
+
+  @override
+  String get withdraw => '削除';
+
+  @override
+  String get cancel => 'キャンセル';
+
+  @override
   String get language => '言語';
 
   @override
@@ -202,6 +215,45 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get tiktokConnectDesc => 'フォロワー統計の連携・管理';
+
+  @override
+  String get tiktokLinkTitle => 'TikTokアカウントを連携';
+
+  @override
+  String get tiktokLinkDesc => '本人確認とフォロワー統計を取得し、\n応募時にポートフォリオとして表示します。';
+
+  @override
+  String get tiktokLinkCta => 'TikTokを連携';
+
+  @override
+  String get tiktokNotConfigured => 'TikTokの設定がまだです（管理者設定が必要）。';
+
+  @override
+  String get tiktokNoCode => '認証コードを取得できませんでした。';
+
+  @override
+  String get tiktokLinked => 'TikTok連携完了！';
+
+  @override
+  String get tiktokCanceled => '連携がキャンセルされました。';
+
+  @override
+  String get statFollowers => 'フォロワー';
+
+  @override
+  String get statFollowing => 'フォロー中';
+
+  @override
+  String get statLikes => 'いいね';
+
+  @override
+  String get statVideos => '動画';
+
+  @override
+  String get refreshStats => '統計を更新';
+
+  @override
+  String get tiktokUnlink => '連携解除';
 
   @override
   String get accountTypeCompany => '会社';

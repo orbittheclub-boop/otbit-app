@@ -10,22 +10,22 @@ part of 'push_pref_controller.dart';
 // ignore_for_file: type=lint, type=warning
 /// The user's push-notification on/off state, persisted in shared_preferences
 /// so the profile screen renders the toggle instantly (synchronous read — no
-/// async OS query, no flicker). Kept in sync with the real OS permission and
-/// the backend token registration.
+/// async OS query, no flicker). Backed by the real OS permission via
+/// permission_handler + the backend token registration.
 
 @ProviderFor(PushPrefController)
 final pushPrefControllerProvider = PushPrefControllerProvider._();
 
 /// The user's push-notification on/off state, persisted in shared_preferences
 /// so the profile screen renders the toggle instantly (synchronous read — no
-/// async OS query, no flicker). Kept in sync with the real OS permission and
-/// the backend token registration.
+/// async OS query, no flicker). Backed by the real OS permission via
+/// permission_handler + the backend token registration.
 final class PushPrefControllerProvider
     extends $NotifierProvider<PushPrefController, bool> {
   /// The user's push-notification on/off state, persisted in shared_preferences
   /// so the profile screen renders the toggle instantly (synchronous read — no
-  /// async OS query, no flicker). Kept in sync with the real OS permission and
-  /// the backend token registration.
+  /// async OS query, no flicker). Backed by the real OS permission via
+  /// permission_handler + the backend token registration.
   PushPrefControllerProvider._()
     : super(
         from: null,
@@ -54,12 +54,12 @@ final class PushPrefControllerProvider
 }
 
 String _$pushPrefControllerHash() =>
-    r'0cbb6f06b789292850311a2ac7cb2c714c5853b6';
+    r'a90cfd91f30216ffe276556a398a643330e51d98';
 
 /// The user's push-notification on/off state, persisted in shared_preferences
 /// so the profile screen renders the toggle instantly (synchronous read — no
-/// async OS query, no flicker). Kept in sync with the real OS permission and
-/// the backend token registration.
+/// async OS query, no flicker). Backed by the real OS permission via
+/// permission_handler + the backend token registration.
 
 abstract class _$PushPrefController extends $Notifier<bool> {
   bool build();

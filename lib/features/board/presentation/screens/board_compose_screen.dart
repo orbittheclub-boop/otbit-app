@@ -89,12 +89,13 @@ class BoardComposeScreen extends HookConsumerWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 14, 20, 0),
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Wrap(
                     spacing: 8,
+                    runSpacing: 8,
                     children: [
                       for (final c in _categories)
                         ChoiceChip(
@@ -118,13 +119,15 @@ class BoardComposeScreen extends HookConsumerWidget {
                         ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 18),
                   TextField(
                     controller: title,
                     textInputAction: TextInputAction.next,
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w800),
+                        fontSize: 19, fontWeight: FontWeight.w800),
                     decoration: InputDecoration(
+                      isDense: true,
+                      contentPadding: const EdgeInsets.only(bottom: 12),
                       border: InputBorder.none,
                       hintText: context.l10n.boardTitleHint,
                       hintStyle: TextStyle(color: context.palette.textTertiary),
@@ -136,7 +139,7 @@ class BoardComposeScreen extends HookConsumerWidget {
             const Divider(height: 1),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+                padding: const EdgeInsets.fromLTRB(20, 18, 20, 12),
                 child: QuillEditor(
                   controller: controller,
                   focusNode: editorFocus,

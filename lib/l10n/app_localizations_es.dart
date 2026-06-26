@@ -197,6 +197,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get logout => 'Cerrar sesión';
 
   @override
+  String get deleteAccount => 'Eliminar cuenta';
+
+  @override
+  String get deleteAccountWarning =>
+      'Tu cuenta y todos los datos (campañas, solicitudes, publicaciones…) se eliminarán permanentemente y no se podrán recuperar. ¿Eliminar tu cuenta?';
+
+  @override
+  String get withdraw => 'Eliminar';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
   String get language => 'Idioma';
 
   @override
@@ -204,6 +217,47 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tiktokConnectDesc => 'Sincroniza y gestiona tus estadísticas';
+
+  @override
+  String get tiktokLinkTitle => 'Vincula tu cuenta de TikTok';
+
+  @override
+  String get tiktokLinkDesc =>
+      'Verifícate e importa tus estadísticas para\nmostrarlas como portafolio al postular.';
+
+  @override
+  String get tiktokLinkCta => 'Vincular TikTok';
+
+  @override
+  String get tiktokNotConfigured =>
+      'TikTok aún no está configurado (requiere al administrador).';
+
+  @override
+  String get tiktokNoCode => 'No se pudo obtener el código de autorización.';
+
+  @override
+  String get tiktokLinked => '¡TikTok vinculado!';
+
+  @override
+  String get tiktokCanceled => 'Se canceló la vinculación.';
+
+  @override
+  String get statFollowers => 'Seguidores';
+
+  @override
+  String get statFollowing => 'Siguiendo';
+
+  @override
+  String get statLikes => 'Me gusta';
+
+  @override
+  String get statVideos => 'Videos';
+
+  @override
+  String get refreshStats => 'Actualizar estadísticas';
+
+  @override
+  String get tiktokUnlink => 'Desvincular';
 
   @override
   String get accountTypeCompany => 'Empresa';

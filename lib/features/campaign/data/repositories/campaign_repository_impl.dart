@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 
+import 'package:orbit/core/cache/bookmark_cache.dart';
 import 'package:orbit/core/network/network_guard.dart';
 import 'package:orbit/core/usecase/usecase.dart';
 import 'package:orbit/features/campaign/data/datasources/campaign_api.dart';
@@ -50,8 +51,16 @@ class CampaignRepositoryImpl implements CampaignRepository {
   @override
   Future<Result<List<Campaign>>> bookmarked() => guard(() async {
         final res = await _api.list({'scope': 'bookmarked'});
-        return _parseList(res);
+        final raw =
+            ((res['data']['campaigns']) as List).cast<Map<String, dynamic>>();
+        await BookmarkCache.write(raw); // refresh local cache
+        return raw.map((j) => CampaignModel.fromJson(j).toEntity()).toList();
       });
+
+  @override
+  List<Campaign> cachedBookmarked() => BookmarkCache.read()
+      .map((j) => CampaignModel.fromJson(j).toEntity())
+      .toList();
 
   @override
   Future<Result<bool>> toggleBookmark(String id) => guard(() async {

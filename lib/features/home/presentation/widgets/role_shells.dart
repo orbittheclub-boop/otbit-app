@@ -30,7 +30,10 @@ class _GlassNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRect(
+    // RepaintBoundary isolates the bar so a heavy previous route (e.g. the Quill
+    // editor) can't leave a stale raster bleeding through the BackdropFilter.
+    return RepaintBoundary(
+      child: ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
         child: Container(
@@ -61,6 +64,7 @@ class _GlassNavBar extends StatelessWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }
@@ -93,19 +97,34 @@ class _GlassNavButton extends StatelessWidget {
       icon = Badge(label: Text('${item.badge}'), child: icon);
     }
 
-    return InkWell(
+    // GestureDetector (not InkWell): the glow IS the selection indicator, so we
+    // don't want a material ripple — and a lingering ripple was leaving a pink
+    // smear in the home-indicator area after returning from another route.
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           icon,
           const SizedBox(height: 3),
-          Text(
-            item.label,
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-              color: color,
+          // One line always: scale the label down instead of wrapping (long
+          // en/ja labels like "Applications"/"プロフィール" were breaking onto
+          // two lines and shoving the layout).
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                item.label,
+                maxLines: 1,
+                softWrap: false,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                  color: color,
+                ),
+              ),
             ),
           ),
         ],

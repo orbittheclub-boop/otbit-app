@@ -3,6 +3,7 @@ import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/usecase/usecase.dart';
 import 'package:orbit/core/widgets/primary_button.dart';
@@ -20,7 +21,7 @@ class TiktokLinkScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(tiktokAccountProvider);
     return Scaffold(
-      appBar: AppBar(title: const Text('TikTok 연동')),
+      appBar: AppBar(title: Text(context.l10n.tiktokConnect)),
       body: async.when(
         loading: () => const Center(
             child: CircularProgressIndicator(color: AppColors.primary)),
@@ -36,12 +37,13 @@ class TiktokLinkScreen extends ConsumerWidget {
 
 Future<void> _startLink(BuildContext context, WidgetRef ref) async {
   final messenger = ScaffoldMessenger.of(context);
+  final l10n = context.l10n;
   final urlRes = await ref.read(tiktokRepositoryProvider).authorizeUrl();
   switch (urlRes) {
     case Err(:final failure):
       messenger.showSnackBar(SnackBar(
           content: Text(failure.message == 'tiktok_not_configured'
-              ? 'TikTok 앱 설정이 아직 안 됐어요 (관리자 설정 필요).'
+              ? l10n.tiktokNotConfigured
               : failure.message)));
       return;
     case Ok(:final value):
@@ -53,7 +55,7 @@ Future<void> _startLink(BuildContext context, WidgetRef ref) async {
         final code = Uri.parse(result).queryParameters['code'];
         if (code == null) {
           messenger.showSnackBar(
-              const SnackBar(content: Text('인증 코드를 받지 못했어요.')));
+              SnackBar(content: Text(l10n.tiktokNoCode)));
           return;
         }
         final linkRes = await ref.read(tiktokRepositoryProvider).linkWithCode(code);
@@ -61,12 +63,12 @@ Future<void> _startLink(BuildContext context, WidgetRef ref) async {
           case Ok():
             ref.invalidate(tiktokAccountProvider);
             messenger.showSnackBar(
-                const SnackBar(content: Text('TikTok 연동 완료!')));
+                SnackBar(content: Text(l10n.tiktokLinked)));
           case Err(:final failure):
             messenger.showSnackBar(SnackBar(content: Text(failure.message)));
         }
       } catch (_) {
-        messenger.showSnackBar(const SnackBar(content: Text('연동이 취소됐어요.')));
+        messenger.showSnackBar(SnackBar(content: Text(l10n.tiktokCanceled)));
       }
   }
 }
@@ -83,7 +85,7 @@ class _NotLinked extends ConsumerWidget {
           const Icon(Icons.music_note_rounded, size: 64, color: AppColors.primary),
           const SizedBox(height: 20),
           Text(
-            'TikTok 계정을 연동하세요',
+            context.l10n.tiktokLinkTitle,
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w800,
@@ -91,13 +93,13 @@ class _NotLinked extends ConsumerWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            '본인 인증과 팔로워 통계를 가져와\n캠페인 지원 시 포트폴리오로 보여줘요.',
+            context.l10n.tiktokLinkDesc,
             textAlign: TextAlign.center,
             style: TextStyle(color: context.palette.textSecondary, height: 1.5),
           ),
           const SizedBox(height: 32),
           PrimaryButton(
-            label: 'TikTok 연동하기',
+            label: context.l10n.tiktokLinkCta,
             icon: Icons.link_rounded,
             onPressed: () => _startLink(context, ref),
           ),
@@ -153,15 +155,23 @@ class _Linked extends ConsumerWidget {
         const SizedBox(height: 24),
         Row(
           children: [
-            _Stat(label: '팔로워', value: n.format(account.followerCount ?? 0)),
-            _Stat(label: '팔로잉', value: n.format(account.followingCount ?? 0)),
-            _Stat(label: '좋아요', value: n.format(account.likesCount ?? 0)),
-            _Stat(label: '영상', value: n.format(account.videoCount ?? 0)),
+            _Stat(
+                label: context.l10n.statFollowers,
+                value: n.format(account.followerCount ?? 0)),
+            _Stat(
+                label: context.l10n.statFollowing,
+                value: n.format(account.followingCount ?? 0)),
+            _Stat(
+                label: context.l10n.statLikes,
+                value: n.format(account.likesCount ?? 0)),
+            _Stat(
+                label: context.l10n.statVideos,
+                value: n.format(account.videoCount ?? 0)),
           ],
         ),
         const SizedBox(height: 28),
         SecondaryButton(
-          label: '통계 새로고침',
+          label: context.l10n.refreshStats,
           icon: Icons.refresh_rounded,
           onPressed: () async {
             final messenger = ScaffoldMessenger.of(context);
@@ -179,7 +189,8 @@ class _Linked extends ConsumerWidget {
             await ref.read(tiktokRepositoryProvider).unlink();
             ref.invalidate(tiktokAccountProvider);
           },
-          child: const Text('연동 해제', style: TextStyle(color: AppColors.danger)),
+          child: Text(context.l10n.tiktokUnlink,
+              style: const TextStyle(color: AppColors.danger)),
         ),
       ],
     );

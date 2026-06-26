@@ -150,6 +150,13 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Result<void>> signOut() => guard(() => _client.auth.signOut());
 
   @override
+  Future<Result<void>> deleteAccount() => guard(() async {
+        await _api.deleteAccount();
+        // The user no longer exists server-side; clear the local session too.
+        await _client.auth.signOut();
+      });
+
+  @override
   Future<Result<AppUser?>> fetchProfile() => guard(() async {
         final res = await _api.getMe();
         final data = res['data'] as Map<String, dynamic>?;

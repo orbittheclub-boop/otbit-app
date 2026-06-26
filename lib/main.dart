@@ -9,6 +9,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:toastification/toastification.dart';
 
 import 'package:orbit/core/cache/board_cache.dart';
+import 'package:orbit/core/cache/bookmark_cache.dart';
 import 'package:orbit/core/config/env.dart';
 import 'package:orbit/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:orbit/features/notification/presentation/providers/push_pref_controller.dart';
@@ -31,6 +32,7 @@ Future<void> main() async {
   final prefs = await SharedPreferences.getInstance();
   await Hive.initFlutter();
   await BoardCache.init();
+  await BookmarkCache.init();
   runApp(
     ProviderScope(
       overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],

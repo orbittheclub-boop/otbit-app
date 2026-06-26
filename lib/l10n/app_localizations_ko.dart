@@ -195,6 +195,19 @@ class AppLocalizationsKo extends AppLocalizations {
   String get logout => '로그아웃';
 
   @override
+  String get deleteAccount => '회원탈퇴';
+
+  @override
+  String get deleteAccountWarning =>
+      '계정과 모든 데이터(캠페인·지원·게시글 등)가 영구 삭제되며 복구할 수 없어요. 정말 탈퇴하시겠어요?';
+
+  @override
+  String get withdraw => '탈퇴';
+
+  @override
+  String get cancel => '취소';
+
+  @override
   String get language => '언어';
 
   @override
@@ -202,6 +215,45 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get tiktokConnectDesc => '팔로워 통계 연동 / 관리';
+
+  @override
+  String get tiktokLinkTitle => 'TikTok 계정을 연동하세요';
+
+  @override
+  String get tiktokLinkDesc => '본인 인증과 팔로워 통계를 가져와\n캠페인 지원 시 포트폴리오로 보여줘요.';
+
+  @override
+  String get tiktokLinkCta => 'TikTok 연동하기';
+
+  @override
+  String get tiktokNotConfigured => 'TikTok 앱 설정이 아직 안 됐어요 (관리자 설정 필요).';
+
+  @override
+  String get tiktokNoCode => '인증 코드를 받지 못했어요.';
+
+  @override
+  String get tiktokLinked => 'TikTok 연동 완료!';
+
+  @override
+  String get tiktokCanceled => '연동이 취소됐어요.';
+
+  @override
+  String get statFollowers => '팔로워';
+
+  @override
+  String get statFollowing => '팔로잉';
+
+  @override
+  String get statLikes => '좋아요';
+
+  @override
+  String get statVideos => '영상';
+
+  @override
+  String get refreshStats => '통계 새로고침';
+
+  @override
+  String get tiktokUnlink => '연동 해제';
 
   @override
   String get accountTypeCompany => '회사';

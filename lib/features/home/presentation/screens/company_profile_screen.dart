@@ -6,6 +6,7 @@ import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:orbit/features/home/presentation/widgets/dark_mode_tile.dart';
+import 'package:orbit/features/home/presentation/widgets/delete_account_tile.dart';
 import 'package:orbit/features/home/presentation/widgets/language_tile.dart';
 import 'package:orbit/features/home/presentation/widgets/profile_header.dart';
 import 'package:orbit/features/home/presentation/widgets/push_notification_tile.dart';
@@ -50,6 +51,8 @@ class CompanyProfileScreen extends ConsumerWidget {
                 style: const TextStyle(color: AppColors.danger)),
             onTap: () => ref.read(authControllerProvider.notifier).signOut(),
           ),
+          const Divider(height: 1),
+          const DeleteAccountTile(),
         ],
       ),
     );

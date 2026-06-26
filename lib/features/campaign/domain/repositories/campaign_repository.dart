@@ -17,8 +17,11 @@ abstract interface class CampaignRepository {
   /// The calling company's own campaigns, any status.
   Future<Result<List<Campaign>>> myCampaigns({String? status});
 
-  /// Campaigns the caller has bookmarked (찜).
+  /// Campaigns the caller has bookmarked (찜). Also refreshes the local cache.
   Future<Result<List<Campaign>>> bookmarked();
+
+  /// Bookmarked campaigns from the local Hive cache (instant, possibly stale).
+  List<Campaign> cachedBookmarked();
 
   Future<Result<Campaign>> detail(String id);
   Future<Result<Campaign>> create(CampaignInput input);
