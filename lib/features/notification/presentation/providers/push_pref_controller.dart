@@ -7,10 +7,6 @@ import 'package:orbit/features/notification/presentation/providers/notification_
 
 part 'push_pref_controller.g.dart';
 
-/// Outcome of toggling the push preference, so the UI can react (e.g. show a
-/// "turn it on in Settings" dialog when iOS has permanently denied it).
-enum PushToggleResult { on, off, blocked }
-
 /// The user's push-notification on/off state, persisted in shared_preferences
 /// so the profile screen renders the toggle instantly (synchronous read — no
 /// async OS query, no flicker). Backed by the real OS permission via
@@ -41,40 +37,44 @@ class PushPrefController extends _$PushPrefController {
     await _persist(granted);
   }
 
-  /// Reconciles the stored toggle with the actual OS permission — call when the
-  /// profile appears or the app resumes (e.g. after returning from Settings).
+  /// Reconciles the stored toggle + token registration with the ACTUAL OS
+  /// permission — call on launch, when the profile appears, and on app resume
+  /// (e.g. after the user flips it in Settings). The OS is the source of truth.
   Future<void> syncFromSystem() async {
-    final status = await Permission.notification.status;
-    final granted = status.isGranted || status.isProvisional;
-    if (granted != state) {
-      if (granted) await _register();
-      await _persist(granted);
-    }
-  }
-
-  /// Profile toggle. On → request permission + register. Off → unregister the
-  /// token so pushes stop. Returns [PushToggleResult.blocked] when iOS has
-  /// permanently denied the permission (the UI then offers to open Settings).
-  Future<PushToggleResult> setEnabled(bool enabled) async {
-    if (!enabled) {
-      await _persist(false);
+    final granted = await Permission.notification.isGranted;
+    if (granted) {
+      await _register();
+    } else {
       await unregisterFcmToken(ref.read(notificationRepositoryProvider));
-      return PushToggleResult.off;
     }
-
-    var status = await Permission.notification.status;
-    if (status.isDenied) {
-      status = await Permission.notification.request();
-    }
-    if (status.isPermanentlyDenied || status.isRestricted) {
-      return PushToggleResult.blocked; // iOS won't re-prompt — needs Settings
-    }
-    final granted = status.isGranted || status.isProvisional;
-    if (granted) await _register();
     await _persist(granted);
-    return granted ? PushToggleResult.on : PushToggleResult.off;
   }
 
-  /// Opens the OS settings page so the user can flip the permission manually.
-  Future<void> openSettings() => openAppSettings();
+  /// The profile row was tapped. On iOS the OS owns the notification switch —
+  /// the app cannot turn it on/off. So: if the permission hasn't been decided
+  /// yet, show the system prompt once; otherwise open the OS Settings page,
+  /// which is the only place the user can actually change it. The toggle then
+  /// reconciles via [syncFromSystem] when the app resumes.
+  Future<void> promptOrOpenSettings() async {
+    final status = await Permission.notification.status;
+    // Already decided (granted / permanently denied / restricted / limited):
+    // only Settings can change it.
+    if (status.isGranted ||
+        status.isProvisional ||
+        status.isLimited ||
+        status.isRestricted ||
+        status.isPermanentlyDenied) {
+      await openAppSettings();
+      return;
+    }
+    // Undecided → ask once.
+    final result = await Permission.notification.request();
+    final granted = result.isGranted || result.isProvisional;
+    if (granted) {
+      await _register();
+      await _persist(true);
+    } else if (result.isPermanentlyDenied) {
+      await openAppSettings();
+    }
+  }
 }
