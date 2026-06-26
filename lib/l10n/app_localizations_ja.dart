@@ -289,6 +289,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get authGeneric => '問題が発生しました。しばらくして再試行してください。';
 
   @override
+  String get authCanceled => 'ログインがキャンセルされました。';
+
+  @override
   String get emailConfirmSent => '確認メールを送信しました。認証後にログインしてください。';
 
   @override

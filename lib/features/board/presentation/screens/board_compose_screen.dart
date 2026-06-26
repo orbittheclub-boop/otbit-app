@@ -138,15 +138,23 @@ class BoardComposeScreen extends HookConsumerWidget {
             ),
             const Divider(height: 1),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 18, 20, 12),
-                child: QuillEditor(
-                  controller: controller,
-                  focusNode: editorFocus,
-                  scrollController: editorScroll,
-                  config: QuillEditorConfig(
-                    placeholder: context.l10n.boardBodyHint,
-                    padding: EdgeInsets.zero,
+              // Tapping anywhere in the body area (incl. the empty space below
+              // the text) moves focus to the editor — otherwise the app-wide
+              // "tap to dismiss keyboard" gesture swallows the tap and the
+              // cursor never leaves the title field.
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () => editorFocus.requestFocus(),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 18, 20, 12),
+                  child: QuillEditor(
+                    controller: controller,
+                    focusNode: editorFocus,
+                    scrollController: editorScroll,
+                    config: QuillEditorConfig(
+                      placeholder: context.l10n.boardBodyHint,
+                      padding: EdgeInsets.zero,
+                    ),
                   ),
                 ),
               ),

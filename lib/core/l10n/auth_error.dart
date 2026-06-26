@@ -6,6 +6,11 @@ import 'package:orbit/core/l10n/l10n.dart';
 String localizeAuthError(AppLocalizations l10n, String raw) {
   final m = raw.toLowerCase();
 
+  if (m.contains('canceled') ||
+      m.contains('cancelled') ||
+      m.contains('취소')) {
+    return l10n.authCanceled;
+  }
   if (m.contains('invalid login') ||
       m.contains('invalid_credentials') ||
       m.contains('invalid email or password') ||

@@ -82,16 +82,26 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Result<void>> signInWithApple() => guard(() async {
         final rawNonce = _nonce();
         final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
-        final credential = await SignInWithApple.getAppleIDCredential(
-          scopes: [
-            AppleIDAuthorizationScopes.email,
-            AppleIDAuthorizationScopes.fullName,
-          ],
-          nonce: hashedNonce,
-        );
+        final AuthorizationCredentialAppleID credential;
+        try {
+          credential = await SignInWithApple.getAppleIDCredential(
+            scopes: [
+              AppleIDAuthorizationScopes.email,
+              AppleIDAuthorizationScopes.fullName,
+            ],
+            nonce: hashedNonce,
+          );
+        } on SignInWithAppleAuthorizationException catch (e) {
+          // 'canceled'/'apple_failed' are error codes localized in the UI.
+          throw AuthException(
+            e.code == AuthorizationErrorCode.canceled
+                ? 'canceled'
+                : 'apple_failed',
+          );
+        }
         final idToken = credential.identityToken;
         if (idToken == null) {
-          throw const AuthException('애플 로그인에 실패했어요.');
+          throw const AuthException('apple_failed');
         }
         await _client.auth.signInWithIdToken(
           provider: OAuthProvider.apple,
@@ -130,14 +140,16 @@ class AuthRepositoryImpl implements AuthRepository {
         try {
           account = await signIn.authenticate();
         } on GoogleSignInException catch (e) {
-          if (e.code == GoogleSignInExceptionCode.canceled) {
-            throw const AuthException('로그인이 취소되었어요.');
-          }
-          rethrow;
+          // 'canceled'/'google_failed' are error codes localized in the UI.
+          throw AuthException(
+            e.code == GoogleSignInExceptionCode.canceled
+                ? 'canceled'
+                : 'google_failed',
+          );
         }
         final idToken = account.authentication.idToken;
         if (idToken == null) {
-          throw const AuthException('구글 로그인에 실패했어요.');
+          throw const AuthException('google_failed');
         }
         await _client.auth.signInWithIdToken(
           provider: OAuthProvider.google,

@@ -93,6 +93,7 @@
   "authEmailInUse": "This email is already registered.",
   "authNetwork": "Please check your network connection.",
   "authGeneric": "Something went wrong. Please try again.",
+  "authCanceled": "Sign-in was canceled.",
   "emailConfirmSent": "We sent a confirmation email. Verify it, then sign in.",
   "newCampaign": "New campaign",
   "next": "Next",

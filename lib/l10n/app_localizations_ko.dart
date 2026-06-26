@@ -289,6 +289,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get authGeneric => '문제가 발생했어요. 잠시 후 다시 시도해주세요.';
 
   @override
+  String get authCanceled => '로그인이 취소되었어요.';
+
+  @override
   String get emailConfirmSent => '확인 메일을 보냈어요. 메일 인증 후 로그인해주세요.';
 
   @override

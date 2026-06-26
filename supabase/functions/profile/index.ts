@@ -108,13 +108,22 @@ Deno.serve(async (req) => {
       return ok({ profile });
     }
 
-    // DELETE account (App Store 5.1.1(v)): remove the auth user. Every related
-    // row (profile, company/influencer, campaigns, applications, board posts,
-    // bookmarks, device tokens, notifications…) is FK ON DELETE CASCADE, so
-    // this wipes the user's data in one shot.
+    // DELETE account (App Store 5.1.1(v)): sever the login only. The
+    // profiles->auth.users FK cascade was dropped, so deleting the auth user
+    // leaves the profile row — we keep it but anonymize the PII (email name,
+    // avatar, phone, push tokens) and stamp deleted_at.
     if (req.method === "DELETE") {
+      await ctx.admin.from("device_tokens").delete().eq("profile_id", ctx.userId);
       const { error } = await ctx.admin.auth.admin.deleteUser(ctx.userId);
       if (error) throw new HttpError(400, error.message);
+      await ctx.admin.from("profiles").update({
+        email: `deleted-${ctx.userId}@deleted.local`,
+        display_name: null,
+        avatar_url: null,
+        phone: null,
+        fcm_tokens: [],
+        deleted_at: new Date().toISOString(),
+      }).eq("id", ctx.userId);
       return ok({ deleted: true });
     }
 

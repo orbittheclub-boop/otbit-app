@@ -63,9 +63,8 @@ class LoginScreen extends HookConsumerWidget {
       final err = await run();
       if (!context.mounted) return;
       loading.value = false;
-      // Social errors are usually native/config issues — surface them verbatim
-      // (cancellations come back as a friendly message already).
-      error.value = err;
+      // Repo throws error codes (canceled / *_failed / network) — localize them.
+      error.value = err == null ? null : localizeAuthError(context.l10n, err);
     }
 
     final isDark = Theme.of(context).brightness == Brightness.dark;

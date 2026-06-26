@@ -50,10 +50,7 @@ class SignupScreen extends HookConsumerWidget {
 
     // Runs a finishing action (account + onboarding). On success the auth state
     // changes and the router routes to the role home — nothing to do here.
-    Future<void> run(
-      Future<String?> Function() action, {
-      bool localize = false,
-    }) async {
+    Future<void> run(Future<String?> Function() action) async {
       FocusScope.of(context).unfocus();
       loading.value = true;
       error.value = null;
@@ -61,7 +58,8 @@ class SignupScreen extends HookConsumerWidget {
       if (!context.mounted) return;
       loading.value = false;
       if (err == null) return;
-      error.value = localize ? localizeAuthError(context.l10n, err) : err;
+      // Repo throws error codes / server messages — always localize.
+      error.value = localizeAuthError(context.l10n, err);
     }
 
     void emailSignup() {
@@ -79,7 +77,6 @@ class SignupScreen extends HookConsumerWidget {
           password: password.text,
           input: buildInput(),
         ),
-        localize: true,
       );
     }
 

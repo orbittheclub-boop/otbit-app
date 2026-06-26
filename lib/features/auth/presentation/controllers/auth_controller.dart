@@ -70,7 +70,7 @@ class AuthController extends _$AuthController {
         ref.invalidateSelf();
         return null;
       },
-      err: (f) => 'Apple: ${f.message}',
+      err: (f) => f.message, // error code → localized in the UI
     );
   }
 
@@ -81,7 +81,7 @@ class AuthController extends _$AuthController {
         ref.invalidateSelf();
         return null;
       },
-      err: (f) => 'Google: ${f.message}',
+      err: (f) => f.message, // error code → localized in the UI
     );
   }
 

@@ -93,6 +93,7 @@
   "authEmailInUse": "すでに登録されているメールアドレスです。",
   "authNetwork": "ネットワーク接続を確認してください。",
   "authGeneric": "問題が発生しました。しばらくして再試行してください。",
+  "authCanceled": "ログインがキャンセルされました。",
   "emailConfirmSent": "確認メールを送信しました。認証後にログインしてください。",
   "newCampaign": "新しいキャンペーン",
   "next": "次へ",

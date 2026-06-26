@@ -93,6 +93,7 @@
   "authEmailInUse": "이미 가입된 이메일이에요.",
   "authNetwork": "네트워크 연결을 확인해주세요.",
   "authGeneric": "문제가 발생했어요. 잠시 후 다시 시도해주세요.",
+  "authCanceled": "로그인이 취소되었어요.",
   "emailConfirmSent": "확인 메일을 보냈어요. 메일 인증 후 로그인해주세요.",
   "newCampaign": "새 캠페인",
   "next": "다음",

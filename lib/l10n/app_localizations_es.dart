@@ -293,6 +293,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get authGeneric => 'Algo salió mal. Inténtalo de nuevo.';
 
   @override
+  String get authCanceled => 'Se canceló el inicio de sesión.';
+
+  @override
   String get emailConfirmSent =>
       'Enviamos un correo de confirmación. Verifícalo e inicia sesión.';
 

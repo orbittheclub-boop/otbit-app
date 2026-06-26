@@ -660,6 +660,12 @@ abstract class AppLocalizations {
   /// **'문제가 발생했어요. 잠시 후 다시 시도해주세요.'**
   String get authGeneric;
 
+  /// No description provided for @authCanceled.
+  ///
+  /// In ko, this message translates to:
+  /// **'로그인이 취소되었어요.'**
+  String get authCanceled;
+
   /// No description provided for @emailConfirmSent.
   ///
   /// In ko, this message translates to:

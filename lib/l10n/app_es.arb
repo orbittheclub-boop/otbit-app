@@ -93,6 +93,7 @@
   "authEmailInUse": "Este correo ya está registrado.",
   "authNetwork": "Comprueba tu conexión de red.",
   "authGeneric": "Algo salió mal. Inténtalo de nuevo.",
+  "authCanceled": "Se canceló el inicio de sesión.",
   "emailConfirmSent": "Enviamos un correo de confirmación. Verifícalo e inicia sesión.",
   "newCampaign": "Nueva campaña",
   "next": "Siguiente",
