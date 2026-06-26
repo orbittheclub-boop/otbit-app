@@ -13,14 +13,16 @@ bool _refreshHooked = false;
 ///
 /// On iOS the token only resolves once an APNs key is configured in Firebase;
 /// until then getToken throws and we return the permission result anyway.
-Future<bool> registerFcmToken(NotificationRepository repo) async {
+/// Registers this device's FCM token. Returns a short status string for
+/// on-screen diagnostics (ok / denied / apns-null / no-token / err).
+Future<String> registerFcmToken(NotificationRepository repo) async {
   try {
     final messaging = FirebaseMessaging.instance;
     final settings = await messaging.requestPermission();
     final granted =
         settings.authorizationStatus == AuthorizationStatus.authorized ||
             settings.authorizationStatus == AuthorizationStatus.provisional;
-    if (!granted) return false;
+    if (!granted) return 'denied(${settings.authorizationStatus.name})';
 
     final platform = Platform.isIOS ? 'ios' : 'android';
 
@@ -35,22 +37,23 @@ Future<bool> registerFcmToken(NotificationRepository repo) async {
 
     // On iOS the FCM token can't be minted until the APNs token has arrived;
     // calling getToken() too early throws "apns-token-not-set". Wait for it
-    // (up to ~6s) so the very first launch after permission registers cleanly.
+    // (up to ~10s) so the very first launch after permission registers cleanly.
     if (Platform.isIOS) {
-      for (var i = 0; i < 12; i++) {
-        if (await messaging.getAPNSToken() != null) break;
+      String? apns;
+      for (var i = 0; i < 20; i++) {
+        apns = await messaging.getAPNSToken();
+        if (apns != null) break;
         await Future<void>.delayed(const Duration(milliseconds: 500));
       }
+      if (apns == null) return 'apns-null';
     }
 
     final token = await messaging.getToken();
-    if (token != null) {
-      await repo.registerDevice(token, platform: platform);
-    }
-    return true;
-  } catch (_) {
-    // Transient — onTokenRefresh will still fire when the token resolves.
-    return false;
+    if (token == null) return 'no-token';
+    await repo.registerDevice(token, platform: platform);
+    return 'ok ${token.substring(0, 8)}…';
+  } catch (e) {
+    return 'err: $e';
   }
 }
 
