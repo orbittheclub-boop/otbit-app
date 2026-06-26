@@ -58,7 +58,7 @@ dependencies:
   firebase_core: ^3.8.0
   firebase_messaging: ^15.1.5
   sign_in_with_apple: ^6.1.4
-  google_sign_in: ^6.2.2
+  google_sign_in: ^7.0.0
   crypto: ^3.0.6
   flutter_svg: ^2.0.16
   envied: ^1.1.1

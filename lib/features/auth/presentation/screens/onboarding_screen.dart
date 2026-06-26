@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:orbit/core/theme/app_colors.dart';
+import 'package:orbit/core/widgets/phone_number_formatter.dart';
 import 'package:orbit/core/widgets/primary_button.dart';
 import 'package:orbit/features/auth/domain/entities/app_user.dart';
 import 'package:orbit/features/auth/domain/entities/onboarding_input.dart';
@@ -150,6 +151,7 @@ class OnboardingScreen extends HookConsumerWidget {
                 TextField(
                   controller: phone,
                   keyboardType: TextInputType.phone,
+                  inputFormatters: [PhoneNumberFormatter()],
                   decoration: const InputDecoration(hintText: '010-0000-0000'),
                 ),
               ],

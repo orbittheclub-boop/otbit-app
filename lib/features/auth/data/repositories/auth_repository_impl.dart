@@ -102,29 +102,47 @@ class AuthRepositoryImpl implements AuthRepository {
         );
       });
 
+  // google_sign_in 7.x: initialize() must run exactly once per app session and
+  // is where the nonce is set. We generate it here (and keep the raw value) so
+  // GoTrue can validate the id_token — it hashes the raw nonce and compares it
+  // to the token's `nonce` claim (which equals the hashed nonce we pass in).
+  static bool _googleInited = false;
+  static String? _googleRawNonce;
+
   @override
   Future<Result<void>> signInWithGoogle() => guard(() async {
-        final googleSignIn = GoogleSignIn(
-          clientId: Env.googleIosClientId,
-          serverClientId: Env.googleWebClientId.isEmpty
-              ? null
-              : Env.googleWebClientId,
-        );
-        final account = await googleSignIn.signIn();
-        if (account == null) throw const AuthException('로그인이 취소되었어요.');
-        final auth = await account.authentication;
-        final idToken = auth.idToken;
+        final signIn = GoogleSignIn.instance;
+        if (!_googleInited) {
+          _googleRawNonce = _nonce();
+          final hashedNonce =
+              sha256.convert(utf8.encode(_googleRawNonce!)).toString();
+          await signIn.initialize(
+            clientId: Env.googleIosClientId,
+            serverClientId: Env.googleWebClientId.isEmpty
+                ? null
+                : Env.googleWebClientId,
+            nonce: hashedNonce,
+          );
+          _googleInited = true;
+        }
+
+        final GoogleSignInAccount account;
+        try {
+          account = await signIn.authenticate();
+        } on GoogleSignInException catch (e) {
+          if (e.code == GoogleSignInExceptionCode.canceled) {
+            throw const AuthException('로그인이 취소되었어요.');
+          }
+          rethrow;
+        }
+        final idToken = account.authentication.idToken;
         if (idToken == null) {
           throw const AuthException('구글 로그인에 실패했어요.');
         }
         await _client.auth.signInWithIdToken(
           provider: OAuthProvider.google,
           idToken: idToken,
-          accessToken: auth.accessToken,
-          // The GoogleSignIn iOS SDK embeds a nonce in the id_token but doesn't
-          // expose the raw value; echo the token's nonce back so GoTrue's
-          // both-or-neither check passes (Google compares it directly).
-          nonce: _idTokenNonce(idToken),
+          nonce: _googleRawNonce,
         );
       });
 

@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:orbit/core/l10n/auth_error.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
+import 'package:orbit/core/widgets/phone_number_formatter.dart';
 import 'package:orbit/core/widgets/primary_button.dart';
 import 'package:orbit/features/auth/domain/entities/app_user.dart';
 import 'package:orbit/features/auth/domain/entities/onboarding_input.dart';
@@ -133,6 +134,7 @@ class SignupScreen extends HookConsumerWidget {
           TextField(
             controller: phone,
             keyboardType: TextInputType.phone,
+            inputFormatters: [PhoneNumberFormatter()],
             decoration: const InputDecoration(hintText: '010-0000-0000'),
           ),
           const SizedBox(height: 28),
