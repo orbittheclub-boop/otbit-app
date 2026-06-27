@@ -9,20 +9,26 @@ part of 'push_pref_controller.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 /// Last FCM registration status, for on-screen diagnostics (temporary).
+/// keepAlive so a status set before the profile tile mounts isn't lost to
+/// auto-dispose (which would leave the row showing the initial 'idle').
 
 @ProviderFor(FcmDebug)
 final fcmDebugProvider = FcmDebugProvider._();
 
 /// Last FCM registration status, for on-screen diagnostics (temporary).
+/// keepAlive so a status set before the profile tile mounts isn't lost to
+/// auto-dispose (which would leave the row showing the initial 'idle').
 final class FcmDebugProvider extends $NotifierProvider<FcmDebug, String> {
   /// Last FCM registration status, for on-screen diagnostics (temporary).
+  /// keepAlive so a status set before the profile tile mounts isn't lost to
+  /// auto-dispose (which would leave the row showing the initial 'idle').
   FcmDebugProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
         name: r'fcmDebugProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -43,9 +49,11 @@ final class FcmDebugProvider extends $NotifierProvider<FcmDebug, String> {
   }
 }
 
-String _$fcmDebugHash() => r'4d57ca8f2d5efb42dfe3f69f479954044c6e3d43';
+String _$fcmDebugHash() => r'a934e40d8c537baa9814b4684cef75f252fdbfcb';
 
 /// Last FCM registration status, for on-screen diagnostics (temporary).
+/// keepAlive so a status set before the profile tile mounts isn't lost to
+/// auto-dispose (which would leave the row showing the initial 'idle').
 
 abstract class _$FcmDebug extends $Notifier<String> {
   String build();
@@ -111,7 +119,7 @@ final class PushPrefControllerProvider
 }
 
 String _$pushPrefControllerHash() =>
-    r'5a967d526450233ac6d5ca4248c9a3e38998f3f3';
+    r'5bde6f96fadf7da95eab3d167e9767c629b0ce24';
 
 /// The user's push-notification on/off state, persisted in shared_preferences
 /// so the profile screen renders the toggle instantly (synchronous read — no

@@ -8,7 +8,9 @@ import 'package:orbit/features/notification/presentation/providers/notification_
 part 'push_pref_controller.g.dart';
 
 /// Last FCM registration status, for on-screen diagnostics (temporary).
-@riverpod
+/// keepAlive so a status set before the profile tile mounts isn't lost to
+/// auto-dispose (which would leave the row showing the initial 'idle').
+@Riverpod(keepAlive: true)
 class FcmDebug extends _$FcmDebug {
   @override
   String build() => 'idle';
