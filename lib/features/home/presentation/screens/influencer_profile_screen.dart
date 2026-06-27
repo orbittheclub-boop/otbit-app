@@ -26,7 +26,7 @@ class InfluencerProfileScreen extends ConsumerWidget {
       body: ListView(
         children: [
           ProfileHeader(
-            name: user.displayName ?? '인플루언서',
+            name: user.displayName ?? context.l10n.accountTypeInfluencer,
             subtitle: user.email,
             icon: Icons.auto_awesome_rounded,
             avatarUrl: user.avatarUrl,

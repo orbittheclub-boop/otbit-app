@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/features/notification/domain/entities/app_notification.dart';
 import 'package:orbit/features/notification/presentation/providers/notification_providers.dart';
@@ -14,14 +15,14 @@ class NotificationsScreen extends ConsumerWidget {
     final async = ref.watch(notificationsProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('알림'),
+        title: Text(context.l10n.navNotifications),
         actions: [
           TextButton(
             onPressed: () async {
               await ref.read(notificationRepositoryProvider).markRead();
               ref.invalidate(notificationsProvider);
             },
-            child: const Text('모두 읽음'),
+            child: Text(context.l10n.markAllRead),
           ),
         ],
       ),
@@ -33,7 +34,7 @@ class NotificationsScreen extends ConsumerWidget {
               child: CircularProgressIndicator(color: AppColors.primary)),
           error: (e, _) => _Center('$e'),
           data: (feed) => feed.items.isEmpty
-              ? const _Center('새로운 알림이 없어요.')
+              ? _Center(context.l10n.noNotifications)
               : ListView.separated(
                   padding: const EdgeInsets.only(top: 8, bottom: 100),
                   itemCount: feed.items.length,
@@ -83,7 +84,7 @@ class _Tile extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    notification.title ?? '알림',
+                    notification.title ?? context.l10n.navNotifications,
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: context.palette.ink,

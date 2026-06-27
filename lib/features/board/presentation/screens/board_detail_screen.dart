@@ -55,14 +55,15 @@ class BoardDetailScreen extends HookConsumerWidget {
         context: context,
         builder: (_) => AlertDialog(
           title: Text(context.l10n.deletePost),
-          content: const Text('정말 삭제할까요? 되돌릴 수 없어요.'),
+          content: Text(context.l10n.deletePostConfirm),
           actions: [
             TextButton(
-                onPressed: () => context.pop(false), child: const Text('취소')),
+                onPressed: () => context.pop(false),
+                child: Text(context.l10n.cancel)),
             TextButton(
                 onPressed: () => context.pop(true),
-                child: const Text('삭제',
-                    style: TextStyle(color: AppColors.danger))),
+                child: Text(context.l10n.delete,
+                    style: const TextStyle(color: AppColors.danger))),
           ],
         ),
       );
@@ -111,7 +112,7 @@ class BoardDetailScreen extends HookConsumerWidget {
                       children: [
                         CategoryChip(post.category),
                         const Spacer(),
-                        Text(boardTimeAgo(post.createdAt),
+                        Text(boardTimeAgo(context.l10n, post.createdAt),
                             style: TextStyle(
                                 fontSize: 12,
                                 color: context.palette.textTertiary)),
@@ -335,7 +336,7 @@ class _CommentTile extends StatelessWidget {
                       RoleBadge(role: role),
                     ],
                     const SizedBox(width: 8),
-                    Text(boardTimeAgo(comment.createdAt),
+                    Text(boardTimeAgo(context.l10n, comment.createdAt),
                         style: TextStyle(
                             fontSize: 11, color: context.palette.textTertiary)),
                   ],

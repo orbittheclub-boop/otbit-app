@@ -416,4 +416,57 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get enterTitle => 'タイトルを入力してください。';
+
+  @override
+  String get markAllRead => 'すべて既読';
+
+  @override
+  String get noNotifications => '新しい通知はありません。';
+
+  @override
+  String get tryAgainLater => 'しばらくしてからもう一度お試しください';
+
+  @override
+  String get retry => '再試行';
+
+  @override
+  String get deletePostConfirm => '本当に削除しますか？元に戻せません。';
+
+  @override
+  String get delete => '削除';
+
+  @override
+  String get timeJustNow => 'たった今';
+
+  @override
+  String get mySettlements => '精算履歴';
+
+  @override
+  String get settlementsEmpty => 'まだ精算履歴がありません。';
+
+  @override
+  String get campaignFallback => 'キャンペーン';
+
+  @override
+  String get brandFallback => 'ブランド';
+
+  @override
+  String timeMinutesAgo(int count) {
+    return '$count分前';
+  }
+
+  @override
+  String timeHoursAgo(int count) {
+    return '$count時間前';
+  }
+
+  @override
+  String timeDaysAgo(int count) {
+    return '$count日前';
+  }
+
+  @override
+  String wonAmount(String amount) {
+    return '$amount円';
+  }
 }

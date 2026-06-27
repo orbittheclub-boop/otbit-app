@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/features/settlement/domain/entities/settlement.dart';
 import 'package:orbit/features/settlement/presentation/providers/settlement_providers.dart';
@@ -14,7 +15,7 @@ class MySettlementsScreen extends ConsumerWidget {
     final async = ref.watch(mySettlementsProvider);
     final won = NumberFormat('#,###');
     return Scaffold(
-      appBar: AppBar(title: const Text('내 정산')),
+      appBar: AppBar(title: Text(context.l10n.mySettlements)),
       body: RefreshIndicator(
         color: AppColors.primary,
         onRefresh: () async => ref.invalidate(mySettlementsProvider),
@@ -23,7 +24,7 @@ class MySettlementsScreen extends ConsumerWidget {
               child: CircularProgressIndicator(color: AppColors.primary)),
           error: (e, _) => _Center('$e'),
           data: (list) => list.isEmpty
-              ? const _Center('아직 정산 내역이 없어요.')
+              ? _Center(context.l10n.settlementsEmpty)
               : ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
                   itemCount: list.length,
@@ -44,7 +45,7 @@ class MySettlementsScreen extends ConsumerWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  s.campaignTitle ?? '캠페인',
+                                  s.campaignTitle ?? context.l10n.campaignFallback,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -52,7 +53,7 @@ class MySettlementsScreen extends ConsumerWidget {
                                       color: context.palette.ink),
                                 ),
                                 const SizedBox(height: 4),
-                                Text(s.companyName ?? '브랜드',
+                                Text(s.companyName ?? context.l10n.brandFallback,
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: context.palette.textSecondary)),
@@ -63,7 +64,7 @@ class MySettlementsScreen extends ConsumerWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text('${won.format(s.amount)}원',
+                              Text(context.l10n.wonAmount(won.format(s.amount)),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w800,
                                       color: context.palette.ink)),

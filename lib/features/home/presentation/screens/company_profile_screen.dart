@@ -26,7 +26,7 @@ class CompanyProfileScreen extends ConsumerWidget {
       body: ListView(
         children: [
           ProfileHeader(
-            name: user.displayName ?? '회사',
+            name: user.displayName ?? context.l10n.accountTypeCompany,
             subtitle: user.email,
             icon: Icons.business_rounded,
             avatarUrl: user.avatarUrl,

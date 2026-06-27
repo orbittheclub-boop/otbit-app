@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/features/notification/presentation/providers/notification_providers.dart';
 
 /// App-bar bell with an unread badge. Used on both role home screens.
@@ -12,7 +13,7 @@ class NotificationBell extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final unread = ref.watch(notificationsProvider).value?.unread ?? 0;
     return IconButton(
-      tooltip: '알림',
+      tooltip: context.l10n.navNotifications,
       icon: Badge(
         isLabelVisible: unread > 0,
         label: Text('$unread'),

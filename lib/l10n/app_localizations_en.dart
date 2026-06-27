@@ -421,4 +421,58 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enterTitle => 'Please enter a title.';
+
+  @override
+  String get markAllRead => 'Mark all read';
+
+  @override
+  String get noNotifications => 'No new notifications.';
+
+  @override
+  String get tryAgainLater => 'Please try again in a moment';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get deletePostConfirm =>
+      'Delete this for good? This can\'t be undone.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get timeJustNow => 'Just now';
+
+  @override
+  String get mySettlements => 'My payouts';
+
+  @override
+  String get settlementsEmpty => 'No payouts yet.';
+
+  @override
+  String get campaignFallback => 'Campaign';
+
+  @override
+  String get brandFallback => 'Brand';
+
+  @override
+  String timeMinutesAgo(int count) {
+    return '${count}m ago';
+  }
+
+  @override
+  String timeHoursAgo(int count) {
+    return '${count}h ago';
+  }
+
+  @override
+  String timeDaysAgo(int count) {
+    return '${count}d ago';
+  }
+
+  @override
+  String wonAmount(String amount) {
+    return '₩$amount';
+  }
 }

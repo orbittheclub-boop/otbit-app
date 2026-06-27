@@ -135,5 +135,48 @@
   "summaryRecruit": "Recruits",
   "summaryDeadline": "Deadline",
   "notSet": "Not set",
-  "enterTitle": "Please enter a title."
+  "enterTitle": "Please enter a title.",
+  "markAllRead": "Mark all read",
+  "noNotifications": "No new notifications.",
+  "tryAgainLater": "Please try again in a moment",
+  "retry": "Retry",
+  "deletePostConfirm": "Delete this for good? This can't be undone.",
+  "delete": "Delete",
+  "timeJustNow": "Just now",
+  "mySettlements": "My payouts",
+  "settlementsEmpty": "No payouts yet.",
+  "campaignFallback": "Campaign",
+  "brandFallback": "Brand",
+  "timeMinutesAgo": "{count}m ago",
+  "@timeMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeHoursAgo": "{count}h ago",
+  "@timeHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeDaysAgo": "{count}d ago",
+  "@timeDaysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wonAmount": "₩{amount}",
+  "@wonAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  }
 }

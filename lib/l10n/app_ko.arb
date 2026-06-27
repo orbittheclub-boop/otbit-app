@@ -135,5 +135,48 @@
   "summaryRecruit": "모집",
   "summaryDeadline": "마감",
   "notSet": "미설정",
-  "enterTitle": "제목을 입력해주세요."
+  "enterTitle": "제목을 입력해주세요.",
+  "markAllRead": "모두 읽음",
+  "noNotifications": "새로운 알림이 없어요.",
+  "tryAgainLater": "잠시 후 다시 시도해주세요",
+  "retry": "다시 시도",
+  "deletePostConfirm": "정말 삭제할까요? 되돌릴 수 없어요.",
+  "delete": "삭제",
+  "timeJustNow": "방금",
+  "mySettlements": "내 정산",
+  "settlementsEmpty": "아직 정산 내역이 없어요.",
+  "campaignFallback": "캠페인",
+  "brandFallback": "브랜드",
+  "timeMinutesAgo": "{count}분 전",
+  "@timeMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeHoursAgo": "{count}시간 전",
+  "@timeHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeDaysAgo": "{count}일 전",
+  "@timeDaysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wonAmount": "{amount}원",
+  "@wonAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  }
 }

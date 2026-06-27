@@ -57,7 +57,7 @@ class BookmarksScreen extends ConsumerWidget {
                       onBookmark: () async {
                         final ok = await toggleCampaignBookmark(ref, c);
                         if (!ok && context.mounted) {
-                          showAppToast(context, '잠시 후 다시 시도해주세요',
+                          showAppToast(context, context.l10n.tryAgainLater,
                               type: AppToastType.error);
                         }
                       },

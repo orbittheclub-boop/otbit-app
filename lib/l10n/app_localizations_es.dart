@@ -423,4 +423,58 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get enterTitle => 'Introduce un título.';
+
+  @override
+  String get markAllRead => 'Marcar todo leído';
+
+  @override
+  String get noNotifications => 'No hay notificaciones nuevas.';
+
+  @override
+  String get tryAgainLater => 'Inténtalo de nuevo en un momento';
+
+  @override
+  String get retry => 'Reintentar';
+
+  @override
+  String get deletePostConfirm =>
+      '¿Eliminar definitivamente? No se puede deshacer.';
+
+  @override
+  String get delete => 'Eliminar';
+
+  @override
+  String get timeJustNow => 'Justo ahora';
+
+  @override
+  String get mySettlements => 'Mis pagos';
+
+  @override
+  String get settlementsEmpty => 'Aún no hay pagos.';
+
+  @override
+  String get campaignFallback => 'Campaña';
+
+  @override
+  String get brandFallback => 'Marca';
+
+  @override
+  String timeMinutesAgo(int count) {
+    return 'hace $count min';
+  }
+
+  @override
+  String timeHoursAgo(int count) {
+    return 'hace $count h';
+  }
+
+  @override
+  String timeDaysAgo(int count) {
+    return 'hace $count d';
+  }
+
+  @override
+  String wonAmount(String amount) {
+    return '₩$amount';
+  }
 }

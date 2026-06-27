@@ -917,6 +917,96 @@ abstract class AppLocalizations {
   /// In ko, this message translates to:
   /// **'제목을 입력해주세요.'**
   String get enterTitle;
+
+  /// No description provided for @markAllRead.
+  ///
+  /// In ko, this message translates to:
+  /// **'모두 읽음'**
+  String get markAllRead;
+
+  /// No description provided for @noNotifications.
+  ///
+  /// In ko, this message translates to:
+  /// **'새로운 알림이 없어요.'**
+  String get noNotifications;
+
+  /// No description provided for @tryAgainLater.
+  ///
+  /// In ko, this message translates to:
+  /// **'잠시 후 다시 시도해주세요'**
+  String get tryAgainLater;
+
+  /// No description provided for @retry.
+  ///
+  /// In ko, this message translates to:
+  /// **'다시 시도'**
+  String get retry;
+
+  /// No description provided for @deletePostConfirm.
+  ///
+  /// In ko, this message translates to:
+  /// **'정말 삭제할까요? 되돌릴 수 없어요.'**
+  String get deletePostConfirm;
+
+  /// No description provided for @delete.
+  ///
+  /// In ko, this message translates to:
+  /// **'삭제'**
+  String get delete;
+
+  /// No description provided for @timeJustNow.
+  ///
+  /// In ko, this message translates to:
+  /// **'방금'**
+  String get timeJustNow;
+
+  /// No description provided for @mySettlements.
+  ///
+  /// In ko, this message translates to:
+  /// **'내 정산'**
+  String get mySettlements;
+
+  /// No description provided for @settlementsEmpty.
+  ///
+  /// In ko, this message translates to:
+  /// **'아직 정산 내역이 없어요.'**
+  String get settlementsEmpty;
+
+  /// No description provided for @campaignFallback.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인'**
+  String get campaignFallback;
+
+  /// No description provided for @brandFallback.
+  ///
+  /// In ko, this message translates to:
+  /// **'브랜드'**
+  String get brandFallback;
+
+  /// No description provided for @timeMinutesAgo.
+  ///
+  /// In ko, this message translates to:
+  /// **'{count}분 전'**
+  String timeMinutesAgo(int count);
+
+  /// No description provided for @timeHoursAgo.
+  ///
+  /// In ko, this message translates to:
+  /// **'{count}시간 전'**
+  String timeHoursAgo(int count);
+
+  /// No description provided for @timeDaysAgo.
+  ///
+  /// In ko, this message translates to:
+  /// **'{count}일 전'**
+  String timeDaysAgo(int count);
+
+  /// No description provided for @wonAmount.
+  ///
+  /// In ko, this message translates to:
+  /// **'{amount}원'**
+  String wonAmount(String amount);
 }
 
 class _AppLocalizationsDelegate

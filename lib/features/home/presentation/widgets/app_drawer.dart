@@ -31,7 +31,10 @@ class AppDrawer extends ConsumerWidget {
         padding: EdgeInsets.zero,
         children: [
           _DrawerHeader(
-            name: user?.displayName ?? (isInfluencer ? '인플루언서' : '회사'),
+            name: user?.displayName ??
+                (isInfluencer
+                    ? context.l10n.accountTypeInfluencer
+                    : context.l10n.accountTypeCompany),
             email: user?.email ?? '',
             avatarUrl: user?.avatarUrl,
             role: user?.role,

@@ -135,5 +135,48 @@
   "summaryRecruit": "募集",
   "summaryDeadline": "締切",
   "notSet": "未設定",
-  "enterTitle": "タイトルを入力してください。"
+  "enterTitle": "タイトルを入力してください。",
+  "markAllRead": "すべて既読",
+  "noNotifications": "新しい通知はありません。",
+  "tryAgainLater": "しばらくしてからもう一度お試しください",
+  "retry": "再試行",
+  "deletePostConfirm": "本当に削除しますか？元に戻せません。",
+  "delete": "削除",
+  "timeJustNow": "たった今",
+  "mySettlements": "精算履歴",
+  "settlementsEmpty": "まだ精算履歴がありません。",
+  "campaignFallback": "キャンペーン",
+  "brandFallback": "ブランド",
+  "timeMinutesAgo": "{count}分前",
+  "@timeMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeHoursAgo": "{count}時間前",
+  "@timeHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeDaysAgo": "{count}日前",
+  "@timeDaysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wonAmount": "{amount}円",
+  "@wonAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  }
 }

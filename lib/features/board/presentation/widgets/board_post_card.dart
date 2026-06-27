@@ -24,13 +24,13 @@ Role? boardAuthorRole(String? s) => switch (s) {
     };
 
 /// Short relative time (방금 / N분 전 / N시간 전 / N일 전 / yyyy.MM.dd).
-String boardTimeAgo(DateTime? dt) {
+String boardTimeAgo(AppLocalizations l10n, DateTime? dt) {
   if (dt == null) return '';
   final diff = DateTime.now().difference(dt);
-  if (diff.inMinutes < 1) return '방금';
-  if (diff.inMinutes < 60) return '${diff.inMinutes}분 전';
-  if (diff.inHours < 24) return '${diff.inHours}시간 전';
-  if (diff.inDays < 7) return '${diff.inDays}일 전';
+  if (diff.inMinutes < 1) return l10n.timeJustNow;
+  if (diff.inMinutes < 60) return l10n.timeMinutesAgo(diff.inMinutes);
+  if (diff.inHours < 24) return l10n.timeHoursAgo(diff.inHours);
+  if (diff.inDays < 7) return l10n.timeDaysAgo(diff.inDays);
   return '${dt.year}.${dt.month.toString().padLeft(2, '0')}.${dt.day.toString().padLeft(2, '0')}';
 }
 
@@ -81,7 +81,7 @@ class BoardPostCard extends StatelessWidget {
               children: [
                 CategoryChip(post.category),
                 const Spacer(),
-                Text(boardTimeAgo(post.createdAt),
+                Text(boardTimeAgo(context.l10n, post.createdAt),
                     style: TextStyle(
                         fontSize: 12, color: context.palette.textTertiary)),
               ],

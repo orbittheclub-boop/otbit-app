@@ -157,7 +157,8 @@ class _Error extends StatelessWidget {
               style: TextStyle(color: context.palette.textSecondary)),
           const SizedBox(height: 12),
           Center(
-              child: TextButton(onPressed: onRetry, child: const Text('다시 시도'))),
+              child: TextButton(
+                  onPressed: onRetry, child: Text(context.l10n.retry))),
         ],
       );
 }

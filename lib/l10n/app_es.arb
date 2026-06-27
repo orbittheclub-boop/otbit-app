@@ -135,5 +135,48 @@
   "summaryRecruit": "Cupos",
   "summaryDeadline": "Fecha límite",
   "notSet": "Sin definir",
-  "enterTitle": "Introduce un título."
+  "enterTitle": "Introduce un título.",
+  "markAllRead": "Marcar todo leído",
+  "noNotifications": "No hay notificaciones nuevas.",
+  "tryAgainLater": "Inténtalo de nuevo en un momento",
+  "retry": "Reintentar",
+  "deletePostConfirm": "¿Eliminar definitivamente? No se puede deshacer.",
+  "delete": "Eliminar",
+  "timeJustNow": "Justo ahora",
+  "mySettlements": "Mis pagos",
+  "settlementsEmpty": "Aún no hay pagos.",
+  "campaignFallback": "Campaña",
+  "brandFallback": "Marca",
+  "timeMinutesAgo": "hace {count} min",
+  "@timeMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeHoursAgo": "hace {count} h",
+  "@timeHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeDaysAgo": "hace {count} d",
+  "@timeDaysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wonAmount": "₩{amount}",
+  "@wonAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  }
 }

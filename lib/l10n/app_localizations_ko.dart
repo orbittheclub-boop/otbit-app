@@ -416,4 +416,57 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get enterTitle => '제목을 입력해주세요.';
+
+  @override
+  String get markAllRead => '모두 읽음';
+
+  @override
+  String get noNotifications => '새로운 알림이 없어요.';
+
+  @override
+  String get tryAgainLater => '잠시 후 다시 시도해주세요';
+
+  @override
+  String get retry => '다시 시도';
+
+  @override
+  String get deletePostConfirm => '정말 삭제할까요? 되돌릴 수 없어요.';
+
+  @override
+  String get delete => '삭제';
+
+  @override
+  String get timeJustNow => '방금';
+
+  @override
+  String get mySettlements => '내 정산';
+
+  @override
+  String get settlementsEmpty => '아직 정산 내역이 없어요.';
+
+  @override
+  String get campaignFallback => '캠페인';
+
+  @override
+  String get brandFallback => '브랜드';
+
+  @override
+  String timeMinutesAgo(int count) {
+    return '$count분 전';
+  }
+
+  @override
+  String timeHoursAgo(int count) {
+    return '$count시간 전';
+  }
+
+  @override
+  String timeDaysAgo(int count) {
+    return '$count일 전';
+  }
+
+  @override
+  String wonAmount(String amount) {
+    return '$amount원';
+  }
 }
