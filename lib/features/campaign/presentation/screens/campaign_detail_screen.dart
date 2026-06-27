@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import 'package:orbit/core/l10n/auth_error.dart';
 import 'package:orbit/core/l10n/enum_labels.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
@@ -207,7 +208,7 @@ class _ActionBar extends ConsumerWidget {
       case Err(:final failure):
         final msg = failure.message == 'already_applied'
             ? context.l10n.campaignDetailAlreadyApplied
-            : failure.message;
+            : localizeAuthError(context.l10n, failure.message);
         showAppToast(context, msg, type: AppToastType.error);
     }
   }
@@ -223,7 +224,8 @@ class _ActionBar extends ConsumerWidget {
         ref.invalidate(myApplicationsProvider);
         showAppToast(context, context.l10n.campaignDetailCancelSuccess);
       case Err(:final failure):
-        showAppToast(context, failure.message, type: AppToastType.error);
+        showAppToast(context, localizeAuthError(context.l10n, failure.message),
+            type: AppToastType.error);
     }
   }
 
@@ -255,7 +257,8 @@ class _ActionBar extends ConsumerWidget {
         showAppToast(context, context.l10n.campaignDetailDeleteSuccess);
         context.pop();
       case Err(:final failure):
-        showAppToast(context, failure.message, type: AppToastType.error);
+        showAppToast(context, localizeAuthError(context.l10n, failure.message),
+            type: AppToastType.error);
     }
   }
 

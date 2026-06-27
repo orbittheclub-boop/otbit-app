@@ -6,6 +6,7 @@ import 'package:flutter_quill/flutter_quill.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/auth_error.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/usecase/usecase.dart';
@@ -57,7 +58,7 @@ class BoardComposeScreen extends HookConsumerWidget {
           ref.invalidate(boardFeedProvider);
           context.pop();
         case Err(:final failure):
-          error.value = failure.message;
+          error.value = localizeAuthError(context.l10n, failure.message);
       }
     }
 

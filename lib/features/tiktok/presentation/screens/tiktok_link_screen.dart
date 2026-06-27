@@ -3,6 +3,7 @@ import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import 'package:orbit/core/l10n/auth_error.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/usecase/usecase.dart';
@@ -44,7 +45,7 @@ Future<void> _startLink(BuildContext context, WidgetRef ref) async {
       messenger.showSnackBar(SnackBar(
           content: Text(failure.message == 'tiktok_not_configured'
               ? l10n.tiktokNotConfigured
-              : failure.message)));
+              : localizeAuthError(l10n, failure.message))));
       return;
     case Ok(:final value):
       try {
@@ -65,7 +66,8 @@ Future<void> _startLink(BuildContext context, WidgetRef ref) async {
             messenger.showSnackBar(
                 SnackBar(content: Text(l10n.tiktokLinked)));
           case Err(:final failure):
-            messenger.showSnackBar(SnackBar(content: Text(failure.message)));
+            messenger.showSnackBar(SnackBar(
+                content: Text(localizeAuthError(l10n, failure.message))));
         }
       } catch (_) {
         messenger.showSnackBar(SnackBar(content: Text(l10n.tiktokCanceled)));
@@ -175,11 +177,13 @@ class _Linked extends ConsumerWidget {
           icon: Icons.refresh_rounded,
           onPressed: () async {
             final messenger = ScaffoldMessenger.of(context);
+            final l10n = context.l10n;
             final res = await ref.read(tiktokRepositoryProvider).refreshStats();
             ref.invalidate(tiktokAccountProvider);
             if (res is Err) {
-              messenger.showSnackBar(
-                  SnackBar(content: Text((res as Err).failure.message)));
+              messenger.showSnackBar(SnackBar(
+                  content:
+                      Text(localizeAuthError(l10n, (res as Err).failure.message))));
             }
           },
         ),

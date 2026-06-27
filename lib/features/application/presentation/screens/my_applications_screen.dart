@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/auth_error.dart';
 import 'package:orbit/core/l10n/enum_labels.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
@@ -223,7 +224,8 @@ class _ApplicationTile extends ConsumerWidget {
     if (res is Ok) {
       ref.invalidate(myApplicationsProvider);
     } else {
-      showAppToast(context, (res as Err).failure.message,
+      showAppToast(
+          context, localizeAuthError(context.l10n, (res as Err).failure.message),
           type: AppToastType.error);
     }
   }
@@ -279,7 +281,7 @@ class _SubmitDialogState extends ConsumerState<_SubmitDialog> {
       case Err(:final failure):
         setState(() {
           _loading = false;
-          _error = failure.message;
+          _error = localizeAuthError(context.l10n, failure.message);
         });
     }
   }

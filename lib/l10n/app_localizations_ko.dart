@@ -806,4 +806,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get anonymous => '익명';
+
+  @override
+  String get serverError => '서버가 잠시 불안정해요. 잠시 후 다시 시도해주세요.';
 }

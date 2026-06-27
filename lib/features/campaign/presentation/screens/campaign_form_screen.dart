@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import 'package:orbit/core/l10n/auth_error.dart';
 import 'package:orbit/core/l10n/enum_labels.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
@@ -75,7 +76,7 @@ class CampaignFormScreen extends HookConsumerWidget {
           if (isEdit) ref.invalidate(campaignDetailProvider(initial!.id));
           context.pop();
         case Err(:final failure):
-          error.value = failure.message;
+          error.value = localizeAuthError(context.l10n, failure.message);
       }
     }
 
@@ -105,7 +106,7 @@ class CampaignFormScreen extends HookConsumerWidget {
           ref.invalidate(campaignFeedProvider);
           context.go('/company');
         case Err(:final failure):
-          error.value = failure.message;
+          error.value = localizeAuthError(context.l10n, failure.message);
       }
     }
 

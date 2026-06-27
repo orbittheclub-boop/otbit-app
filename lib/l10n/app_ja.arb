@@ -315,5 +315,6 @@
   "showPassword": "パスワードを表示",
   "hidePassword": "パスワードを非表示",
   "lightMode": "ライトモード",
-  "anonymous": "匿名"
+  "anonymous": "匿名",
+  "serverError": "サーバーが一時的に不安定です。しばらくしてからお試しください。"
 }

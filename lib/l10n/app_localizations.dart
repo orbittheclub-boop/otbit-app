@@ -1661,6 +1661,12 @@ abstract class AppLocalizations {
   /// In ko, this message translates to:
   /// **'익명'**
   String get anonymous;
+
+  /// No description provided for @serverError.
+  ///
+  /// In ko, this message translates to:
+  /// **'서버가 잠시 불안정해요. 잠시 후 다시 시도해주세요.'**
+  String get serverError;
 }
 
 class _AppLocalizationsDelegate

@@ -818,4 +818,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get anonymous => 'Anonymous';
+
+  @override
+  String get serverError =>
+      'The server is temporarily unstable. Please try again shortly.';
 }

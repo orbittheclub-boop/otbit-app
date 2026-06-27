@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/auth_error.dart';
 import 'package:orbit/core/l10n/enum_labels.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
@@ -69,7 +70,7 @@ class _ApplicantTile extends ConsumerWidget {
     if (!context.mounted) return;
     final msg = switch (res) {
       Ok() => context.l10n.applicantsSettleDone,
-      Err(:final failure) => failure.message,
+      Err(:final failure) => localizeAuthError(context.l10n, failure.message),
     };
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
   }

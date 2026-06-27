@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/auth_error.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/usecase/usecase.dart';
@@ -63,7 +64,7 @@ class _RatingDialogState extends ConsumerState<RatingDialog> {
       case Err(:final failure):
         setState(() {
           _loading = false;
-          _error = failure.message;
+          _error = localizeAuthError(context.l10n, failure.message);
         });
     }
   }

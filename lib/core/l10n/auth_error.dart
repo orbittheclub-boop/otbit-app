@@ -34,11 +34,15 @@ String localizeAuthError(AppLocalizations l10n, String raw) {
     return l10n.emailConfirmSent;
   }
   if (m.contains('network') ||
+      m.contains('네트워크') ||
       m.contains('socket') ||
       m.contains('timeout') ||
       m.contains('timed out') ||
       m.contains('connection')) {
     return l10n.authNetwork;
+  }
+  if (m.contains('서버') || m.contains('unstable')) {
+    return l10n.serverError; // ServerFailure (5xx) from network_guard
   }
   return l10n.authGeneric;
 }

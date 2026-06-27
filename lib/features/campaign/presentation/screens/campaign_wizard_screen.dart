@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
+import 'package:orbit/core/l10n/auth_error.dart';
 import 'package:orbit/core/l10n/enum_labels.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
@@ -99,7 +100,7 @@ class CampaignWizardScreen extends HookConsumerWidget {
         case Ok(:final value):
           thumbnailUrl.value = value;
         case Err(:final failure):
-          error.value = failure.message;
+          error.value = localizeAuthError(context.l10n, failure.message);
       }
     }
 
@@ -141,7 +142,7 @@ class CampaignWizardScreen extends HookConsumerWidget {
           ref.invalidate(campaignFeedProvider);
           context.pop();
         case Err(:final failure):
-          error.value = failure.message;
+          error.value = localizeAuthError(context.l10n, failure.message);
       }
     }
 

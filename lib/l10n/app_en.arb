@@ -315,5 +315,6 @@
   "showPassword": "Show password",
   "hidePassword": "Hide password",
   "lightMode": "Light mode",
-  "anonymous": "Anonymous"
+  "anonymous": "Anonymous",
+  "serverError": "The server is temporarily unstable. Please try again shortly."
 }

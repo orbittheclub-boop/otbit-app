@@ -806,4 +806,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get anonymous => '匿名';
+
+  @override
+  String get serverError => 'サーバーが一時的に不安定です。しばらくしてからお試しください。';
 }

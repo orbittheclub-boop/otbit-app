@@ -822,4 +822,8 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get anonymous => 'Anónimo';
+
+  @override
+  String get serverError =>
+      'El servidor está temporalmente inestable. Inténtalo de nuevo en breve.';
 }

@@ -315,5 +315,6 @@
   "showPassword": "비밀번호 표시",
   "hidePassword": "비밀번호 숨기기",
   "lightMode": "라이트 모드",
-  "anonymous": "익명"
+  "anonymous": "익명",
+  "serverError": "서버가 잠시 불안정해요. 잠시 후 다시 시도해주세요."
 }

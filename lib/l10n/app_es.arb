@@ -315,5 +315,6 @@
   "showPassword": "Mostrar contraseña",
   "hidePassword": "Ocultar contraseña",
   "lightMode": "Modo claro",
-  "anonymous": "Anónimo"
+  "anonymous": "Anónimo",
+  "serverError": "El servidor está temporalmente inestable. Inténtalo de nuevo en breve."
 }
