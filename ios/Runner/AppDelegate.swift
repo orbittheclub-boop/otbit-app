@@ -8,7 +8,14 @@ import UIKit
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    let result = super.application(
+      application, didFinishLaunchingWithOptions: launchOptions)
+    // Force APNs registration. Under Flutter 3.44's new lifecycle the SDK's
+    // automatic registerForRemoteNotifications() doesn't fire, so the APNs
+    // token never arrives and getAPNSToken()/getToken() stay null. iOS delivers
+    // the token to didRegister… below (the user has already allowed alerts).
+    application.registerForRemoteNotifications()
+    return result
   }
 
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
