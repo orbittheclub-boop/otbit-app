@@ -27,13 +27,10 @@ class PushNotificationTile extends HookConsumerWidget {
     }, [lifecycle]);
 
     final enabled = ref.watch(pushPrefControllerProvider);
-    final debug = ref.watch(fcmDebugProvider);
     return SwitchListTile(
       secondary:
           const Icon(Icons.notifications_outlined, color: AppColors.primary),
       title: Text(context.l10n.pushNotifications),
-      subtitle: Text('FCM: $debug',
-          style: TextStyle(fontSize: 11, color: context.palette.textTertiary)),
       value: enabled,
       activeThumbColor: AppColors.primary,
       onChanged: (_) => notifier.promptOrOpenSettings(),

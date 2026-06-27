@@ -7,16 +7,6 @@ import 'package:orbit/features/notification/presentation/providers/notification_
 
 part 'push_pref_controller.g.dart';
 
-/// Last FCM registration status, for on-screen diagnostics (temporary).
-/// keepAlive so a status set before the profile tile mounts isn't lost to
-/// auto-dispose (which would leave the row showing the initial 'idle').
-@Riverpod(keepAlive: true)
-class FcmDebug extends _$FcmDebug {
-  @override
-  String build() => 'idle';
-  void set(String value) => state = value;
-}
-
 /// The user's push-notification on/off state, persisted in shared_preferences
 /// so the profile screen renders the toggle instantly (synchronous read — no
 /// async OS query, no flicker). Backed by the real OS permission via
@@ -34,9 +24,7 @@ class PushPrefController extends _$PushPrefController {
   }
 
   Future<void> _register() async {
-    final status =
-        await registerFcmToken(ref.read(notificationRepositoryProvider));
-    ref.read(fcmDebugProvider.notifier).set(status);
+    await registerFcmToken(ref.read(notificationRepositoryProvider));
   }
 
   /// Called naturally right after onboarding (and on later launches): asks for
