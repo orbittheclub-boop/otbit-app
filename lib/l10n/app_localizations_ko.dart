@@ -469,4 +469,341 @@ class AppLocalizationsKo extends AppLocalizations {
   String wonAmount(String amount) {
     return '$amount원';
   }
+
+  @override
+  String get wizardInfoSubImage => '대표 이미지·제목·카테고리를 입력해주세요.';
+
+  @override
+  String get wizardThumbnailOptional => '대표 이미지 (선택)';
+
+  @override
+  String get wizardTitleHint => '예) 신상 립밤 체험단 모집';
+
+  @override
+  String get wizardCategoryHint => '예) 뷰티, 푸드, 패션';
+
+  @override
+  String get wizardAddThumbnail => '대표 이미지 추가';
+
+  @override
+  String get wizardChange => '변경';
+
+  @override
+  String get wizardRewardHint => '예) 제품 무료 제공';
+
+  @override
+  String get wizardDescHint => '캠페인 소개';
+
+  @override
+  String get wizardGuideHint => '인플루언서가 지켜야 할 가이드';
+
+  @override
+  String wizardRecruitCount(int count) {
+    return '$count명';
+  }
+
+  @override
+  String get wizardPublishNowDesc =>
+      '체크하면 인플루언서에게 바로 노출돼요.\n해제하면 작성중(draft)으로 저장돼요.';
+
+  @override
+  String get campaignFormDelete => '캠페인 삭제';
+
+  @override
+  String get campaignFormEditTitle => '캠페인 수정';
+
+  @override
+  String get campaignFormTitleHint => '캠페인 제목';
+
+  @override
+  String get campaignFormCategoryHint => '예) 뷰티, 푸드';
+
+  @override
+  String get campaignFormReward => '제공 혜택';
+
+  @override
+  String get campaignFormDeadline => '마감일';
+
+  @override
+  String get campaignFormPickDate => '날짜 선택';
+
+  @override
+  String get campaignFormSave => '저장하기';
+
+  @override
+  String get campaignDetailTitle => '캠페인 상세';
+
+  @override
+  String get campaignDetailRewardLabel => '제공';
+
+  @override
+  String campaignDetailPeopleCount(int count) {
+    return '$count명';
+  }
+
+  @override
+  String get campaignDetailMinFollowers => '최소 팔로워';
+
+  @override
+  String get campaignDetailIntroSection => '캠페인 소개';
+
+  @override
+  String get campaignDetailApplySuccess => '지원이 완료됐어요!';
+
+  @override
+  String get campaignDetailAlreadyApplied => '이미 지원한 캠페인이에요.';
+
+  @override
+  String get campaignDetailCancelSuccess => '지원을 취소했어요.';
+
+  @override
+  String get campaignDetailDeleteTitle => '캠페인 삭제';
+
+  @override
+  String get campaignDetailDeleteConfirm =>
+      '이 캠페인을 삭제할까요? 지원 내역도 함께 사라지며 되돌릴 수 없어요.';
+
+  @override
+  String get campaignDetailDeleteSuccess => '캠페인을 삭제했어요.';
+
+  @override
+  String get campaignDetailApply => '지원하기';
+
+  @override
+  String get campaignDetailCancelApply => '지원취소하기';
+
+  @override
+  String get campaignDetailStatusAccepted => '선정됐어요 ✓';
+
+  @override
+  String get campaignDetailStatusSubmitted => '제출 완료';
+
+  @override
+  String get campaignDetailStatusCompleted => '완료';
+
+  @override
+  String get campaignDetailStatusRejected => '미선정';
+
+  @override
+  String get campaignDetailStatusApplied => '지원 완료';
+
+  @override
+  String get campaignDetailViewApplicants => '지원자 보기';
+
+  @override
+  String get campaignDetailEdit => '수정';
+
+  @override
+  String get campaignDetailClose => '마감하기';
+
+  @override
+  String get campaignDetailPublish => '발행하기';
+
+  @override
+  String get campaignCardRewardFallback => '제공 혜택';
+
+  @override
+  String campaignCardApplicantCount(int count) {
+    return '지원 $count명';
+  }
+
+  @override
+  String campaignCardRecruitCount(int count) {
+    return '모집 $count명';
+  }
+
+  @override
+  String get applyMyApplicationsTitle => '내 지원 현황';
+
+  @override
+  String get applyEmpty => '아직 지원한 캠페인이 없어요.';
+
+  @override
+  String get applyFavoritesSection => '⭐ 즐겨찾기';
+
+  @override
+  String get applyPin => '즐겨찾기';
+
+  @override
+  String get applyUnpin => '즐겨찾기 해제';
+
+  @override
+  String get applyCancelAction => '지원취소';
+
+  @override
+  String get applyCancelTitle => '지원 취소';
+
+  @override
+  String get applyCancelConfirm => '이 캠페인 지원을 취소할까요? 되돌릴 수 없어요.';
+
+  @override
+  String get applyNo => '아니요';
+
+  @override
+  String get applyResubmitContent => '콘텐츠 다시 제출';
+
+  @override
+  String get applySubmitContent => '콘텐츠 제출하기';
+
+  @override
+  String get applyLeaveReview => '캠페인 리뷰 남기기';
+
+  @override
+  String get applyRatingTitle => '캠페인 평가';
+
+  @override
+  String get applySubmitTitle => '콘텐츠 제출';
+
+  @override
+  String get applyContentUrlHint => '콘텐츠 URL (예: TikTok 링크)';
+
+  @override
+  String get applyNoteHint => '메모 (선택)';
+
+  @override
+  String get applySubmit => '제출';
+
+  @override
+  String get applyContentUrlRequired => '콘텐츠 URL을 입력해주세요.';
+
+  @override
+  String get applicantsTitle => '지원자';
+
+  @override
+  String get applicantsEmpty => '아직 지원자가 없어요.';
+
+  @override
+  String get applicantsSettleDone => '정산 등록 완료';
+
+  @override
+  String get applicantsReject => '미선정';
+
+  @override
+  String get applicantsAccept => '선정';
+
+  @override
+  String get applicantsSettle => '정산하기';
+
+  @override
+  String get applicantsRatingTitle => '인플루언서 평가';
+
+  @override
+  String get applicantsReview => '리뷰';
+
+  @override
+  String get applicantsSettleAmountTitle => '정산 금액';
+
+  @override
+  String get applicantsAmountHint => '금액(원)';
+
+  @override
+  String get applicantsWonSuffix => '원';
+
+  @override
+  String get applicantsConfirm => '확인';
+
+  @override
+  String get ratingTitleDefault => '리뷰 남기기';
+
+  @override
+  String get ratingSubmitted => '리뷰가 등록됐어요!';
+
+  @override
+  String get ratingCommentHint => '후기 (선택)';
+
+  @override
+  String get ratingSubmit => '등록';
+
+  @override
+  String get onboardCancelTitle => '가입을 취소할까요?';
+
+  @override
+  String get onboardCancelBody => '지금 나가면 로그아웃되고 처음 화면으로 돌아갑니다.';
+
+  @override
+  String get onboardLeave => '나가기';
+
+  @override
+  String get onboardCompanyNameHint => '예) 오비트 코스메틱';
+
+  @override
+  String get onboardNicknameHint => '예) 오비트지기';
+
+  @override
+  String get homeBrowseCampaigns => '캠페인 둘러보기';
+
+  @override
+  String get homeSearchCampaigns => '캠페인 검색';
+
+  @override
+  String get homeEmptyFiltered => '조건에 맞는 캠페인이 없어요.\n필터를 바꿔보세요!';
+
+  @override
+  String get homeEmptyFeed => '진행 중인 캠페인이 없어요.\n곧 새로운 캠페인이 올라올 거예요!';
+
+  @override
+  String get homeMyCampaigns => '내 캠페인';
+
+  @override
+  String get homeEmptyMyCampaigns => '아직 등록한 캠페인이 없어요.\n첫 캠페인을 만들어보세요!';
+
+  @override
+  String get campaignTypeDelivery => '배송형';
+
+  @override
+  String get campaignTypeVisit => '방문형';
+
+  @override
+  String get campaignTypePress => '기자단';
+
+  @override
+  String get campaignStatusDraft => '작성중';
+
+  @override
+  String get campaignStatusOpen => '모집중';
+
+  @override
+  String get campaignStatusClosed => '마감';
+
+  @override
+  String get campaignStatusCompleted => '완료';
+
+  @override
+  String get appStatusPending => '심사중';
+
+  @override
+  String get appStatusAccepted => '선정';
+
+  @override
+  String get appStatusRejected => '미선정';
+
+  @override
+  String get appStatusSubmitted => '제출완료';
+
+  @override
+  String get appStatusCompleted => '완료';
+
+  @override
+  String get settleStatusPending => '정산대기';
+
+  @override
+  String get settleStatusProcessing => '처리중';
+
+  @override
+  String get settleStatusPaid => '지급완료';
+
+  @override
+  String get password => '비밀번호';
+
+  @override
+  String get showPassword => '비밀번호 표시';
+
+  @override
+  String get hidePassword => '비밀번호 숨기기';
+
+  @override
+  String get lightMode => '라이트 모드';
+
+  @override
+  String get anonymous => '익명';
 }

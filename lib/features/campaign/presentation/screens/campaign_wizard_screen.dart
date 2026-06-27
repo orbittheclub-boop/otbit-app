@@ -6,6 +6,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
+import 'package:orbit/core/l10n/enum_labels.dart';
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/usecase/usecase.dart';
 import 'package:orbit/core/widgets/primary_button.dart';
@@ -186,7 +188,7 @@ class CampaignWizardScreen extends HookConsumerWidget {
             icon: const Icon(Icons.arrow_back_rounded),
             onPressed: goBack,
           ),
-          title: const Text('새 캠페인'),
+          title: Text(context.l10n.newCampaign),
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(3),
             // Smoothly tween the progress bar as steps change.
@@ -251,7 +253,7 @@ class CampaignWizardScreen extends HookConsumerWidget {
                       const SizedBox(height: 10),
                     ],
                     PrimaryButton(
-                      label: isLast ? '등록하기' : '다음',
+                      label: isLast ? context.l10n.register : context.l10n.next,
                       loading: loading.value,
                       onPressed: (!isLast && !canProceed)
                           ? null
@@ -314,19 +316,22 @@ class _StepType extends StatelessWidget {
   final CampaignType? selected;
   final ValueChanged<CampaignType> onSelect;
 
-  static const _items = [
-    (CampaignType.delivery, '배송형', '제품을 보내고 리뷰를 받아요', Icons.local_shipping_outlined),
-    (CampaignType.visit, '방문형', '매장 방문 후 콘텐츠를 만들어요', Icons.storefront_outlined),
-    (CampaignType.press, '기자단', '보도·홍보성 콘텐츠를 제작해요', Icons.article_outlined),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final items = [
+      (CampaignType.delivery, l10n.typeDelivery, l10n.typeDeliveryDesc,
+          Icons.local_shipping_outlined),
+      (CampaignType.visit, l10n.typeVisit, l10n.typeVisitDesc,
+          Icons.storefront_outlined),
+      (CampaignType.press, l10n.typePress, l10n.typePressDesc,
+          Icons.article_outlined),
+    ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _Header('어떤 캠페인인가요?', '진행할 캠페인 유형을 선택해주세요.'),
-        for (final (t, title, sub, icon) in _items) ...[
+        _Header(l10n.wizardTypeTitle, l10n.wizardTypeSub),
+        for (final (t, title, sub, icon) in items) ...[
           _TypeCard(
             title: title,
             subtitle: sub,
@@ -417,28 +422,29 @@ class _StepTitle extends StatelessWidget {
   final VoidCallback onPickThumbnail;
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _Header('캠페인을 소개해주세요', '대표 이미지·제목·카테고리를 입력해주세요.'),
-        const _FieldLabel('대표 이미지 (선택)'),
+        _Header(l10n.wizardInfoTitle, l10n.wizardInfoSubImage),
+        _FieldLabel(l10n.wizardThumbnailOptional),
         _ThumbnailPicker(
           url: thumbnailUrl,
           uploading: uploading,
           onTap: onPickThumbnail,
         ),
         const SizedBox(height: 18),
-        const _FieldLabel('제목'),
+        _FieldLabel(l10n.fieldTitle),
         TextField(
           controller: title,
           textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(hintText: '예) 신상 립밤 체험단 모집'),
+          decoration: InputDecoration(hintText: l10n.wizardTitleHint),
         ),
         const SizedBox(height: 18),
-        const _FieldLabel('카테고리 (선택)'),
+        _FieldLabel(l10n.categoryOptional),
         TextField(
           controller: category,
-          decoration: const InputDecoration(hintText: '예) 뷰티, 푸드, 패션'),
+          decoration: InputDecoration(hintText: l10n.wizardCategoryHint),
         ),
       ],
     );
@@ -482,7 +488,7 @@ class _ThumbnailPicker extends StatelessWidget {
                       Icon(Icons.add_photo_alternate_outlined,
                           size: 34, color: context.palette.textTertiary),
                       const SizedBox(height: 6),
-                      Text('대표 이미지 추가',
+                      Text(context.l10n.wizardAddThumbnail,
                           style:
                               TextStyle(color: context.palette.textSecondary)),
                     ],
@@ -511,13 +517,15 @@ class _ThumbnailPicker extends StatelessWidget {
                       color: Colors.black.withValues(alpha: 0.55),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.edit_rounded, size: 14, color: Colors.white),
-                        SizedBox(width: 4),
-                        Text('변경',
-                            style: TextStyle(color: Colors.white, fontSize: 12)),
+                        const Icon(Icons.edit_rounded,
+                            size: 14, color: Colors.white),
+                        const SizedBox(width: 4),
+                        Text(context.l10n.wizardChange,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 12)),
                       ],
                     ),
                   ),
@@ -544,14 +552,15 @@ class _StepReward extends StatelessWidget {
   final TextEditingController minF;
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _Header('어떤 혜택을 제공하나요?', '제공 혜택과 모집 조건을 입력해주세요.'),
-        const _FieldLabel('제공 혜택 (선택)'),
+        _Header(l10n.wizardRewardTitle, l10n.wizardRewardSub),
+        _FieldLabel(l10n.rewardOptional),
         TextField(
           controller: rewardType,
-          decoration: const InputDecoration(hintText: '예) 제품 무료 제공'),
+          decoration: InputDecoration(hintText: l10n.wizardRewardHint),
         ),
         const SizedBox(height: 18),
         Row(
@@ -561,7 +570,7 @@ class _StepReward extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const _FieldLabel('지급액(원)'),
+                  _FieldLabel(l10n.amountWon),
                   TextField(
                       controller: rewardAmount,
                       keyboardType: TextInputType.number,
@@ -574,7 +583,7 @@ class _StepReward extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const _FieldLabel('모집 인원'),
+                  _FieldLabel(l10n.recruitCountLabel),
                   TextField(
                       controller: recruit,
                       keyboardType: TextInputType.number,
@@ -585,7 +594,7 @@ class _StepReward extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 18),
-        const _FieldLabel('최소 팔로워 수'),
+        _FieldLabel(l10n.minFollowersLabel),
         TextField(
           controller: minF,
           keyboardType: TextInputType.number,
@@ -607,7 +616,7 @@ class _StepDeadline extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _Header('언제까지 모집하나요?', '지원 마감일을 선택해주세요. (선택)'),
+        _Header(context.l10n.wizardDeadlineTitle, context.l10n.wizardDeadlineSub),
         InkWell(
           onTap: onPick,
           borderRadius: BorderRadius.circular(16),
@@ -628,7 +637,7 @@ class _StepDeadline extends StatelessWidget {
                 Text(
                   set
                       ? DateFormat('yyyy년 MM월 dd일').format(deadline!)
-                      : '마감일 선택하기',
+                      : context.l10n.pickDeadline,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -651,22 +660,23 @@ class _StepDetail extends StatelessWidget {
   final TextEditingController guide;
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _Header('캠페인을 자세히 설명해주세요', '소개와 콘텐츠 가이드를 입력해주세요. (선택)'),
-        const _FieldLabel('소개'),
+        _Header(l10n.wizardDetailTitle, l10n.wizardDetailSub),
+        _FieldLabel(l10n.intro),
         TextField(
           controller: desc,
           maxLines: 4,
-          decoration: const InputDecoration(hintText: '캠페인 소개'),
+          decoration: InputDecoration(hintText: l10n.wizardDescHint),
         ),
         const SizedBox(height: 18),
-        const _FieldLabel('콘텐츠 가이드'),
+        _FieldLabel(l10n.contentGuide),
         TextField(
           controller: guide,
           maxLines: 3,
-          decoration: const InputDecoration(hintText: '인플루언서가 지켜야 할 가이드'),
+          decoration: InputDecoration(hintText: l10n.wizardGuideHint),
         ),
       ],
     );
@@ -696,12 +706,13 @@ class _StepReview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final reward = rewardType ??
-        (rewardAmount != null ? '$rewardAmount원' : '-');
+        (rewardAmount != null ? l10n.wonAmount('$rewardAmount') : '-');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _Header('거의 다 됐어요!', '입력한 내용을 확인하고 등록해주세요.'),
+        _Header(l10n.wizardReviewTitle, l10n.wizardReviewSub),
         Container(
           padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
@@ -711,14 +722,15 @@ class _StepReview extends StatelessWidget {
           ),
           child: Column(
             children: [
-              _SummaryRow('유형', type?.label ?? '-'),
-              _SummaryRow('제목', title.isEmpty ? '-' : title),
-              _SummaryRow('혜택', reward),
-              _SummaryRow('모집', '$recruit명'),
+              _SummaryRow(l10n.summaryType,
+                  type == null ? '-' : campaignTypeLabel(l10n, type!)),
+              _SummaryRow(l10n.fieldTitle, title.isEmpty ? '-' : title),
+              _SummaryRow(l10n.summaryReward, reward),
+              _SummaryRow(l10n.summaryRecruit, l10n.wizardRecruitCount(recruit)),
               _SummaryRow(
-                '마감',
+                l10n.summaryDeadline,
                 deadline == null
-                    ? '미설정'
+                    ? l10n.notSet
                     : DateFormat('yyyy.MM.dd').format(deadline!),
                 last: true,
               ),
@@ -728,8 +740,8 @@ class _StepReview extends StatelessWidget {
         const SizedBox(height: 12),
         _CheckTile(
           checked: publishNow,
-          title: '바로 발행하기',
-          subtitle: '체크하면 인플루언서에게 바로 노출돼요.\n해제하면 작성중(draft)으로 저장돼요.',
+          title: l10n.publishNow,
+          subtitle: l10n.wizardPublishNowDesc,
           onTap: () => onTogglePublish(!publishNow),
         ),
       ],

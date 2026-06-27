@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import 'package:orbit/core/l10n/enum_labels.dart';
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/features/campaign/domain/entities/campaign.dart';
 
@@ -108,11 +110,12 @@ class CampaignCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      _Chip(text: campaign.type.label),
+                      _Chip(text: campaignTypeLabel(context.l10n, campaign.type)),
                       if (showStatus) ...[
                         const SizedBox(width: 6),
                         _Chip(
-                          text: campaign.status.label,
+                          text: campaignStatusLabel(
+                              context.l10n, campaign.status),
                           color: campaign.status == CampaignStatus.open
                               ? AppColors.success
                               : context.palette.textTertiary,
@@ -133,7 +136,7 @@ class CampaignCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    campaign.companyName ?? '브랜드',
+                    campaign.companyName ?? context.l10n.brandFallback,
                     style: TextStyle(
                       fontSize: 13,
                       color: context.palette.textSecondary,
@@ -148,8 +151,8 @@ class CampaignCard extends StatelessWidget {
                       Text(
                         campaign.rewardType ??
                             (campaign.rewardAmount != null
-                                ? '${campaign.rewardAmount}원'
-                                : '제공 혜택'),
+                                ? context.l10n.wonAmount('${campaign.rewardAmount}')
+                                : context.l10n.campaignCardRewardFallback),
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -162,7 +165,8 @@ class CampaignCard extends StatelessWidget {
                             size: 14, color: AppColors.primary),
                         const SizedBox(width: 3),
                         Text(
-                          '지원 ${campaign.applicantCount}명',
+                          context.l10n
+                              .campaignCardApplicantCount(campaign.applicantCount!),
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
@@ -171,7 +175,8 @@ class CampaignCard extends StatelessWidget {
                         ),
                       ] else
                         Text(
-                          '모집 ${campaign.recruitCount}명',
+                          context.l10n
+                              .campaignCardRecruitCount(campaign.recruitCount),
                           style: TextStyle(
                             fontSize: 12,
                             color: context.palette.textSecondary,

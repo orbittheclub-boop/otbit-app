@@ -16,14 +16,7 @@ enum ApplicationStatus {
         'completed' => ApplicationStatus.completed,
         _ => ApplicationStatus.pending,
       };
-
-  String get label => switch (this) {
-        ApplicationStatus.pending => '심사중',
-        ApplicationStatus.accepted => '선정',
-        ApplicationStatus.rejected => '미선정',
-        ApplicationStatus.submitted => '제출완료',
-        ApplicationStatus.completed => '완료',
-      };
+  // Localized label: see applicationStatusLabel() in core/l10n/enum_labels.dart.
 }
 
 /// One influencer's application to a campaign. Carries optional joined data for

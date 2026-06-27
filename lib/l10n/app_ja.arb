@@ -178,5 +178,142 @@
         "type": "String"
       }
     }
-  }
+  },
+  "wizardInfoSubImage": "メイン画像・タイトル・カテゴリーを入力してください。",
+  "wizardThumbnailOptional": "メイン画像（任意）",
+  "wizardTitleHint": "例）新作リップ体験モニター募集",
+  "wizardCategoryHint": "例）ビューティー、フード、ファッション",
+  "wizardAddThumbnail": "メイン画像を追加",
+  "wizardChange": "変更",
+  "wizardRewardHint": "例）製品無料提供",
+  "wizardDescHint": "キャンペーン紹介",
+  "wizardGuideHint": "インフルエンサーが守るべきガイド",
+  "wizardRecruitCount": "{count}名",
+  "@wizardRecruitCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wizardPublishNowDesc": "チェックするとインフルエンサーにすぐ公開されます。\n外すと下書き（draft）として保存されます。",
+  "campaignFormDelete": "キャンペーンを削除",
+  "campaignFormEditTitle": "キャンペーンを編集",
+  "campaignFormTitleHint": "キャンペーンタイトル",
+  "campaignFormCategoryHint": "例）ビューティー、フード",
+  "campaignFormReward": "提供特典",
+  "campaignFormDeadline": "締切日",
+  "campaignFormPickDate": "日付を選択",
+  "campaignFormSave": "保存する",
+  "campaignDetailTitle": "キャンペーン詳細",
+  "campaignDetailRewardLabel": "提供",
+  "campaignDetailPeopleCount": "{count}名",
+  "@campaignDetailPeopleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "campaignDetailMinFollowers": "最小フォロワー",
+  "campaignDetailIntroSection": "キャンペーン紹介",
+  "campaignDetailApplySuccess": "応募が完了しました！",
+  "campaignDetailAlreadyApplied": "すでに応募済みのキャンペーンです。",
+  "campaignDetailCancelSuccess": "応募をキャンセルしました。",
+  "campaignDetailDeleteTitle": "キャンペーンを削除",
+  "campaignDetailDeleteConfirm": "このキャンペーンを削除しますか？応募履歴も一緒に消え、元に戻せません。",
+  "campaignDetailDeleteSuccess": "キャンペーンを削除しました。",
+  "campaignDetailApply": "応募する",
+  "campaignDetailCancelApply": "応募を取り消す",
+  "campaignDetailStatusAccepted": "選ばれました ✓",
+  "campaignDetailStatusSubmitted": "提出完了",
+  "campaignDetailStatusCompleted": "完了",
+  "campaignDetailStatusRejected": "選外",
+  "campaignDetailStatusApplied": "応募完了",
+  "campaignDetailViewApplicants": "応募者を見る",
+  "campaignDetailEdit": "編集",
+  "campaignDetailClose": "締め切る",
+  "campaignDetailPublish": "公開する",
+  "campaignCardRewardFallback": "提供特典",
+  "campaignCardApplicantCount": "応募{count}名",
+  "@campaignCardApplicantCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "campaignCardRecruitCount": "募集{count}名",
+  "@campaignCardRecruitCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "applyMyApplicationsTitle": "応募状況",
+  "applyEmpty": "まだ応募したキャンペーンがありません。",
+  "applyFavoritesSection": "⭐ お気に入り",
+  "applyPin": "お気に入り",
+  "applyUnpin": "お気に入り解除",
+  "applyCancelAction": "応募取消",
+  "applyCancelTitle": "応募の取消",
+  "applyCancelConfirm": "このキャンペーンへの応募を取り消しますか？元に戻せません。",
+  "applyNo": "いいえ",
+  "applyResubmitContent": "コンテンツを再提出",
+  "applySubmitContent": "コンテンツを提出",
+  "applyLeaveReview": "キャンペーンのレビューを書く",
+  "applyRatingTitle": "キャンペーン評価",
+  "applySubmitTitle": "コンテンツ提出",
+  "applyContentUrlHint": "コンテンツURL（例：TikTokリンク）",
+  "applyNoteHint": "メモ（任意）",
+  "applySubmit": "提出",
+  "applyContentUrlRequired": "コンテンツURLを入力してください。",
+  "applicantsTitle": "応募者",
+  "applicantsEmpty": "まだ応募者がいません。",
+  "applicantsSettleDone": "精算を登録しました",
+  "applicantsReject": "不採用",
+  "applicantsAccept": "採用",
+  "applicantsSettle": "精算する",
+  "applicantsRatingTitle": "インフルエンサー評価",
+  "applicantsReview": "レビュー",
+  "applicantsSettleAmountTitle": "精算金額",
+  "applicantsAmountHint": "金額（ウォン）",
+  "applicantsWonSuffix": "ウォン",
+  "applicantsConfirm": "確認",
+  "ratingTitleDefault": "レビューを書く",
+  "ratingSubmitted": "レビューを投稿しました！",
+  "ratingCommentHint": "感想（任意）",
+  "ratingSubmit": "投稿",
+  "onboardCancelTitle": "登録をキャンセルしますか？",
+  "onboardCancelBody": "今ここで離れるとログアウトされ、最初の画面に戻ります。",
+  "onboardLeave": "退出する",
+  "onboardCompanyNameHint": "例）オービット コスメ",
+  "onboardNicknameHint": "例）オービットキーパー",
+  "homeBrowseCampaigns": "キャンペーンを探す",
+  "homeSearchCampaigns": "キャンペーンを検索",
+  "homeEmptyFiltered": "条件に合うキャンペーンがありません。\nフィルターを変えてみてください！",
+  "homeEmptyFeed": "進行中のキャンペーンはありません。\nまもなく新しいキャンペーンが登場します！",
+  "homeMyCampaigns": "マイキャンペーン",
+  "homeEmptyMyCampaigns": "まだ登録したキャンペーンがありません。\n最初のキャンペーンを作成しましょう！",
+  "campaignTypeDelivery": "配送型",
+  "campaignTypeVisit": "訪問型",
+  "campaignTypePress": "記者団",
+  "campaignStatusDraft": "下書き",
+  "campaignStatusOpen": "募集中",
+  "campaignStatusClosed": "締切",
+  "campaignStatusCompleted": "完了",
+  "appStatusPending": "審査中",
+  "appStatusAccepted": "選定",
+  "appStatusRejected": "選外",
+  "appStatusSubmitted": "提出済み",
+  "appStatusCompleted": "完了",
+  "settleStatusPending": "精算待ち",
+  "settleStatusProcessing": "処理中",
+  "settleStatusPaid": "支払済み",
+  "password": "パスワード",
+  "showPassword": "パスワードを表示",
+  "hidePassword": "パスワードを非表示",
+  "lightMode": "ライトモード",
+  "anonymous": "匿名"
 }

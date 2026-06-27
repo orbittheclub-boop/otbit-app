@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 
 /// Password input with a show/hide (eye) toggle.
@@ -8,13 +9,13 @@ class PasswordField extends HookWidget {
   const PasswordField({
     super.key,
     required this.controller,
-    this.hint = '비밀번호',
+    this.hint,
     this.textInputAction,
     this.onSubmitted,
   });
 
   final TextEditingController controller;
-  final String hint;
+  final String? hint;
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onSubmitted;
 
@@ -27,9 +28,11 @@ class PasswordField extends HookWidget {
       textInputAction: textInputAction,
       onSubmitted: onSubmitted,
       decoration: InputDecoration(
-        hintText: hint,
+        hintText: hint ?? context.l10n.password,
         suffixIcon: IconButton(
-          tooltip: obscure.value ? '비밀번호 표시' : '비밀번호 숨기기',
+          tooltip: obscure.value
+              ? context.l10n.showPassword
+              : context.l10n.hidePassword,
           icon: Icon(
             obscure.value
                 ? Icons.visibility_off_rounded

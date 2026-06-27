@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/usecase/usecase.dart';
 import 'package:orbit/features/review/presentation/providers/review_providers.dart';
@@ -8,7 +9,7 @@ import 'package:orbit/features/review/presentation/providers/review_providers.da
 Future<void> showRatingDialog(
   BuildContext context,
   String applicationId, {
-  String title = '리뷰 남기기',
+  String? title,
 }) {
   return showDialog<void>(
     context: context,
@@ -20,11 +21,11 @@ class RatingDialog extends ConsumerStatefulWidget {
   const RatingDialog({
     super.key,
     required this.applicationId,
-    this.title = '리뷰 남기기',
+    this.title,
   });
 
   final String applicationId;
-  final String title;
+  final String? title;
 
   @override
   ConsumerState<RatingDialog> createState() => _RatingDialogState();
@@ -56,9 +57,9 @@ class _RatingDialogState extends ConsumerState<RatingDialog> {
     switch (res) {
       case Ok():
         final messenger = ScaffoldMessenger.of(context);
+        final msg = context.l10n.ratingSubmitted;
         Navigator.of(context).pop();
-        messenger.showSnackBar(
-            const SnackBar(content: Text('리뷰가 등록됐어요!')));
+        messenger.showSnackBar(SnackBar(content: Text(msg)));
       case Err(:final failure):
         setState(() {
           _loading = false;
@@ -70,7 +71,7 @@ class _RatingDialogState extends ConsumerState<RatingDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.title),
+      title: Text(widget.title ?? context.l10n.ratingTitleDefault),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -90,7 +91,7 @@ class _RatingDialogState extends ConsumerState<RatingDialog> {
           ),
           TextField(
             controller: _comment,
-            decoration: const InputDecoration(hintText: '후기 (선택)'),
+            decoration: InputDecoration(hintText: context.l10n.ratingCommentHint),
           ),
           if (_error != null) ...[
             const SizedBox(height: 8),
@@ -102,7 +103,7 @@ class _RatingDialogState extends ConsumerState<RatingDialog> {
       actions: [
         TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('취소')),
+            child: Text(context.l10n.cancel)),
         TextButton(
           onPressed: _loading ? null : _save,
           child: _loading
@@ -110,7 +111,7 @@ class _RatingDialogState extends ConsumerState<RatingDialog> {
                   width: 18,
                   height: 18,
                   child: CircularProgressIndicator(strokeWidth: 2))
-              : const Text('등록'),
+              : Text(context.l10n.ratingSubmit),
         ),
       ],
     );

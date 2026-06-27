@@ -122,7 +122,9 @@ class SignupScreen extends HookConsumerWidget {
           TextField(
             controller: name,
             decoration: InputDecoration(
-              hintText: isCompany ? '예) 오비트 코스메틱' : '예) 오비트지기',
+              hintText: isCompany
+                  ? context.l10n.onboardCompanyNameHint
+                  : context.l10n.onboardNicknameHint,
             ),
           ),
           const SizedBox(height: 16),

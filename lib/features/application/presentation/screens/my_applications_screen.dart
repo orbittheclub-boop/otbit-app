@@ -3,6 +3,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/enum_labels.dart';
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/usecase/usecase.dart';
 import 'package:orbit/core/widgets/app_toast.dart';
@@ -20,7 +22,7 @@ class MyApplicationsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(myApplicationsProvider);
     return Scaffold(
-      appBar: AppBar(title: const Text('내 지원 현황')),
+      appBar: AppBar(title: Text(context.l10n.applyMyApplicationsTitle)),
       body: RefreshIndicator(
         color: AppColors.primary,
         onRefresh: () async => ref.invalidate(myApplicationsProvider),
@@ -30,7 +32,7 @@ class MyApplicationsScreen extends ConsumerWidget {
           error: (e, _) => _CenterText('$e'),
           data: (list) {
             if (list.isEmpty) {
-              return const _CenterText('아직 지원한 캠페인이 없어요.');
+              return _CenterText(context.l10n.applyEmpty);
             }
             // 즐겨찾기(로컬 핀)한 지원을 위로 분리. 내 찜(캠페인 북마크)과는 별개.
             final pinnedIds = ref.watch(pinnedApplicationsProvider);
@@ -40,12 +42,12 @@ class MyApplicationsScreen extends ConsumerWidget {
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
               children: [
                 if (pinned.isNotEmpty) ...[
-                  const _SectionHeader('⭐ 즐겨찾기'),
+                  _SectionHeader(context.l10n.applyFavoritesSection),
                   for (final a in pinned)
                     _ApplicationTile(application: a, pinned: true),
                 ],
                 if (rest.isNotEmpty) ...[
-                  if (pinned.isNotEmpty) const _SectionHeader('전체'),
+                  if (pinned.isNotEmpty) _SectionHeader(context.l10n.boardAll),
                   for (final a in rest)
                     _ApplicationTile(application: a, pinned: false),
                 ],
@@ -88,7 +90,7 @@ class _ApplicationTile extends ConsumerWidget {
               foregroundColor: AppColors.onPrimary,
               borderRadius: BorderRadius.circular(14),
               icon: pinned ? Icons.star_rounded : Icons.star_outline_rounded,
-              label: pinned ? '즐겨찾기 해제' : '즐겨찾기',
+              label: pinned ? context.l10n.applyUnpin : context.l10n.applyPin,
             ),
           ],
         ),
@@ -104,7 +106,7 @@ class _ApplicationTile extends ConsumerWidget {
                     foregroundColor: AppColors.onPrimary,
                     borderRadius: BorderRadius.circular(14),
                     icon: Icons.close_rounded,
-                    label: '지원취소',
+                    label: context.l10n.applyCancelAction,
                   ),
                 ],
               )
@@ -137,7 +139,7 @@ class _ApplicationTile extends ConsumerWidget {
                       ],
                       Expanded(
                         child: Text(
-                          application.campaignTitle ?? '캠페인',
+                          application.campaignTitle ?? context.l10n.campaignFallback,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -148,7 +150,8 @@ class _ApplicationTile extends ConsumerWidget {
                       ),
                       const SizedBox(width: 8),
                       StatusChip(
-                          label: application.status.label,
+                          label: applicationStatusLabel(
+                              context.l10n, application.status),
                           status: application.status),
                       const SizedBox(width: 4),
                       Icon(Icons.chevron_right_rounded,
@@ -157,7 +160,7 @@ class _ApplicationTile extends ConsumerWidget {
                   ),
           const SizedBox(height: 4),
           Text(
-            application.companyName ?? '브랜드',
+            application.companyName ?? context.l10n.brandFallback,
             style: TextStyle(color: context.palette.textSecondary, fontSize: 13),
           ),
           if (canSubmit) ...[
@@ -168,8 +171,8 @@ class _ApplicationTile extends ConsumerWidget {
                 child: OutlinedButton(
                   onPressed: () => _submit(context, ref),
                   child: Text(application.status == ApplicationStatus.submitted
-                      ? '콘텐츠 다시 제출'
-                      : '콘텐츠 제출하기'),
+                      ? context.l10n.applyResubmitContent
+                      : context.l10n.applySubmitContent),
                 ),
               ),
             ),
@@ -181,8 +184,8 @@ class _ApplicationTile extends ConsumerWidget {
               width: double.infinity,
               child: TextButton(
                 onPressed: () => showRatingDialog(context, application.id,
-                    title: '캠페인 평가'),
-                child: const Text('캠페인 리뷰 남기기'),
+                    title: context.l10n.applyRatingTitle),
+                child: Text(context.l10n.applyLeaveReview),
               ),
             ),
           ],
@@ -199,16 +202,16 @@ class _ApplicationTile extends ConsumerWidget {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('지원 취소'),
-        content: const Text('이 캠페인 지원을 취소할까요? 되돌릴 수 없어요.'),
+        title: Text(context.l10n.applyCancelTitle),
+        content: Text(context.l10n.applyCancelConfirm),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('아니요')),
+              child: Text(context.l10n.applyNo)),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
             style: TextButton.styleFrom(foregroundColor: AppColors.danger),
-            child: const Text('지원취소'),
+            child: Text(context.l10n.applyCancelAction),
           ),
         ],
       ),
@@ -257,7 +260,7 @@ class _SubmitDialogState extends ConsumerState<_SubmitDialog> {
 
   Future<void> _save() async {
     if (_url.text.trim().isEmpty) {
-      setState(() => _error = '콘텐츠 URL을 입력해주세요.');
+      setState(() => _error = context.l10n.applyContentUrlRequired);
       return;
     }
     setState(() {
@@ -284,18 +287,18 @@ class _SubmitDialogState extends ConsumerState<_SubmitDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('콘텐츠 제출'),
+      title: Text(context.l10n.applySubmitTitle),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             controller: _url,
-            decoration: const InputDecoration(hintText: '콘텐츠 URL (예: TikTok 링크)'),
+            decoration: InputDecoration(hintText: context.l10n.applyContentUrlHint),
           ),
           const SizedBox(height: 10),
           TextField(
             controller: _note,
-            decoration: const InputDecoration(hintText: '메모 (선택)'),
+            decoration: InputDecoration(hintText: context.l10n.applyNoteHint),
           ),
           if (_error != null) ...[
             const SizedBox(height: 10),
@@ -307,7 +310,7 @@ class _SubmitDialogState extends ConsumerState<_SubmitDialog> {
       actions: [
         TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('취소')),
+            child: Text(context.l10n.cancel)),
         TextButton(
           onPressed: _loading ? null : _save,
           child: _loading
@@ -315,7 +318,7 @@ class _SubmitDialogState extends ConsumerState<_SubmitDialog> {
                   width: 18,
                   height: 18,
                   child: CircularProgressIndicator(strokeWidth: 2))
-              : const Text('제출'),
+              : Text(context.l10n.applySubmit),
         ),
       ],
     );

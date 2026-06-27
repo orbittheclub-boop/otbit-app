@@ -12,12 +12,7 @@ enum SettlementStatus {
         'paid' => SettlementStatus.paid,
         _ => SettlementStatus.pending,
       };
-
-  String get label => switch (this) {
-        SettlementStatus.pending => '정산대기',
-        SettlementStatus.processing => '처리중',
-        SettlementStatus.paid => '지급완료',
-      };
+  // Localized label: see settlementStatusLabel() in core/l10n/enum_labels.dart.
 }
 
 @freezed

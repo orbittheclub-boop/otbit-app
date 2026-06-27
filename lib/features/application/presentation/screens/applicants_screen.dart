@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/enum_labels.dart';
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/usecase/usecase.dart';
 import 'package:orbit/core/widgets/zoom_tap.dart';
@@ -19,7 +21,7 @@ class ApplicantsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(applicantsProvider(campaignId));
     return Scaffold(
-      appBar: AppBar(title: const Text('지원자')),
+      appBar: AppBar(title: Text(context.l10n.applicantsTitle)),
       body: RefreshIndicator(
         color: AppColors.primary,
         onRefresh: () async => ref.invalidate(applicantsProvider(campaignId)),
@@ -28,7 +30,7 @@ class ApplicantsScreen extends ConsumerWidget {
               child: CircularProgressIndicator(color: AppColors.primary)),
           error: (e, _) => _CenterText('$e'),
           data: (list) => list.isEmpty
-              ? const _CenterText('아직 지원자가 없어요.')
+              ? _CenterText(context.l10n.applicantsEmpty)
               : ListView.separated(
                   padding: const EdgeInsets.all(16),
                   itemCount: list.length,
@@ -66,7 +68,7 @@ class _ApplicantTile extends ConsumerWidget {
         .create(application.id, amount: amount, paid: true);
     if (!context.mounted) return;
     final msg = switch (res) {
-      Ok() => '정산 등록 완료',
+      Ok() => context.l10n.applicantsSettleDone,
       Err(:final failure) => failure.message,
     };
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
@@ -103,7 +105,7 @@ class _ApplicantTile extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      application.influencerName ?? '인플루언서',
+                      application.influencerName ?? context.l10n.accountTypeInfluencer,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 15,
@@ -135,7 +137,10 @@ class _ApplicantTile extends ConsumerWidget {
                   ],
                 ),
               ),
-              StatusChip(label: application.status.label, status: application.status),
+              StatusChip(
+                  label: applicationStatusLabel(
+                      context.l10n, application.status),
+                  status: application.status),
             ],
           ),
           if (application.message != null && application.message!.isNotEmpty) ...[
@@ -151,7 +156,7 @@ class _ApplicantTile extends ConsumerWidget {
                   child: ZoomTap(
                     child: OutlinedButton(
                       onPressed: () => _decide(ref, false),
-                      child: const Text('미선정'),
+                      child: Text(context.l10n.applicantsReject),
                     ),
                   ),
                 ),
@@ -160,7 +165,7 @@ class _ApplicantTile extends ConsumerWidget {
                   child: ZoomTap(
                     child: ElevatedButton(
                       onPressed: () => _decide(ref, true),
-                      child: const Text('선정'),
+                      child: Text(context.l10n.applicantsAccept),
                     ),
                   ),
                 ),
@@ -175,7 +180,7 @@ class _ApplicantTile extends ConsumerWidget {
                   child: ZoomTap(
                     child: OutlinedButton(
                       onPressed: () => _settle(context, ref),
-                      child: const Text('정산하기'),
+                      child: Text(context.l10n.applicantsSettle),
                     ),
                   ),
                 ),
@@ -184,8 +189,8 @@ class _ApplicantTile extends ConsumerWidget {
                   child: ZoomTap(
                     child: ElevatedButton(
                       onPressed: () => showRatingDialog(context, application.id,
-                          title: '인플루언서 평가'),
-                      child: const Text('리뷰'),
+                          title: context.l10n.applicantsRatingTitle),
+                      child: Text(context.l10n.applicantsReview),
                     ),
                   ),
                 ),
@@ -216,21 +221,23 @@ class _AmountDialogState extends State<_AmountDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('정산 금액'),
+      title: Text(context.l10n.applicantsSettleAmountTitle),
       content: TextField(
         controller: _amount,
         keyboardType: TextInputType.number,
         autofocus: true,
-        decoration: const InputDecoration(hintText: '금액(원)', suffixText: '원'),
+        decoration: InputDecoration(
+            hintText: context.l10n.applicantsAmountHint,
+            suffixText: context.l10n.applicantsWonSuffix),
       ),
       actions: [
         TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('취소')),
+            child: Text(context.l10n.cancel)),
         TextButton(
           onPressed: () =>
               Navigator.of(context).pop(int.tryParse(_amount.text) ?? 0),
-          child: const Text('확인'),
+          child: Text(context.l10n.applicantsConfirm),
         ),
       ],
     );

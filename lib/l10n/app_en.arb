@@ -178,5 +178,142 @@
         "type": "String"
       }
     }
-  }
+  },
+  "wizardInfoSubImage": "Enter a cover image, title, and category.",
+  "wizardThumbnailOptional": "Cover image (optional)",
+  "wizardTitleHint": "e.g. Recruiting testers for a new lip balm",
+  "wizardCategoryHint": "e.g. Beauty, Food, Fashion",
+  "wizardAddThumbnail": "Add cover image",
+  "wizardChange": "Change",
+  "wizardRewardHint": "e.g. Free product provided",
+  "wizardDescHint": "Campaign description",
+  "wizardGuideHint": "Guidelines influencers should follow",
+  "wizardRecruitCount": "{count} people",
+  "@wizardRecruitCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wizardPublishNowDesc": "When checked, it's shown to influencers right away.\nWhen unchecked, it's saved as a draft.",
+  "campaignFormDelete": "Delete campaign",
+  "campaignFormEditTitle": "Edit campaign",
+  "campaignFormTitleHint": "Campaign title",
+  "campaignFormCategoryHint": "e.g. Beauty, Food",
+  "campaignFormReward": "Reward",
+  "campaignFormDeadline": "Deadline",
+  "campaignFormPickDate": "Select date",
+  "campaignFormSave": "Save",
+  "campaignDetailTitle": "Campaign details",
+  "campaignDetailRewardLabel": "Reward",
+  "campaignDetailPeopleCount": "{count} people",
+  "@campaignDetailPeopleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "campaignDetailMinFollowers": "Min. followers",
+  "campaignDetailIntroSection": "About the campaign",
+  "campaignDetailApplySuccess": "Your application is complete!",
+  "campaignDetailAlreadyApplied": "You've already applied to this campaign.",
+  "campaignDetailCancelSuccess": "Your application was canceled.",
+  "campaignDetailDeleteTitle": "Delete campaign",
+  "campaignDetailDeleteConfirm": "Delete this campaign? All applications will be removed too, and this can't be undone.",
+  "campaignDetailDeleteSuccess": "Campaign deleted.",
+  "campaignDetailApply": "Apply",
+  "campaignDetailCancelApply": "Cancel application",
+  "campaignDetailStatusAccepted": "Selected ✓",
+  "campaignDetailStatusSubmitted": "Submitted",
+  "campaignDetailStatusCompleted": "Completed",
+  "campaignDetailStatusRejected": "Not selected",
+  "campaignDetailStatusApplied": "Applied",
+  "campaignDetailViewApplicants": "View applicants",
+  "campaignDetailEdit": "Edit",
+  "campaignDetailClose": "Close",
+  "campaignDetailPublish": "Publish",
+  "campaignCardRewardFallback": "Reward",
+  "campaignCardApplicantCount": "{count} applied",
+  "@campaignCardApplicantCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "campaignCardRecruitCount": "{count} spots",
+  "@campaignCardRecruitCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "applyMyApplicationsTitle": "My Applications",
+  "applyEmpty": "You haven't applied to any campaigns yet.",
+  "applyFavoritesSection": "⭐ Favorites",
+  "applyPin": "Favorite",
+  "applyUnpin": "Unfavorite",
+  "applyCancelAction": "Cancel application",
+  "applyCancelTitle": "Cancel application",
+  "applyCancelConfirm": "Cancel your application to this campaign? This can't be undone.",
+  "applyNo": "No",
+  "applyResubmitContent": "Resubmit content",
+  "applySubmitContent": "Submit content",
+  "applyLeaveReview": "Leave a campaign review",
+  "applyRatingTitle": "Rate campaign",
+  "applySubmitTitle": "Submit content",
+  "applyContentUrlHint": "Content URL (e.g. TikTok link)",
+  "applyNoteHint": "Note (optional)",
+  "applySubmit": "Submit",
+  "applyContentUrlRequired": "Please enter the content URL.",
+  "applicantsTitle": "Applicants",
+  "applicantsEmpty": "No applicants yet.",
+  "applicantsSettleDone": "Settlement registered",
+  "applicantsReject": "Reject",
+  "applicantsAccept": "Accept",
+  "applicantsSettle": "Settle",
+  "applicantsRatingTitle": "Rate influencer",
+  "applicantsReview": "Review",
+  "applicantsSettleAmountTitle": "Settlement amount",
+  "applicantsAmountHint": "Amount (KRW)",
+  "applicantsWonSuffix": "KRW",
+  "applicantsConfirm": "Confirm",
+  "ratingTitleDefault": "Leave a review",
+  "ratingSubmitted": "Your review has been posted!",
+  "ratingCommentHint": "Comment (optional)",
+  "ratingSubmit": "Submit",
+  "onboardCancelTitle": "Cancel sign-up?",
+  "onboardCancelBody": "If you leave now, you'll be logged out and returned to the start screen.",
+  "onboardLeave": "Leave",
+  "onboardCompanyNameHint": "e.g. Orbit Cosmetics",
+  "onboardNicknameHint": "e.g. orbitkeeper",
+  "homeBrowseCampaigns": "Browse Campaigns",
+  "homeSearchCampaigns": "Search campaigns",
+  "homeEmptyFiltered": "No campaigns match your filters.\nTry changing them!",
+  "homeEmptyFeed": "No campaigns are running right now.\nNew ones are coming soon!",
+  "homeMyCampaigns": "My Campaigns",
+  "homeEmptyMyCampaigns": "You haven't created any campaigns yet.\nCreate your first one!",
+  "campaignTypeDelivery": "Shipping",
+  "campaignTypeVisit": "Visit",
+  "campaignTypePress": "Press",
+  "campaignStatusDraft": "Draft",
+  "campaignStatusOpen": "Open",
+  "campaignStatusClosed": "Closed",
+  "campaignStatusCompleted": "Completed",
+  "appStatusPending": "Reviewing",
+  "appStatusAccepted": "Selected",
+  "appStatusRejected": "Not selected",
+  "appStatusSubmitted": "Submitted",
+  "appStatusCompleted": "Completed",
+  "settleStatusPending": "Pending",
+  "settleStatusProcessing": "Processing",
+  "settleStatusPaid": "Paid",
+  "password": "Password",
+  "showPassword": "Show password",
+  "hidePassword": "Hide password",
+  "lightMode": "Light mode",
+  "anonymous": "Anonymous"
 }

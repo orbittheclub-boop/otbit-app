@@ -475,4 +475,347 @@ class AppLocalizationsEn extends AppLocalizations {
   String wonAmount(String amount) {
     return '₩$amount';
   }
+
+  @override
+  String get wizardInfoSubImage => 'Enter a cover image, title, and category.';
+
+  @override
+  String get wizardThumbnailOptional => 'Cover image (optional)';
+
+  @override
+  String get wizardTitleHint => 'e.g. Recruiting testers for a new lip balm';
+
+  @override
+  String get wizardCategoryHint => 'e.g. Beauty, Food, Fashion';
+
+  @override
+  String get wizardAddThumbnail => 'Add cover image';
+
+  @override
+  String get wizardChange => 'Change';
+
+  @override
+  String get wizardRewardHint => 'e.g. Free product provided';
+
+  @override
+  String get wizardDescHint => 'Campaign description';
+
+  @override
+  String get wizardGuideHint => 'Guidelines influencers should follow';
+
+  @override
+  String wizardRecruitCount(int count) {
+    return '$count people';
+  }
+
+  @override
+  String get wizardPublishNowDesc =>
+      'When checked, it\'s shown to influencers right away.\nWhen unchecked, it\'s saved as a draft.';
+
+  @override
+  String get campaignFormDelete => 'Delete campaign';
+
+  @override
+  String get campaignFormEditTitle => 'Edit campaign';
+
+  @override
+  String get campaignFormTitleHint => 'Campaign title';
+
+  @override
+  String get campaignFormCategoryHint => 'e.g. Beauty, Food';
+
+  @override
+  String get campaignFormReward => 'Reward';
+
+  @override
+  String get campaignFormDeadline => 'Deadline';
+
+  @override
+  String get campaignFormPickDate => 'Select date';
+
+  @override
+  String get campaignFormSave => 'Save';
+
+  @override
+  String get campaignDetailTitle => 'Campaign details';
+
+  @override
+  String get campaignDetailRewardLabel => 'Reward';
+
+  @override
+  String campaignDetailPeopleCount(int count) {
+    return '$count people';
+  }
+
+  @override
+  String get campaignDetailMinFollowers => 'Min. followers';
+
+  @override
+  String get campaignDetailIntroSection => 'About the campaign';
+
+  @override
+  String get campaignDetailApplySuccess => 'Your application is complete!';
+
+  @override
+  String get campaignDetailAlreadyApplied =>
+      'You\'ve already applied to this campaign.';
+
+  @override
+  String get campaignDetailCancelSuccess => 'Your application was canceled.';
+
+  @override
+  String get campaignDetailDeleteTitle => 'Delete campaign';
+
+  @override
+  String get campaignDetailDeleteConfirm =>
+      'Delete this campaign? All applications will be removed too, and this can\'t be undone.';
+
+  @override
+  String get campaignDetailDeleteSuccess => 'Campaign deleted.';
+
+  @override
+  String get campaignDetailApply => 'Apply';
+
+  @override
+  String get campaignDetailCancelApply => 'Cancel application';
+
+  @override
+  String get campaignDetailStatusAccepted => 'Selected ✓';
+
+  @override
+  String get campaignDetailStatusSubmitted => 'Submitted';
+
+  @override
+  String get campaignDetailStatusCompleted => 'Completed';
+
+  @override
+  String get campaignDetailStatusRejected => 'Not selected';
+
+  @override
+  String get campaignDetailStatusApplied => 'Applied';
+
+  @override
+  String get campaignDetailViewApplicants => 'View applicants';
+
+  @override
+  String get campaignDetailEdit => 'Edit';
+
+  @override
+  String get campaignDetailClose => 'Close';
+
+  @override
+  String get campaignDetailPublish => 'Publish';
+
+  @override
+  String get campaignCardRewardFallback => 'Reward';
+
+  @override
+  String campaignCardApplicantCount(int count) {
+    return '$count applied';
+  }
+
+  @override
+  String campaignCardRecruitCount(int count) {
+    return '$count spots';
+  }
+
+  @override
+  String get applyMyApplicationsTitle => 'My Applications';
+
+  @override
+  String get applyEmpty => 'You haven\'t applied to any campaigns yet.';
+
+  @override
+  String get applyFavoritesSection => '⭐ Favorites';
+
+  @override
+  String get applyPin => 'Favorite';
+
+  @override
+  String get applyUnpin => 'Unfavorite';
+
+  @override
+  String get applyCancelAction => 'Cancel application';
+
+  @override
+  String get applyCancelTitle => 'Cancel application';
+
+  @override
+  String get applyCancelConfirm =>
+      'Cancel your application to this campaign? This can\'t be undone.';
+
+  @override
+  String get applyNo => 'No';
+
+  @override
+  String get applyResubmitContent => 'Resubmit content';
+
+  @override
+  String get applySubmitContent => 'Submit content';
+
+  @override
+  String get applyLeaveReview => 'Leave a campaign review';
+
+  @override
+  String get applyRatingTitle => 'Rate campaign';
+
+  @override
+  String get applySubmitTitle => 'Submit content';
+
+  @override
+  String get applyContentUrlHint => 'Content URL (e.g. TikTok link)';
+
+  @override
+  String get applyNoteHint => 'Note (optional)';
+
+  @override
+  String get applySubmit => 'Submit';
+
+  @override
+  String get applyContentUrlRequired => 'Please enter the content URL.';
+
+  @override
+  String get applicantsTitle => 'Applicants';
+
+  @override
+  String get applicantsEmpty => 'No applicants yet.';
+
+  @override
+  String get applicantsSettleDone => 'Settlement registered';
+
+  @override
+  String get applicantsReject => 'Reject';
+
+  @override
+  String get applicantsAccept => 'Accept';
+
+  @override
+  String get applicantsSettle => 'Settle';
+
+  @override
+  String get applicantsRatingTitle => 'Rate influencer';
+
+  @override
+  String get applicantsReview => 'Review';
+
+  @override
+  String get applicantsSettleAmountTitle => 'Settlement amount';
+
+  @override
+  String get applicantsAmountHint => 'Amount (KRW)';
+
+  @override
+  String get applicantsWonSuffix => 'KRW';
+
+  @override
+  String get applicantsConfirm => 'Confirm';
+
+  @override
+  String get ratingTitleDefault => 'Leave a review';
+
+  @override
+  String get ratingSubmitted => 'Your review has been posted!';
+
+  @override
+  String get ratingCommentHint => 'Comment (optional)';
+
+  @override
+  String get ratingSubmit => 'Submit';
+
+  @override
+  String get onboardCancelTitle => 'Cancel sign-up?';
+
+  @override
+  String get onboardCancelBody =>
+      'If you leave now, you\'ll be logged out and returned to the start screen.';
+
+  @override
+  String get onboardLeave => 'Leave';
+
+  @override
+  String get onboardCompanyNameHint => 'e.g. Orbit Cosmetics';
+
+  @override
+  String get onboardNicknameHint => 'e.g. orbitkeeper';
+
+  @override
+  String get homeBrowseCampaigns => 'Browse Campaigns';
+
+  @override
+  String get homeSearchCampaigns => 'Search campaigns';
+
+  @override
+  String get homeEmptyFiltered =>
+      'No campaigns match your filters.\nTry changing them!';
+
+  @override
+  String get homeEmptyFeed =>
+      'No campaigns are running right now.\nNew ones are coming soon!';
+
+  @override
+  String get homeMyCampaigns => 'My Campaigns';
+
+  @override
+  String get homeEmptyMyCampaigns =>
+      'You haven\'t created any campaigns yet.\nCreate your first one!';
+
+  @override
+  String get campaignTypeDelivery => 'Shipping';
+
+  @override
+  String get campaignTypeVisit => 'Visit';
+
+  @override
+  String get campaignTypePress => 'Press';
+
+  @override
+  String get campaignStatusDraft => 'Draft';
+
+  @override
+  String get campaignStatusOpen => 'Open';
+
+  @override
+  String get campaignStatusClosed => 'Closed';
+
+  @override
+  String get campaignStatusCompleted => 'Completed';
+
+  @override
+  String get appStatusPending => 'Reviewing';
+
+  @override
+  String get appStatusAccepted => 'Selected';
+
+  @override
+  String get appStatusRejected => 'Not selected';
+
+  @override
+  String get appStatusSubmitted => 'Submitted';
+
+  @override
+  String get appStatusCompleted => 'Completed';
+
+  @override
+  String get settleStatusPending => 'Pending';
+
+  @override
+  String get settleStatusProcessing => 'Processing';
+
+  @override
+  String get settleStatusPaid => 'Paid';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get showPassword => 'Show password';
+
+  @override
+  String get hidePassword => 'Hide password';
+
+  @override
+  String get lightMode => 'Light mode';
+
+  @override
+  String get anonymous => 'Anonymous';
 }

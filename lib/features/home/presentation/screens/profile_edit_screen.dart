@@ -121,7 +121,9 @@ class ProfileEditScreen extends HookConsumerWidget {
                 textInputAction: TextInputAction.done,
                 onSubmitted: (_) => save(),
                 decoration: InputDecoration(
-                  hintText: isCompany ? '예) 오비트 코스메틱' : '예) 오비트지기',
+                  hintText: isCompany
+                      ? context.l10n.onboardCompanyNameHint
+                      : context.l10n.onboardNicknameHint,
                 ),
               ),
               if (error.value != null) ...[

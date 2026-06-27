@@ -469,4 +469,341 @@ class AppLocalizationsJa extends AppLocalizations {
   String wonAmount(String amount) {
     return '$amount円';
   }
+
+  @override
+  String get wizardInfoSubImage => 'メイン画像・タイトル・カテゴリーを入力してください。';
+
+  @override
+  String get wizardThumbnailOptional => 'メイン画像（任意）';
+
+  @override
+  String get wizardTitleHint => '例）新作リップ体験モニター募集';
+
+  @override
+  String get wizardCategoryHint => '例）ビューティー、フード、ファッション';
+
+  @override
+  String get wizardAddThumbnail => 'メイン画像を追加';
+
+  @override
+  String get wizardChange => '変更';
+
+  @override
+  String get wizardRewardHint => '例）製品無料提供';
+
+  @override
+  String get wizardDescHint => 'キャンペーン紹介';
+
+  @override
+  String get wizardGuideHint => 'インフルエンサーが守るべきガイド';
+
+  @override
+  String wizardRecruitCount(int count) {
+    return '$count名';
+  }
+
+  @override
+  String get wizardPublishNowDesc =>
+      'チェックするとインフルエンサーにすぐ公開されます。\n外すと下書き（draft）として保存されます。';
+
+  @override
+  String get campaignFormDelete => 'キャンペーンを削除';
+
+  @override
+  String get campaignFormEditTitle => 'キャンペーンを編集';
+
+  @override
+  String get campaignFormTitleHint => 'キャンペーンタイトル';
+
+  @override
+  String get campaignFormCategoryHint => '例）ビューティー、フード';
+
+  @override
+  String get campaignFormReward => '提供特典';
+
+  @override
+  String get campaignFormDeadline => '締切日';
+
+  @override
+  String get campaignFormPickDate => '日付を選択';
+
+  @override
+  String get campaignFormSave => '保存する';
+
+  @override
+  String get campaignDetailTitle => 'キャンペーン詳細';
+
+  @override
+  String get campaignDetailRewardLabel => '提供';
+
+  @override
+  String campaignDetailPeopleCount(int count) {
+    return '$count名';
+  }
+
+  @override
+  String get campaignDetailMinFollowers => '最小フォロワー';
+
+  @override
+  String get campaignDetailIntroSection => 'キャンペーン紹介';
+
+  @override
+  String get campaignDetailApplySuccess => '応募が完了しました！';
+
+  @override
+  String get campaignDetailAlreadyApplied => 'すでに応募済みのキャンペーンです。';
+
+  @override
+  String get campaignDetailCancelSuccess => '応募をキャンセルしました。';
+
+  @override
+  String get campaignDetailDeleteTitle => 'キャンペーンを削除';
+
+  @override
+  String get campaignDetailDeleteConfirm =>
+      'このキャンペーンを削除しますか？応募履歴も一緒に消え、元に戻せません。';
+
+  @override
+  String get campaignDetailDeleteSuccess => 'キャンペーンを削除しました。';
+
+  @override
+  String get campaignDetailApply => '応募する';
+
+  @override
+  String get campaignDetailCancelApply => '応募を取り消す';
+
+  @override
+  String get campaignDetailStatusAccepted => '選ばれました ✓';
+
+  @override
+  String get campaignDetailStatusSubmitted => '提出完了';
+
+  @override
+  String get campaignDetailStatusCompleted => '完了';
+
+  @override
+  String get campaignDetailStatusRejected => '選外';
+
+  @override
+  String get campaignDetailStatusApplied => '応募完了';
+
+  @override
+  String get campaignDetailViewApplicants => '応募者を見る';
+
+  @override
+  String get campaignDetailEdit => '編集';
+
+  @override
+  String get campaignDetailClose => '締め切る';
+
+  @override
+  String get campaignDetailPublish => '公開する';
+
+  @override
+  String get campaignCardRewardFallback => '提供特典';
+
+  @override
+  String campaignCardApplicantCount(int count) {
+    return '応募$count名';
+  }
+
+  @override
+  String campaignCardRecruitCount(int count) {
+    return '募集$count名';
+  }
+
+  @override
+  String get applyMyApplicationsTitle => '応募状況';
+
+  @override
+  String get applyEmpty => 'まだ応募したキャンペーンがありません。';
+
+  @override
+  String get applyFavoritesSection => '⭐ お気に入り';
+
+  @override
+  String get applyPin => 'お気に入り';
+
+  @override
+  String get applyUnpin => 'お気に入り解除';
+
+  @override
+  String get applyCancelAction => '応募取消';
+
+  @override
+  String get applyCancelTitle => '応募の取消';
+
+  @override
+  String get applyCancelConfirm => 'このキャンペーンへの応募を取り消しますか？元に戻せません。';
+
+  @override
+  String get applyNo => 'いいえ';
+
+  @override
+  String get applyResubmitContent => 'コンテンツを再提出';
+
+  @override
+  String get applySubmitContent => 'コンテンツを提出';
+
+  @override
+  String get applyLeaveReview => 'キャンペーンのレビューを書く';
+
+  @override
+  String get applyRatingTitle => 'キャンペーン評価';
+
+  @override
+  String get applySubmitTitle => 'コンテンツ提出';
+
+  @override
+  String get applyContentUrlHint => 'コンテンツURL（例：TikTokリンク）';
+
+  @override
+  String get applyNoteHint => 'メモ（任意）';
+
+  @override
+  String get applySubmit => '提出';
+
+  @override
+  String get applyContentUrlRequired => 'コンテンツURLを入力してください。';
+
+  @override
+  String get applicantsTitle => '応募者';
+
+  @override
+  String get applicantsEmpty => 'まだ応募者がいません。';
+
+  @override
+  String get applicantsSettleDone => '精算を登録しました';
+
+  @override
+  String get applicantsReject => '不採用';
+
+  @override
+  String get applicantsAccept => '採用';
+
+  @override
+  String get applicantsSettle => '精算する';
+
+  @override
+  String get applicantsRatingTitle => 'インフルエンサー評価';
+
+  @override
+  String get applicantsReview => 'レビュー';
+
+  @override
+  String get applicantsSettleAmountTitle => '精算金額';
+
+  @override
+  String get applicantsAmountHint => '金額（ウォン）';
+
+  @override
+  String get applicantsWonSuffix => 'ウォン';
+
+  @override
+  String get applicantsConfirm => '確認';
+
+  @override
+  String get ratingTitleDefault => 'レビューを書く';
+
+  @override
+  String get ratingSubmitted => 'レビューを投稿しました！';
+
+  @override
+  String get ratingCommentHint => '感想（任意）';
+
+  @override
+  String get ratingSubmit => '投稿';
+
+  @override
+  String get onboardCancelTitle => '登録をキャンセルしますか？';
+
+  @override
+  String get onboardCancelBody => '今ここで離れるとログアウトされ、最初の画面に戻ります。';
+
+  @override
+  String get onboardLeave => '退出する';
+
+  @override
+  String get onboardCompanyNameHint => '例）オービット コスメ';
+
+  @override
+  String get onboardNicknameHint => '例）オービットキーパー';
+
+  @override
+  String get homeBrowseCampaigns => 'キャンペーンを探す';
+
+  @override
+  String get homeSearchCampaigns => 'キャンペーンを検索';
+
+  @override
+  String get homeEmptyFiltered => '条件に合うキャンペーンがありません。\nフィルターを変えてみてください！';
+
+  @override
+  String get homeEmptyFeed => '進行中のキャンペーンはありません。\nまもなく新しいキャンペーンが登場します！';
+
+  @override
+  String get homeMyCampaigns => 'マイキャンペーン';
+
+  @override
+  String get homeEmptyMyCampaigns => 'まだ登録したキャンペーンがありません。\n最初のキャンペーンを作成しましょう！';
+
+  @override
+  String get campaignTypeDelivery => '配送型';
+
+  @override
+  String get campaignTypeVisit => '訪問型';
+
+  @override
+  String get campaignTypePress => '記者団';
+
+  @override
+  String get campaignStatusDraft => '下書き';
+
+  @override
+  String get campaignStatusOpen => '募集中';
+
+  @override
+  String get campaignStatusClosed => '締切';
+
+  @override
+  String get campaignStatusCompleted => '完了';
+
+  @override
+  String get appStatusPending => '審査中';
+
+  @override
+  String get appStatusAccepted => '選定';
+
+  @override
+  String get appStatusRejected => '選外';
+
+  @override
+  String get appStatusSubmitted => '提出済み';
+
+  @override
+  String get appStatusCompleted => '完了';
+
+  @override
+  String get settleStatusPending => '精算待ち';
+
+  @override
+  String get settleStatusProcessing => '処理中';
+
+  @override
+  String get settleStatusPaid => '支払済み';
+
+  @override
+  String get password => 'パスワード';
+
+  @override
+  String get showPassword => 'パスワードを表示';
+
+  @override
+  String get hidePassword => 'パスワードを非表示';
+
+  @override
+  String get lightMode => 'ライトモード';
+
+  @override
+  String get anonymous => '匿名';
 }

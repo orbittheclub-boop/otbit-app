@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import 'package:orbit/core/l10n/enum_labels.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/usecase/usecase.dart';
@@ -28,7 +29,7 @@ class CampaignDetailScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('캠페인 상세'),
+        title: Text(context.l10n.campaignDetailTitle),
         actions: [
           if (async.value != null)
             Builder(
@@ -46,7 +47,7 @@ class CampaignDetailScreen extends ConsumerWidget {
                   onPressed: () async {
                     final ok = await toggleCampaignBookmark(ref, c);
                     if (!ok && context.mounted) {
-                      showAppToast(context, '잠시 후 다시 시도해주세요',
+                      showAppToast(context, context.l10n.tryAgainLater,
                           type: AppToastType.error);
                     }
                   },
@@ -101,9 +102,9 @@ class _Body extends ConsumerWidget {
                   children: [
                     Row(
                       children: [
-                        _Tag(campaign.type.label),
+                        _Tag(campaignTypeLabel(context.l10n, campaign.type)),
                         const SizedBox(width: 6),
-                        _Tag(campaign.status.label),
+                        _Tag(campaignStatusLabel(context.l10n, campaign.status)),
                       ],
                     ),
                     const SizedBox(height: 14),
@@ -118,7 +119,7 @@ class _Body extends ConsumerWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      campaign.companyName ?? '브랜드',
+                      campaign.companyName ?? context.l10n.brandFallback,
                       style: TextStyle(
                         fontSize: 14,
                         color: context.palette.textSecondary,
@@ -127,31 +128,32 @@ class _Body extends ConsumerWidget {
                     const SizedBox(height: 20),
                     _InfoRow(
                       icon: Icons.card_giftcard_rounded,
-                      label: '제공',
+                      label: context.l10n.campaignDetailRewardLabel,
                       value: campaign.rewardType ??
                           (campaign.rewardAmount != null
-                              ? '${campaign.rewardAmount}원'
+                              ? context.l10n.wonAmount('${campaign.rewardAmount}')
                               : '-'),
                     ),
                     _InfoRow(
                       icon: Icons.people_alt_rounded,
-                      label: '모집',
-                      value: '${campaign.recruitCount}명',
+                      label: context.l10n.summaryRecruit,
+                      value: context.l10n
+                          .campaignDetailPeopleCount(campaign.recruitCount),
                     ),
                     _InfoRow(
                       icon: Icons.favorite_rounded,
-                      label: '최소 팔로워',
+                      label: context.l10n.campaignDetailMinFollowers,
                       value: '${campaign.minFollowers}',
                     ),
                     if (deadline != null)
                       _InfoRow(
                         icon: Icons.schedule_rounded,
-                        label: '마감',
+                        label: context.l10n.summaryDeadline,
                         value: DateFormat('yyyy.MM.dd').format(deadline),
                       ),
                     if (campaign.description != null) ...[
                       const SizedBox(height: 20),
-                      const _SectionTitle('캠페인 소개'),
+                      _SectionTitle(context.l10n.campaignDetailIntroSection),
                       Text(
                         campaign.description!,
                         style: const TextStyle(height: 1.6, fontSize: 14),
@@ -159,7 +161,7 @@ class _Body extends ConsumerWidget {
                     ],
                     if (campaign.contentGuide != null) ...[
                       const SizedBox(height: 20),
-                      const _SectionTitle('콘텐츠 가이드'),
+                      _SectionTitle(context.l10n.contentGuide),
                       Text(
                         campaign.contentGuide!,
                         style: const TextStyle(height: 1.6, fontSize: 14),
@@ -201,10 +203,10 @@ class _ActionBar extends ConsumerWidget {
       case Ok():
         ref.invalidate(campaignDetailProvider(campaign.id));
         ref.invalidate(myApplicationsProvider);
-        showAppToast(context, '지원이 완료됐어요!');
+        showAppToast(context, context.l10n.campaignDetailApplySuccess);
       case Err(:final failure):
         final msg = failure.message == 'already_applied'
-            ? '이미 지원한 캠페인이에요.'
+            ? context.l10n.campaignDetailAlreadyApplied
             : failure.message;
         showAppToast(context, msg, type: AppToastType.error);
     }
@@ -219,7 +221,7 @@ class _ActionBar extends ConsumerWidget {
       case Ok():
         ref.invalidate(campaignDetailProvider(campaign.id));
         ref.invalidate(myApplicationsProvider);
-        showAppToast(context, '지원을 취소했어요.');
+        showAppToast(context, context.l10n.campaignDetailCancelSuccess);
       case Err(:final failure):
         showAppToast(context, failure.message, type: AppToastType.error);
     }
@@ -229,16 +231,16 @@ class _ActionBar extends ConsumerWidget {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('캠페인 삭제'),
-        content: const Text('이 캠페인을 삭제할까요? 지원 내역도 함께 사라지며 되돌릴 수 없어요.'),
+        title: Text(context.l10n.campaignDetailDeleteTitle),
+        content: Text(context.l10n.campaignDetailDeleteConfirm),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('취소')),
+              child: Text(context.l10n.cancel)),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
             style: TextButton.styleFrom(foregroundColor: AppColors.danger),
-            child: const Text('삭제'),
+            child: Text(context.l10n.delete),
           ),
         ],
       ),
@@ -250,7 +252,7 @@ class _ActionBar extends ConsumerWidget {
       case Ok():
         ref.invalidate(myCampaignsProvider);
         ref.invalidate(campaignFeedProvider);
-        showAppToast(context, '캠페인을 삭제했어요.');
+        showAppToast(context, context.l10n.campaignDetailDeleteSuccess);
         context.pop();
       case Err(:final failure):
         showAppToast(context, failure.message, type: AppToastType.error);
@@ -262,22 +264,22 @@ class _ActionBar extends ConsumerWidget {
   Widget _influencerAction(BuildContext context, WidgetRef ref) {
     if (!campaign.applied) {
       return PrimaryButton(
-        label: '지원하기',
+        label: context.l10n.campaignDetailApply,
         onPressed: () => _apply(context, ref),
       );
     }
     if (campaign.applicationStatus == 'pending') {
       return SecondaryButton(
-        label: '지원취소하기',
+        label: context.l10n.campaignDetailCancelApply,
         onPressed: () => _cancel(context, ref),
       );
     }
     final label = switch (campaign.applicationStatus) {
-      'accepted' => '선정됐어요 ✓',
-      'submitted' => '제출 완료',
-      'completed' => '완료',
-      'rejected' => '미선정',
-      _ => '지원 완료',
+      'accepted' => context.l10n.campaignDetailStatusAccepted,
+      'submitted' => context.l10n.campaignDetailStatusSubmitted,
+      'completed' => context.l10n.campaignDetailStatusCompleted,
+      'rejected' => context.l10n.campaignDetailStatusRejected,
+      _ => context.l10n.campaignDetailStatusApplied,
     };
     return PrimaryButton(label: label, onPressed: null);
   }
@@ -294,7 +296,7 @@ class _ActionBar extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SecondaryButton(
-                    label: '지원자 보기',
+                    label: context.l10n.campaignDetailViewApplicants,
                     icon: Icons.people_alt_rounded,
                     onPressed: () =>
                         context.push('/campaign/${campaign.id}/applicants'),
@@ -304,7 +306,7 @@ class _ActionBar extends ConsumerWidget {
                     children: [
                       Expanded(
                         child: SecondaryButton(
-                          label: '수정',
+                          label: context.l10n.campaignDetailEdit,
                           onPressed: () => context.push(
                             '/campaign/${campaign.id}/edit',
                             extra: campaign,
@@ -315,8 +317,8 @@ class _ActionBar extends ConsumerWidget {
                       Expanded(
                         child: PrimaryButton(
                           label: campaign.status == CampaignStatus.open
-                              ? '마감하기'
-                              : '발행하기',
+                              ? context.l10n.campaignDetailClose
+                              : context.l10n.campaignDetailPublish,
                           onPressed: () => _run(
                             context,
                             ref,
@@ -333,8 +335,8 @@ class _ActionBar extends ConsumerWidget {
                     onPressed: () => _delete(context, ref),
                     icon: const Icon(Icons.delete_outline_rounded,
                         size: 18, color: AppColors.danger),
-                    label: const Text('캠페인 삭제',
-                        style: TextStyle(color: AppColors.danger)),
+                    label: Text(context.l10n.campaignDetailDeleteTitle,
+                        style: const TextStyle(color: AppColors.danger)),
                   ),
                 ],
               )
@@ -413,7 +415,7 @@ class _ErrorView extends StatelessWidget {
           children: [
             Text(message, style: TextStyle(color: context.palette.textSecondary)),
             const SizedBox(height: 12),
-            TextButton(onPressed: onRetry, child: const Text('다시 시도')),
+            TextButton(onPressed: onRetry, child: Text(context.l10n.retry)),
           ],
         ),
       );

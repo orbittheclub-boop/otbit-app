@@ -1007,6 +1007,660 @@ abstract class AppLocalizations {
   /// In ko, this message translates to:
   /// **'{amount}원'**
   String wonAmount(String amount);
+
+  /// No description provided for @wizardInfoSubImage.
+  ///
+  /// In ko, this message translates to:
+  /// **'대표 이미지·제목·카테고리를 입력해주세요.'**
+  String get wizardInfoSubImage;
+
+  /// No description provided for @wizardThumbnailOptional.
+  ///
+  /// In ko, this message translates to:
+  /// **'대표 이미지 (선택)'**
+  String get wizardThumbnailOptional;
+
+  /// No description provided for @wizardTitleHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'예) 신상 립밤 체험단 모집'**
+  String get wizardTitleHint;
+
+  /// No description provided for @wizardCategoryHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'예) 뷰티, 푸드, 패션'**
+  String get wizardCategoryHint;
+
+  /// No description provided for @wizardAddThumbnail.
+  ///
+  /// In ko, this message translates to:
+  /// **'대표 이미지 추가'**
+  String get wizardAddThumbnail;
+
+  /// No description provided for @wizardChange.
+  ///
+  /// In ko, this message translates to:
+  /// **'변경'**
+  String get wizardChange;
+
+  /// No description provided for @wizardRewardHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'예) 제품 무료 제공'**
+  String get wizardRewardHint;
+
+  /// No description provided for @wizardDescHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인 소개'**
+  String get wizardDescHint;
+
+  /// No description provided for @wizardGuideHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'인플루언서가 지켜야 할 가이드'**
+  String get wizardGuideHint;
+
+  /// No description provided for @wizardRecruitCount.
+  ///
+  /// In ko, this message translates to:
+  /// **'{count}명'**
+  String wizardRecruitCount(int count);
+
+  /// No description provided for @wizardPublishNowDesc.
+  ///
+  /// In ko, this message translates to:
+  /// **'체크하면 인플루언서에게 바로 노출돼요.\n해제하면 작성중(draft)으로 저장돼요.'**
+  String get wizardPublishNowDesc;
+
+  /// No description provided for @campaignFormDelete.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인 삭제'**
+  String get campaignFormDelete;
+
+  /// No description provided for @campaignFormEditTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인 수정'**
+  String get campaignFormEditTitle;
+
+  /// No description provided for @campaignFormTitleHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인 제목'**
+  String get campaignFormTitleHint;
+
+  /// No description provided for @campaignFormCategoryHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'예) 뷰티, 푸드'**
+  String get campaignFormCategoryHint;
+
+  /// No description provided for @campaignFormReward.
+  ///
+  /// In ko, this message translates to:
+  /// **'제공 혜택'**
+  String get campaignFormReward;
+
+  /// No description provided for @campaignFormDeadline.
+  ///
+  /// In ko, this message translates to:
+  /// **'마감일'**
+  String get campaignFormDeadline;
+
+  /// No description provided for @campaignFormPickDate.
+  ///
+  /// In ko, this message translates to:
+  /// **'날짜 선택'**
+  String get campaignFormPickDate;
+
+  /// No description provided for @campaignFormSave.
+  ///
+  /// In ko, this message translates to:
+  /// **'저장하기'**
+  String get campaignFormSave;
+
+  /// No description provided for @campaignDetailTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인 상세'**
+  String get campaignDetailTitle;
+
+  /// No description provided for @campaignDetailRewardLabel.
+  ///
+  /// In ko, this message translates to:
+  /// **'제공'**
+  String get campaignDetailRewardLabel;
+
+  /// No description provided for @campaignDetailPeopleCount.
+  ///
+  /// In ko, this message translates to:
+  /// **'{count}명'**
+  String campaignDetailPeopleCount(int count);
+
+  /// No description provided for @campaignDetailMinFollowers.
+  ///
+  /// In ko, this message translates to:
+  /// **'최소 팔로워'**
+  String get campaignDetailMinFollowers;
+
+  /// No description provided for @campaignDetailIntroSection.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인 소개'**
+  String get campaignDetailIntroSection;
+
+  /// No description provided for @campaignDetailApplySuccess.
+  ///
+  /// In ko, this message translates to:
+  /// **'지원이 완료됐어요!'**
+  String get campaignDetailApplySuccess;
+
+  /// No description provided for @campaignDetailAlreadyApplied.
+  ///
+  /// In ko, this message translates to:
+  /// **'이미 지원한 캠페인이에요.'**
+  String get campaignDetailAlreadyApplied;
+
+  /// No description provided for @campaignDetailCancelSuccess.
+  ///
+  /// In ko, this message translates to:
+  /// **'지원을 취소했어요.'**
+  String get campaignDetailCancelSuccess;
+
+  /// No description provided for @campaignDetailDeleteTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인 삭제'**
+  String get campaignDetailDeleteTitle;
+
+  /// No description provided for @campaignDetailDeleteConfirm.
+  ///
+  /// In ko, this message translates to:
+  /// **'이 캠페인을 삭제할까요? 지원 내역도 함께 사라지며 되돌릴 수 없어요.'**
+  String get campaignDetailDeleteConfirm;
+
+  /// No description provided for @campaignDetailDeleteSuccess.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인을 삭제했어요.'**
+  String get campaignDetailDeleteSuccess;
+
+  /// No description provided for @campaignDetailApply.
+  ///
+  /// In ko, this message translates to:
+  /// **'지원하기'**
+  String get campaignDetailApply;
+
+  /// No description provided for @campaignDetailCancelApply.
+  ///
+  /// In ko, this message translates to:
+  /// **'지원취소하기'**
+  String get campaignDetailCancelApply;
+
+  /// No description provided for @campaignDetailStatusAccepted.
+  ///
+  /// In ko, this message translates to:
+  /// **'선정됐어요 ✓'**
+  String get campaignDetailStatusAccepted;
+
+  /// No description provided for @campaignDetailStatusSubmitted.
+  ///
+  /// In ko, this message translates to:
+  /// **'제출 완료'**
+  String get campaignDetailStatusSubmitted;
+
+  /// No description provided for @campaignDetailStatusCompleted.
+  ///
+  /// In ko, this message translates to:
+  /// **'완료'**
+  String get campaignDetailStatusCompleted;
+
+  /// No description provided for @campaignDetailStatusRejected.
+  ///
+  /// In ko, this message translates to:
+  /// **'미선정'**
+  String get campaignDetailStatusRejected;
+
+  /// No description provided for @campaignDetailStatusApplied.
+  ///
+  /// In ko, this message translates to:
+  /// **'지원 완료'**
+  String get campaignDetailStatusApplied;
+
+  /// No description provided for @campaignDetailViewApplicants.
+  ///
+  /// In ko, this message translates to:
+  /// **'지원자 보기'**
+  String get campaignDetailViewApplicants;
+
+  /// No description provided for @campaignDetailEdit.
+  ///
+  /// In ko, this message translates to:
+  /// **'수정'**
+  String get campaignDetailEdit;
+
+  /// No description provided for @campaignDetailClose.
+  ///
+  /// In ko, this message translates to:
+  /// **'마감하기'**
+  String get campaignDetailClose;
+
+  /// No description provided for @campaignDetailPublish.
+  ///
+  /// In ko, this message translates to:
+  /// **'발행하기'**
+  String get campaignDetailPublish;
+
+  /// No description provided for @campaignCardRewardFallback.
+  ///
+  /// In ko, this message translates to:
+  /// **'제공 혜택'**
+  String get campaignCardRewardFallback;
+
+  /// No description provided for @campaignCardApplicantCount.
+  ///
+  /// In ko, this message translates to:
+  /// **'지원 {count}명'**
+  String campaignCardApplicantCount(int count);
+
+  /// No description provided for @campaignCardRecruitCount.
+  ///
+  /// In ko, this message translates to:
+  /// **'모집 {count}명'**
+  String campaignCardRecruitCount(int count);
+
+  /// No description provided for @applyMyApplicationsTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'내 지원 현황'**
+  String get applyMyApplicationsTitle;
+
+  /// No description provided for @applyEmpty.
+  ///
+  /// In ko, this message translates to:
+  /// **'아직 지원한 캠페인이 없어요.'**
+  String get applyEmpty;
+
+  /// No description provided for @applyFavoritesSection.
+  ///
+  /// In ko, this message translates to:
+  /// **'⭐ 즐겨찾기'**
+  String get applyFavoritesSection;
+
+  /// No description provided for @applyPin.
+  ///
+  /// In ko, this message translates to:
+  /// **'즐겨찾기'**
+  String get applyPin;
+
+  /// No description provided for @applyUnpin.
+  ///
+  /// In ko, this message translates to:
+  /// **'즐겨찾기 해제'**
+  String get applyUnpin;
+
+  /// No description provided for @applyCancelAction.
+  ///
+  /// In ko, this message translates to:
+  /// **'지원취소'**
+  String get applyCancelAction;
+
+  /// No description provided for @applyCancelTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'지원 취소'**
+  String get applyCancelTitle;
+
+  /// No description provided for @applyCancelConfirm.
+  ///
+  /// In ko, this message translates to:
+  /// **'이 캠페인 지원을 취소할까요? 되돌릴 수 없어요.'**
+  String get applyCancelConfirm;
+
+  /// No description provided for @applyNo.
+  ///
+  /// In ko, this message translates to:
+  /// **'아니요'**
+  String get applyNo;
+
+  /// No description provided for @applyResubmitContent.
+  ///
+  /// In ko, this message translates to:
+  /// **'콘텐츠 다시 제출'**
+  String get applyResubmitContent;
+
+  /// No description provided for @applySubmitContent.
+  ///
+  /// In ko, this message translates to:
+  /// **'콘텐츠 제출하기'**
+  String get applySubmitContent;
+
+  /// No description provided for @applyLeaveReview.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인 리뷰 남기기'**
+  String get applyLeaveReview;
+
+  /// No description provided for @applyRatingTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인 평가'**
+  String get applyRatingTitle;
+
+  /// No description provided for @applySubmitTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'콘텐츠 제출'**
+  String get applySubmitTitle;
+
+  /// No description provided for @applyContentUrlHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'콘텐츠 URL (예: TikTok 링크)'**
+  String get applyContentUrlHint;
+
+  /// No description provided for @applyNoteHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'메모 (선택)'**
+  String get applyNoteHint;
+
+  /// No description provided for @applySubmit.
+  ///
+  /// In ko, this message translates to:
+  /// **'제출'**
+  String get applySubmit;
+
+  /// No description provided for @applyContentUrlRequired.
+  ///
+  /// In ko, this message translates to:
+  /// **'콘텐츠 URL을 입력해주세요.'**
+  String get applyContentUrlRequired;
+
+  /// No description provided for @applicantsTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'지원자'**
+  String get applicantsTitle;
+
+  /// No description provided for @applicantsEmpty.
+  ///
+  /// In ko, this message translates to:
+  /// **'아직 지원자가 없어요.'**
+  String get applicantsEmpty;
+
+  /// No description provided for @applicantsSettleDone.
+  ///
+  /// In ko, this message translates to:
+  /// **'정산 등록 완료'**
+  String get applicantsSettleDone;
+
+  /// No description provided for @applicantsReject.
+  ///
+  /// In ko, this message translates to:
+  /// **'미선정'**
+  String get applicantsReject;
+
+  /// No description provided for @applicantsAccept.
+  ///
+  /// In ko, this message translates to:
+  /// **'선정'**
+  String get applicantsAccept;
+
+  /// No description provided for @applicantsSettle.
+  ///
+  /// In ko, this message translates to:
+  /// **'정산하기'**
+  String get applicantsSettle;
+
+  /// No description provided for @applicantsRatingTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'인플루언서 평가'**
+  String get applicantsRatingTitle;
+
+  /// No description provided for @applicantsReview.
+  ///
+  /// In ko, this message translates to:
+  /// **'리뷰'**
+  String get applicantsReview;
+
+  /// No description provided for @applicantsSettleAmountTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'정산 금액'**
+  String get applicantsSettleAmountTitle;
+
+  /// No description provided for @applicantsAmountHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'금액(원)'**
+  String get applicantsAmountHint;
+
+  /// No description provided for @applicantsWonSuffix.
+  ///
+  /// In ko, this message translates to:
+  /// **'원'**
+  String get applicantsWonSuffix;
+
+  /// No description provided for @applicantsConfirm.
+  ///
+  /// In ko, this message translates to:
+  /// **'확인'**
+  String get applicantsConfirm;
+
+  /// No description provided for @ratingTitleDefault.
+  ///
+  /// In ko, this message translates to:
+  /// **'리뷰 남기기'**
+  String get ratingTitleDefault;
+
+  /// No description provided for @ratingSubmitted.
+  ///
+  /// In ko, this message translates to:
+  /// **'리뷰가 등록됐어요!'**
+  String get ratingSubmitted;
+
+  /// No description provided for @ratingCommentHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'후기 (선택)'**
+  String get ratingCommentHint;
+
+  /// No description provided for @ratingSubmit.
+  ///
+  /// In ko, this message translates to:
+  /// **'등록'**
+  String get ratingSubmit;
+
+  /// No description provided for @onboardCancelTitle.
+  ///
+  /// In ko, this message translates to:
+  /// **'가입을 취소할까요?'**
+  String get onboardCancelTitle;
+
+  /// No description provided for @onboardCancelBody.
+  ///
+  /// In ko, this message translates to:
+  /// **'지금 나가면 로그아웃되고 처음 화면으로 돌아갑니다.'**
+  String get onboardCancelBody;
+
+  /// No description provided for @onboardLeave.
+  ///
+  /// In ko, this message translates to:
+  /// **'나가기'**
+  String get onboardLeave;
+
+  /// No description provided for @onboardCompanyNameHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'예) 오비트 코스메틱'**
+  String get onboardCompanyNameHint;
+
+  /// No description provided for @onboardNicknameHint.
+  ///
+  /// In ko, this message translates to:
+  /// **'예) 오비트지기'**
+  String get onboardNicknameHint;
+
+  /// No description provided for @homeBrowseCampaigns.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인 둘러보기'**
+  String get homeBrowseCampaigns;
+
+  /// No description provided for @homeSearchCampaigns.
+  ///
+  /// In ko, this message translates to:
+  /// **'캠페인 검색'**
+  String get homeSearchCampaigns;
+
+  /// No description provided for @homeEmptyFiltered.
+  ///
+  /// In ko, this message translates to:
+  /// **'조건에 맞는 캠페인이 없어요.\n필터를 바꿔보세요!'**
+  String get homeEmptyFiltered;
+
+  /// No description provided for @homeEmptyFeed.
+  ///
+  /// In ko, this message translates to:
+  /// **'진행 중인 캠페인이 없어요.\n곧 새로운 캠페인이 올라올 거예요!'**
+  String get homeEmptyFeed;
+
+  /// No description provided for @homeMyCampaigns.
+  ///
+  /// In ko, this message translates to:
+  /// **'내 캠페인'**
+  String get homeMyCampaigns;
+
+  /// No description provided for @homeEmptyMyCampaigns.
+  ///
+  /// In ko, this message translates to:
+  /// **'아직 등록한 캠페인이 없어요.\n첫 캠페인을 만들어보세요!'**
+  String get homeEmptyMyCampaigns;
+
+  /// No description provided for @campaignTypeDelivery.
+  ///
+  /// In ko, this message translates to:
+  /// **'배송형'**
+  String get campaignTypeDelivery;
+
+  /// No description provided for @campaignTypeVisit.
+  ///
+  /// In ko, this message translates to:
+  /// **'방문형'**
+  String get campaignTypeVisit;
+
+  /// No description provided for @campaignTypePress.
+  ///
+  /// In ko, this message translates to:
+  /// **'기자단'**
+  String get campaignTypePress;
+
+  /// No description provided for @campaignStatusDraft.
+  ///
+  /// In ko, this message translates to:
+  /// **'작성중'**
+  String get campaignStatusDraft;
+
+  /// No description provided for @campaignStatusOpen.
+  ///
+  /// In ko, this message translates to:
+  /// **'모집중'**
+  String get campaignStatusOpen;
+
+  /// No description provided for @campaignStatusClosed.
+  ///
+  /// In ko, this message translates to:
+  /// **'마감'**
+  String get campaignStatusClosed;
+
+  /// No description provided for @campaignStatusCompleted.
+  ///
+  /// In ko, this message translates to:
+  /// **'완료'**
+  String get campaignStatusCompleted;
+
+  /// No description provided for @appStatusPending.
+  ///
+  /// In ko, this message translates to:
+  /// **'심사중'**
+  String get appStatusPending;
+
+  /// No description provided for @appStatusAccepted.
+  ///
+  /// In ko, this message translates to:
+  /// **'선정'**
+  String get appStatusAccepted;
+
+  /// No description provided for @appStatusRejected.
+  ///
+  /// In ko, this message translates to:
+  /// **'미선정'**
+  String get appStatusRejected;
+
+  /// No description provided for @appStatusSubmitted.
+  ///
+  /// In ko, this message translates to:
+  /// **'제출완료'**
+  String get appStatusSubmitted;
+
+  /// No description provided for @appStatusCompleted.
+  ///
+  /// In ko, this message translates to:
+  /// **'완료'**
+  String get appStatusCompleted;
+
+  /// No description provided for @settleStatusPending.
+  ///
+  /// In ko, this message translates to:
+  /// **'정산대기'**
+  String get settleStatusPending;
+
+  /// No description provided for @settleStatusProcessing.
+  ///
+  /// In ko, this message translates to:
+  /// **'처리중'**
+  String get settleStatusProcessing;
+
+  /// No description provided for @settleStatusPaid.
+  ///
+  /// In ko, this message translates to:
+  /// **'지급완료'**
+  String get settleStatusPaid;
+
+  /// No description provided for @password.
+  ///
+  /// In ko, this message translates to:
+  /// **'비밀번호'**
+  String get password;
+
+  /// No description provided for @showPassword.
+  ///
+  /// In ko, this message translates to:
+  /// **'비밀번호 표시'**
+  String get showPassword;
+
+  /// No description provided for @hidePassword.
+  ///
+  /// In ko, this message translates to:
+  /// **'비밀번호 숨기기'**
+  String get hidePassword;
+
+  /// No description provided for @lightMode.
+  ///
+  /// In ko, this message translates to:
+  /// **'라이트 모드'**
+  String get lightMode;
+
+  /// No description provided for @anonymous.
+  ///
+  /// In ko, this message translates to:
+  /// **'익명'**
+  String get anonymous;
 }
 
 class _AppLocalizationsDelegate

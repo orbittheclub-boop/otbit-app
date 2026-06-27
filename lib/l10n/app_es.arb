@@ -178,5 +178,142 @@
         "type": "String"
       }
     }
-  }
+  },
+  "wizardInfoSubImage": "Ingresa una imagen de portada, un título y una categoría.",
+  "wizardThumbnailOptional": "Imagen de portada (opcional)",
+  "wizardTitleHint": "ej. Buscamos testers para un nuevo bálsamo labial",
+  "wizardCategoryHint": "ej. Belleza, Comida, Moda",
+  "wizardAddThumbnail": "Añadir imagen de portada",
+  "wizardChange": "Cambiar",
+  "wizardRewardHint": "ej. Producto gratis",
+  "wizardDescHint": "Descripción de la campaña",
+  "wizardGuideHint": "Pautas que los influencers deben seguir",
+  "wizardRecruitCount": "{count} personas",
+  "@wizardRecruitCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wizardPublishNowDesc": "Si lo activas, se muestra a los influencers de inmediato.\nSi lo desactivas, se guarda como borrador.",
+  "campaignFormDelete": "Eliminar campaña",
+  "campaignFormEditTitle": "Editar campaña",
+  "campaignFormTitleHint": "Título de la campaña",
+  "campaignFormCategoryHint": "ej. Belleza, Comida",
+  "campaignFormReward": "Beneficio",
+  "campaignFormDeadline": "Fecha límite",
+  "campaignFormPickDate": "Seleccionar fecha",
+  "campaignFormSave": "Guardar",
+  "campaignDetailTitle": "Detalles de la campaña",
+  "campaignDetailRewardLabel": "Recompensa",
+  "campaignDetailPeopleCount": "{count} personas",
+  "@campaignDetailPeopleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "campaignDetailMinFollowers": "Seguidores mín.",
+  "campaignDetailIntroSection": "Acerca de la campaña",
+  "campaignDetailApplySuccess": "¡Tu solicitud se ha completado!",
+  "campaignDetailAlreadyApplied": "Ya te has postulado a esta campaña.",
+  "campaignDetailCancelSuccess": "Tu solicitud fue cancelada.",
+  "campaignDetailDeleteTitle": "Eliminar campaña",
+  "campaignDetailDeleteConfirm": "¿Eliminar esta campaña? También se eliminarán las solicitudes y no se puede deshacer.",
+  "campaignDetailDeleteSuccess": "Campaña eliminada.",
+  "campaignDetailApply": "Postularme",
+  "campaignDetailCancelApply": "Cancelar solicitud",
+  "campaignDetailStatusAccepted": "Seleccionado ✓",
+  "campaignDetailStatusSubmitted": "Enviado",
+  "campaignDetailStatusCompleted": "Completado",
+  "campaignDetailStatusRejected": "No seleccionado",
+  "campaignDetailStatusApplied": "Solicitud enviada",
+  "campaignDetailViewApplicants": "Ver postulantes",
+  "campaignDetailEdit": "Editar",
+  "campaignDetailClose": "Cerrar",
+  "campaignDetailPublish": "Publicar",
+  "campaignCardRewardFallback": "Recompensa",
+  "campaignCardApplicantCount": "{count} postulados",
+  "@campaignCardApplicantCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "campaignCardRecruitCount": "{count} cupos",
+  "@campaignCardRecruitCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "applyMyApplicationsTitle": "Mis solicitudes",
+  "applyEmpty": "Aún no te has postulado a ninguna campaña.",
+  "applyFavoritesSection": "⭐ Favoritos",
+  "applyPin": "Favorito",
+  "applyUnpin": "Quitar favorito",
+  "applyCancelAction": "Cancelar solicitud",
+  "applyCancelTitle": "Cancelar solicitud",
+  "applyCancelConfirm": "¿Cancelar tu solicitud a esta campaña? No se puede deshacer.",
+  "applyNo": "No",
+  "applyResubmitContent": "Reenviar contenido",
+  "applySubmitContent": "Enviar contenido",
+  "applyLeaveReview": "Dejar una reseña de la campaña",
+  "applyRatingTitle": "Calificar campaña",
+  "applySubmitTitle": "Enviar contenido",
+  "applyContentUrlHint": "URL del contenido (ej.: enlace de TikTok)",
+  "applyNoteHint": "Nota (opcional)",
+  "applySubmit": "Enviar",
+  "applyContentUrlRequired": "Introduce la URL del contenido.",
+  "applicantsTitle": "Solicitantes",
+  "applicantsEmpty": "Aún no hay solicitantes.",
+  "applicantsSettleDone": "Liquidación registrada",
+  "applicantsReject": "Rechazar",
+  "applicantsAccept": "Aceptar",
+  "applicantsSettle": "Liquidar",
+  "applicantsRatingTitle": "Calificar influencer",
+  "applicantsReview": "Reseña",
+  "applicantsSettleAmountTitle": "Importe de liquidación",
+  "applicantsAmountHint": "Importe (KRW)",
+  "applicantsWonSuffix": "KRW",
+  "applicantsConfirm": "Confirmar",
+  "ratingTitleDefault": "Dejar una reseña",
+  "ratingSubmitted": "¡Tu reseña ha sido publicada!",
+  "ratingCommentHint": "Comentario (opcional)",
+  "ratingSubmit": "Publicar",
+  "onboardCancelTitle": "¿Cancelar el registro?",
+  "onboardCancelBody": "Si sales ahora, se cerrará tu sesión y volverás a la pantalla de inicio.",
+  "onboardLeave": "Salir",
+  "onboardCompanyNameHint": "ej.) Orbit Cosmetics",
+  "onboardNicknameHint": "ej.) orbitkeeper",
+  "homeBrowseCampaigns": "Explorar campañas",
+  "homeSearchCampaigns": "Buscar campañas",
+  "homeEmptyFiltered": "No hay campañas que coincidan con los filtros.\n¡Prueba a cambiarlos!",
+  "homeEmptyFeed": "No hay campañas activas ahora mismo.\n¡Pronto habrá nuevas!",
+  "homeMyCampaigns": "Mis campañas",
+  "homeEmptyMyCampaigns": "Aún no has creado ninguna campaña.\n¡Crea la primera!",
+  "campaignTypeDelivery": "Envío",
+  "campaignTypeVisit": "Visita",
+  "campaignTypePress": "Prensa",
+  "campaignStatusDraft": "Borrador",
+  "campaignStatusOpen": "Abierta",
+  "campaignStatusClosed": "Cerrada",
+  "campaignStatusCompleted": "Completada",
+  "appStatusPending": "En revisión",
+  "appStatusAccepted": "Seleccionado",
+  "appStatusRejected": "No seleccionado",
+  "appStatusSubmitted": "Enviado",
+  "appStatusCompleted": "Completado",
+  "settleStatusPending": "Pendiente",
+  "settleStatusProcessing": "Procesando",
+  "settleStatusPaid": "Pagado",
+  "password": "Contraseña",
+  "showPassword": "Mostrar contraseña",
+  "hidePassword": "Ocultar contraseña",
+  "lightMode": "Modo claro",
+  "anonymous": "Anónimo"
 }

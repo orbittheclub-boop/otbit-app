@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/features/campaign/presentation/providers/campaign_providers.dart';
 import 'package:orbit/features/campaign/presentation/widgets/campaign_card.dart';
@@ -19,7 +20,7 @@ class CompanyHomeScreen extends ConsumerWidget {
       // The create-campaign FAB lives on the shell (so it floats above the
       // glass nav bar); no per-screen FAB here to avoid a duplicate.
       drawer: const AppDrawer(),
-      appBar: AppBar(title: const Text('내 캠페인')),
+      appBar: AppBar(title: Text(context.l10n.homeMyCampaigns)),
       body: RefreshIndicator(
         color: AppColors.primary,
         onRefresh: () async => ref.invalidate(myCampaignsProvider),
@@ -31,9 +32,9 @@ class CompanyHomeScreen extends ConsumerWidget {
             onRetry: () => ref.invalidate(myCampaignsProvider),
           ),
           data: (list) => list.isEmpty
-              ? const _Empty(
+              ? _Empty(
                   icon: Icons.campaign_outlined,
-                  text: '아직 등록한 캠페인이 없어요.\n첫 캠페인을 만들어보세요!',
+                  text: context.l10n.homeEmptyMyCampaigns,
                 )
               : ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
@@ -86,7 +87,8 @@ class _Error extends StatelessWidget {
               style: TextStyle(color: context.palette.textSecondary)),
           const SizedBox(height: 12),
           Center(
-              child: TextButton(onPressed: onRetry, child: const Text('다시 시도'))),
+              child: TextButton(
+                  onPressed: onRetry, child: Text(context.l10n.retry))),
         ],
       );
 }

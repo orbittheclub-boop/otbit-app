@@ -12,12 +12,7 @@ enum CampaignType {
         'press' => CampaignType.press,
         _ => CampaignType.delivery,
       };
-
-  String get label => switch (this) {
-        CampaignType.delivery => '배송형',
-        CampaignType.visit => '방문형',
-        CampaignType.press => '기자단',
-      };
+  // Localized label: see campaignTypeLabel() in core/l10n/enum_labels.dart.
 }
 
 enum CampaignStatus {
@@ -32,13 +27,7 @@ enum CampaignStatus {
         'completed' => CampaignStatus.completed,
         _ => CampaignStatus.draft,
       };
-
-  String get label => switch (this) {
-        CampaignStatus.draft => '작성중',
-        CampaignStatus.open => '모집중',
-        CampaignStatus.closed => '마감',
-        CampaignStatus.completed => '완료',
-      };
+  // Localized label: see campaignStatusLabel() in core/l10n/enum_labels.dart.
 }
 
 @freezed

@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/enum_labels.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/widgets/app_toast.dart';
@@ -36,13 +37,14 @@ class InfluencerHomeScreen extends HookConsumerWidget {
     Future<void> onBookmark(Campaign c) async {
       final ok = await toggleCampaignBookmark(ref, c);
       if (!ok && context.mounted) {
-        showAppToast(context, '잠시 후 다시 시도해주세요', type: AppToastType.error);
+        showAppToast(context, context.l10n.tryAgainLater,
+            type: AppToastType.error);
       }
     }
 
     return Scaffold(
       drawer: const AppDrawer(),
-      appBar: AppBar(title: const Text('캠페인 둘러보기')),
+      appBar: AppBar(title: Text(context.l10n.homeBrowseCampaigns)),
       body: Column(
         children: [
           _FilterBar(
@@ -151,7 +153,7 @@ class _FilterBar extends StatelessWidget {
               onSubmitted: (_) => onSubmitQuery(),
               decoration: InputDecoration(
                 isDense: true,
-                hintText: '캠페인 검색',
+                hintText: context.l10n.homeSearchCampaigns,
                 prefixIcon: const Icon(Icons.search_rounded),
                 suffixIcon: search.text.isNotEmpty
                     ? IconButton(
@@ -168,13 +170,13 @@ class _FilterBar extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 children: [
                   _TypeChip(
-                    label: '전체',
+                    label: context.l10n.boardAll,
                     selected: selectedType == null,
                     onTap: () => onType(null),
                   ),
                   for (final t in CampaignType.values)
                     _TypeChip(
-                      label: t.label,
+                      label: campaignTypeLabel(context.l10n, t),
                       selected: selectedType == t.name,
                       onTap: () => onType(t.name),
                     ),
@@ -283,8 +285,8 @@ class _Empty extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             filtered
-                ? '조건에 맞는 캠페인이 없어요.\n필터를 바꿔보세요!'
-                : '진행 중인 캠페인이 없어요.\n곧 새로운 캠페인이 올라올 거예요!',
+                ? context.l10n.homeEmptyFiltered
+                : context.l10n.homeEmptyFeed,
             textAlign: TextAlign.center,
             style: TextStyle(color: context.palette.textSecondary, height: 1.5),
           ),
@@ -305,7 +307,8 @@ class _Error extends StatelessWidget {
               style: TextStyle(color: context.palette.textSecondary)),
           const SizedBox(height: 12),
           Center(
-              child: TextButton(onPressed: onRetry, child: const Text('다시 시도'))),
+              child: TextButton(
+                  onPressed: onRetry, child: Text(context.l10n.retry))),
         ],
       );
 }

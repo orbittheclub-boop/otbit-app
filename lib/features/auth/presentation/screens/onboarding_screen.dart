@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/widgets/phone_number_formatter.dart';
 import 'package:orbit/core/widgets/primary_button.dart';
@@ -27,11 +28,13 @@ class OnboardingScreen extends HookConsumerWidget {
     Future<void> submit() async {
       FocusScope.of(context).unfocus();
       if (role.value == null) {
-        error.value = '역할을 선택해주세요.';
+        error.value = context.l10n.selectRole;
         return;
       }
       if (name.text.trim().isEmpty) {
-        error.value = isCompany ? '회사명을 입력해주세요.' : '닉네임을 입력해주세요.';
+        error.value = isCompany
+            ? context.l10n.enterCompanyName
+            : context.l10n.enterNickname;
         return;
       }
       loading.value = true;
@@ -57,27 +60,27 @@ class OnboardingScreen extends HookConsumerWidget {
       // area above the keyboard so Flutter auto-scrolls the focused field (e.g.
       // the bottom 연락처 field) into view instead of leaving it covered.
       appBar: AppBar(
-        title: const Text('프로필 설정'),
+        title: Text(context.l10n.profileSetup),
         // No role yet → the only way "back" is to abandon signup (sign out),
         // which returns to the welcome screen.
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: const Icon(Icons.close_rounded),
-          tooltip: '취소',
+          tooltip: context.l10n.cancel,
           onPressed: () async {
             final ok = await showDialog<bool>(
               context: context,
               builder: (ctx) => AlertDialog(
-                title: const Text('가입을 취소할까요?'),
-                content: const Text('지금 나가면 로그아웃되고 처음 화면으로 돌아갑니다.'),
+                title: Text(context.l10n.onboardCancelTitle),
+                content: Text(context.l10n.onboardCancelBody),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(ctx, false),
-                    child: const Text('계속하기'),
+                    child: Text(context.l10n.continueLabel),
                   ),
                   TextButton(
                     onPressed: () => Navigator.pop(ctx, true),
-                    child: const Text('나가기'),
+                    child: Text(context.l10n.onboardLeave),
                   ),
                 ],
               ),
@@ -99,7 +102,7 @@ class OnboardingScreen extends HookConsumerWidget {
             children: [
               const SizedBox(height: 8),
               Text(
-                '어떤 목적으로\n사용하실 건가요?',
+                context.l10n.onboardingTitle,
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w800,
@@ -109,16 +112,16 @@ class OnboardingScreen extends HookConsumerWidget {
               ),
               const SizedBox(height: 24),
               RoleCard(
-                title: '회사 · 브랜드',
-                subtitle: '캠페인을 등록하고 인플루언서를 모집해요',
+                title: context.l10n.roleCompany,
+                subtitle: context.l10n.roleCompanyDesc,
                 icon: Icons.business_rounded,
                 selected: isCompany,
                 onTap: () => role.value = Role.company,
               ),
               const SizedBox(height: 12),
               RoleCard(
-                title: '인플루언서',
-                subtitle: 'TikTok을 연동하고 캠페인에 지원해요',
+                title: context.l10n.roleInfluencer,
+                subtitle: context.l10n.roleInfluencerDesc,
                 icon: Icons.auto_awesome_rounded,
                 selected: isInfluencer,
                 onTap: () => role.value = Role.influencer,
@@ -126,7 +129,7 @@ class OnboardingScreen extends HookConsumerWidget {
               if (role.value != null) ...[
                 const SizedBox(height: 28),
                 Text(
-                  isCompany ? '회사명' : '닉네임',
+                  isCompany ? context.l10n.companyName : context.l10n.nickname,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     color: context.palette.ink,
@@ -136,12 +139,14 @@ class OnboardingScreen extends HookConsumerWidget {
                 TextField(
                   controller: name,
                   decoration: InputDecoration(
-                    hintText: isCompany ? '예) 오비트 코스메틱' : '예) 오비트지기',
+                    hintText: isCompany
+                        ? context.l10n.onboardCompanyNameHint
+                        : context.l10n.onboardNicknameHint,
                   ),
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  '연락처 (선택)',
+                  context.l10n.contactOptional,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     color: context.palette.ink,
@@ -164,7 +169,7 @@ class OnboardingScreen extends HookConsumerWidget {
               ],
               const SizedBox(height: 28),
               PrimaryButton(
-                label: '시작하기',
+                label: context.l10n.start,
                 loading: loading.value,
                 onPressed: submit,
               ),

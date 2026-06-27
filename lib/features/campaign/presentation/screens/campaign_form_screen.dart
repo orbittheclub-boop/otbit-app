@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import 'package:orbit/core/l10n/enum_labels.dart';
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/usecase/usecase.dart';
 import 'package:orbit/core/widgets/primary_button.dart';
@@ -42,7 +44,7 @@ class CampaignFormScreen extends HookConsumerWidget {
     Future<void> submit() async {
       FocusScope.of(context).unfocus();
       if (title.text.trim().isEmpty) {
-        error.value = '제목을 입력해주세요.';
+        error.value = context.l10n.enterTitle;
         return;
       }
       loading.value = true;
@@ -81,14 +83,16 @@ class CampaignFormScreen extends HookConsumerWidget {
       final ok = await showDialog<bool>(
         context: context,
         builder: (_) => AlertDialog(
-          title: const Text('캠페인 삭제'),
-          content: const Text('정말 삭제할까요? 되돌릴 수 없어요.'),
+          title: Text(context.l10n.campaignFormDelete),
+          content: Text(context.l10n.deletePostConfirm),
           actions: [
             TextButton(
-                onPressed: () => context.pop(false), child: const Text('취소')),
+                onPressed: () => context.pop(false),
+                child: Text(context.l10n.cancel)),
             TextButton(
                 onPressed: () => context.pop(true),
-                child: const Text('삭제', style: TextStyle(color: AppColors.danger))),
+                child: Text(context.l10n.delete,
+                    style: const TextStyle(color: AppColors.danger))),
           ],
         ),
       );
@@ -107,7 +111,9 @@ class CampaignFormScreen extends HookConsumerWidget {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: Text(isEdit ? '캠페인 수정' : '새 캠페인')),
+      appBar: AppBar(
+          title: Text(
+              isEdit ? context.l10n.campaignFormEditTitle : context.l10n.newCampaign)),
       body: SafeArea(
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
@@ -121,30 +127,35 @@ class CampaignFormScreen extends HookConsumerWidget {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
               const SizedBox(height: 8),
-            _Label('제목'),
+            _Label(context.l10n.fieldTitle),
             TextField(
                 controller: title,
-                decoration: const InputDecoration(hintText: '캠페인 제목')),
+                decoration:
+                    InputDecoration(hintText: context.l10n.campaignFormTitleHint)),
             const SizedBox(height: 16),
-            _Label('유형'),
+            _Label(context.l10n.summaryType),
             DropdownButtonFormField<CampaignType>(
               initialValue: type.value,
               items: CampaignType.values
                   .map((t) =>
-                      DropdownMenuItem(value: t, child: Text(t.label)))
+                      DropdownMenuItem(
+                          value: t,
+                          child: Text(campaignTypeLabel(context.l10n, t))))
                   .toList(),
               onChanged: (v) => type.value = v ?? CampaignType.delivery,
             ),
             const SizedBox(height: 16),
-            _Label('카테고리'),
+            _Label(context.l10n.boardCategory),
             TextField(
                 controller: category,
-                decoration: const InputDecoration(hintText: '예) 뷰티, 푸드')),
+                decoration: InputDecoration(
+                    hintText: context.l10n.campaignFormCategoryHint)),
             const SizedBox(height: 16),
-            _Label('제공 혜택'),
+            _Label(context.l10n.campaignFormReward),
             TextField(
                 controller: rewardType,
-                decoration: const InputDecoration(hintText: '예) 제품 무료 제공')),
+                decoration:
+                    InputDecoration(hintText: context.l10n.wizardRewardHint)),
             const SizedBox(height: 12),
             Row(
               children: [
@@ -152,7 +163,7 @@ class CampaignFormScreen extends HookConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _Label('지급액(원)'),
+                      _Label(context.l10n.amountWon),
                       TextField(
                           controller: rewardAmount,
                           keyboardType: TextInputType.number,
@@ -165,7 +176,7 @@ class CampaignFormScreen extends HookConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _Label('모집 인원'),
+                      _Label(context.l10n.recruitCountLabel),
                       TextField(
                           controller: recruit,
                           keyboardType: TextInputType.number,
@@ -176,13 +187,13 @@ class CampaignFormScreen extends HookConsumerWidget {
               ],
             ),
             const SizedBox(height: 16),
-            _Label('최소 팔로워 수'),
+            _Label(context.l10n.minFollowersLabel),
             TextField(
                 controller: minF,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(hintText: '0')),
             const SizedBox(height: 16),
-            _Label('마감일'),
+            _Label(context.l10n.campaignFormDeadline),
             InkWell(
               onTap: () async {
                 final now = DateTime.now();
@@ -198,7 +209,7 @@ class CampaignFormScreen extends HookConsumerWidget {
                 decoration: const InputDecoration(),
                 child: Text(
                   deadline.value == null
-                      ? '날짜 선택'
+                      ? context.l10n.campaignFormPickDate
                       : DateFormat('yyyy.MM.dd').format(deadline.value!),
                   style: TextStyle(
                     color: deadline.value == null
@@ -209,24 +220,26 @@ class CampaignFormScreen extends HookConsumerWidget {
               ),
             ),
             const SizedBox(height: 16),
-            _Label('소개'),
+            _Label(context.l10n.intro),
             TextField(
                 controller: desc,
                 maxLines: 4,
-                decoration: const InputDecoration(hintText: '캠페인 소개')),
+                decoration:
+                    InputDecoration(hintText: context.l10n.wizardDescHint)),
             const SizedBox(height: 16),
-            _Label('콘텐츠 가이드'),
+            _Label(context.l10n.contentGuide),
             TextField(
                 controller: guide,
                 maxLines: 3,
-                decoration: const InputDecoration(hintText: '인플루언서가 지켜야 할 가이드')),
+                decoration:
+                    InputDecoration(hintText: context.l10n.wizardGuideHint)),
             if (!isEdit) ...[
               const SizedBox(height: 8),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 activeThumbColor: AppColors.primary,
-                title: const Text('바로 발행하기'),
-                subtitle: const Text('끄면 작성중(draft)으로 저장돼요'),
+                title: Text(context.l10n.publishNow),
+                subtitle: Text(context.l10n.publishNowDesc),
                 value: publishNow.value,
                 onChanged: (v) => publishNow.value = v,
               ),
@@ -238,7 +251,7 @@ class CampaignFormScreen extends HookConsumerWidget {
             ],
             const SizedBox(height: 20),
             PrimaryButton(
-              label: isEdit ? '저장하기' : '등록하기',
+              label: isEdit ? context.l10n.campaignFormSave : context.l10n.register,
               loading: loading.value,
               onPressed: submit,
             ),
@@ -246,8 +259,8 @@ class CampaignFormScreen extends HookConsumerWidget {
               const SizedBox(height: 4),
               TextButton(
                 onPressed: remove,
-                child: const Text('캠페인 삭제',
-                    style: TextStyle(color: AppColors.danger)),
+                child: Text(context.l10n.campaignFormDelete,
+                    style: const TextStyle(color: AppColors.danger)),
               ),
             ],
             const SizedBox(height: 24),

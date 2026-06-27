@@ -2,6 +2,7 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/core/theme/app_theme.dart';
 import 'package:orbit/core/theme/theme_controller.dart';
@@ -16,7 +17,7 @@ class DarkModeIconButton extends ConsumerWidget {
       builder: (context, switcher, theme) {
         final isDark = theme.brightness == Brightness.dark;
         return IconButton(
-          tooltip: isDark ? '라이트 모드' : '다크 모드',
+          tooltip: isDark ? context.l10n.lightMode : context.l10n.darkMode,
           icon: Icon(
             isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
             color: context.palette.textSecondary,

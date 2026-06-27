@@ -178,5 +178,142 @@
         "type": "String"
       }
     }
-  }
+  },
+  "wizardInfoSubImage": "대표 이미지·제목·카테고리를 입력해주세요.",
+  "wizardThumbnailOptional": "대표 이미지 (선택)",
+  "wizardTitleHint": "예) 신상 립밤 체험단 모집",
+  "wizardCategoryHint": "예) 뷰티, 푸드, 패션",
+  "wizardAddThumbnail": "대표 이미지 추가",
+  "wizardChange": "변경",
+  "wizardRewardHint": "예) 제품 무료 제공",
+  "wizardDescHint": "캠페인 소개",
+  "wizardGuideHint": "인플루언서가 지켜야 할 가이드",
+  "wizardRecruitCount": "{count}명",
+  "@wizardRecruitCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wizardPublishNowDesc": "체크하면 인플루언서에게 바로 노출돼요.\n해제하면 작성중(draft)으로 저장돼요.",
+  "campaignFormDelete": "캠페인 삭제",
+  "campaignFormEditTitle": "캠페인 수정",
+  "campaignFormTitleHint": "캠페인 제목",
+  "campaignFormCategoryHint": "예) 뷰티, 푸드",
+  "campaignFormReward": "제공 혜택",
+  "campaignFormDeadline": "마감일",
+  "campaignFormPickDate": "날짜 선택",
+  "campaignFormSave": "저장하기",
+  "campaignDetailTitle": "캠페인 상세",
+  "campaignDetailRewardLabel": "제공",
+  "campaignDetailPeopleCount": "{count}명",
+  "@campaignDetailPeopleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "campaignDetailMinFollowers": "최소 팔로워",
+  "campaignDetailIntroSection": "캠페인 소개",
+  "campaignDetailApplySuccess": "지원이 완료됐어요!",
+  "campaignDetailAlreadyApplied": "이미 지원한 캠페인이에요.",
+  "campaignDetailCancelSuccess": "지원을 취소했어요.",
+  "campaignDetailDeleteTitle": "캠페인 삭제",
+  "campaignDetailDeleteConfirm": "이 캠페인을 삭제할까요? 지원 내역도 함께 사라지며 되돌릴 수 없어요.",
+  "campaignDetailDeleteSuccess": "캠페인을 삭제했어요.",
+  "campaignDetailApply": "지원하기",
+  "campaignDetailCancelApply": "지원취소하기",
+  "campaignDetailStatusAccepted": "선정됐어요 ✓",
+  "campaignDetailStatusSubmitted": "제출 완료",
+  "campaignDetailStatusCompleted": "완료",
+  "campaignDetailStatusRejected": "미선정",
+  "campaignDetailStatusApplied": "지원 완료",
+  "campaignDetailViewApplicants": "지원자 보기",
+  "campaignDetailEdit": "수정",
+  "campaignDetailClose": "마감하기",
+  "campaignDetailPublish": "발행하기",
+  "campaignCardRewardFallback": "제공 혜택",
+  "campaignCardApplicantCount": "지원 {count}명",
+  "@campaignCardApplicantCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "campaignCardRecruitCount": "모집 {count}명",
+  "@campaignCardRecruitCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "applyMyApplicationsTitle": "내 지원 현황",
+  "applyEmpty": "아직 지원한 캠페인이 없어요.",
+  "applyFavoritesSection": "⭐ 즐겨찾기",
+  "applyPin": "즐겨찾기",
+  "applyUnpin": "즐겨찾기 해제",
+  "applyCancelAction": "지원취소",
+  "applyCancelTitle": "지원 취소",
+  "applyCancelConfirm": "이 캠페인 지원을 취소할까요? 되돌릴 수 없어요.",
+  "applyNo": "아니요",
+  "applyResubmitContent": "콘텐츠 다시 제출",
+  "applySubmitContent": "콘텐츠 제출하기",
+  "applyLeaveReview": "캠페인 리뷰 남기기",
+  "applyRatingTitle": "캠페인 평가",
+  "applySubmitTitle": "콘텐츠 제출",
+  "applyContentUrlHint": "콘텐츠 URL (예: TikTok 링크)",
+  "applyNoteHint": "메모 (선택)",
+  "applySubmit": "제출",
+  "applyContentUrlRequired": "콘텐츠 URL을 입력해주세요.",
+  "applicantsTitle": "지원자",
+  "applicantsEmpty": "아직 지원자가 없어요.",
+  "applicantsSettleDone": "정산 등록 완료",
+  "applicantsReject": "미선정",
+  "applicantsAccept": "선정",
+  "applicantsSettle": "정산하기",
+  "applicantsRatingTitle": "인플루언서 평가",
+  "applicantsReview": "리뷰",
+  "applicantsSettleAmountTitle": "정산 금액",
+  "applicantsAmountHint": "금액(원)",
+  "applicantsWonSuffix": "원",
+  "applicantsConfirm": "확인",
+  "ratingTitleDefault": "리뷰 남기기",
+  "ratingSubmitted": "리뷰가 등록됐어요!",
+  "ratingCommentHint": "후기 (선택)",
+  "ratingSubmit": "등록",
+  "onboardCancelTitle": "가입을 취소할까요?",
+  "onboardCancelBody": "지금 나가면 로그아웃되고 처음 화면으로 돌아갑니다.",
+  "onboardLeave": "나가기",
+  "onboardCompanyNameHint": "예) 오비트 코스메틱",
+  "onboardNicknameHint": "예) 오비트지기",
+  "homeBrowseCampaigns": "캠페인 둘러보기",
+  "homeSearchCampaigns": "캠페인 검색",
+  "homeEmptyFiltered": "조건에 맞는 캠페인이 없어요.\n필터를 바꿔보세요!",
+  "homeEmptyFeed": "진행 중인 캠페인이 없어요.\n곧 새로운 캠페인이 올라올 거예요!",
+  "homeMyCampaigns": "내 캠페인",
+  "homeEmptyMyCampaigns": "아직 등록한 캠페인이 없어요.\n첫 캠페인을 만들어보세요!",
+  "campaignTypeDelivery": "배송형",
+  "campaignTypeVisit": "방문형",
+  "campaignTypePress": "기자단",
+  "campaignStatusDraft": "작성중",
+  "campaignStatusOpen": "모집중",
+  "campaignStatusClosed": "마감",
+  "campaignStatusCompleted": "완료",
+  "appStatusPending": "심사중",
+  "appStatusAccepted": "선정",
+  "appStatusRejected": "미선정",
+  "appStatusSubmitted": "제출완료",
+  "appStatusCompleted": "완료",
+  "settleStatusPending": "정산대기",
+  "settleStatusProcessing": "처리중",
+  "settleStatusPaid": "지급완료",
+  "password": "비밀번호",
+  "showPassword": "비밀번호 표시",
+  "hidePassword": "비밀번호 숨기기",
+  "lightMode": "라이트 모드",
+  "anonymous": "익명"
 }

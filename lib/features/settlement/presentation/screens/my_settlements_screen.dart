@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import 'package:orbit/core/l10n/enum_labels.dart';
 import 'package:orbit/core/l10n/l10n.dart';
 import 'package:orbit/core/theme/app_colors.dart';
 import 'package:orbit/features/settlement/domain/entities/settlement.dart';
@@ -97,7 +98,7 @@ class _SettleChip extends StatelessWidget {
         decoration: BoxDecoration(
             color: _c.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(6)),
-        child: Text(status.label,
+        child: Text(settlementStatusLabel(context.l10n, status),
             style: TextStyle(
                 fontSize: 11, fontWeight: FontWeight.w700, color: _c)),
       );
